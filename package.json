@@ -6,6 +6,9 @@
     "build": "browserify ./client/index.js -t babelify --outfile ./public/js/bundle.js",
     "start": "node app.js"
   },
+  "engines": {
+    "node": "6.2.0"
+  },
   "dependencies": {
     "express": "^4.13.1",
     "react": "^15.4.2",
