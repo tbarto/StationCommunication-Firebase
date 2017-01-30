@@ -4,6 +4,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+exports.setId = setId;
 exports.callService = callService;
 exports.clearButton = clearButton;
 exports.callReceived = callReceived;
@@ -15,6 +16,8 @@ var _socketIoClient = require('socket.io-client');
 
 var _socketIoClient2 = _interopRequireDefault(_socketIoClient);
 
+var SET_ID = 'SET_ID';
+exports.SET_ID = SET_ID;
 var CALL_STATION = 'CALL_STATION';
 exports.CALL_STATION = CALL_STATION;
 var CLEAR_BUTTON = 'CLEAR_BUTTON';
@@ -24,6 +27,13 @@ exports.CALL_RECEIVED = CALL_RECEIVED;
 var CLEAR_CALL = 'CLEAR_CALL';
 
 exports.CLEAR_CALL = CLEAR_CALL;
+
+function setId(tableId) {
+  return {
+    type: SET_ID,
+    payload: tableId
+  };
+}
 
 function callService(socket, table) {
   socket.emit('call', table);
@@ -41,7 +51,6 @@ function clearButton(data) {
 }
 
 function callReceived(table) {
-  console.log('call received');
   return {
     type: CALL_RECEIVED,
     payload: table
@@ -49,7 +58,6 @@ function callReceived(table) {
 }
 
 function clearCall(socket, call, index) {
-  console.log('clearing call');
   socket.emit('clearCall', call);
   return {
     type: CLEAR_CALL,
@@ -143,7 +151,7 @@ var AppIndex = (function (_Component) {
     value: function render() {
       return _react2['default'].createElement(
         'div',
-        null,
+        { className: 'index-container' },
         _react2['default'].createElement(
           'h1',
           null,
@@ -228,6 +236,8 @@ var _socketIoClient = require('socket.io-client');
 
 var _socketIoClient2 = _interopRequireDefault(_socketIoClient);
 
+var _componentsTable = require('../components/table');
+
 var socket = _socketIoClient2['default'].connect();
 
 var Station = (function (_Component) {
@@ -255,11 +265,11 @@ var Station = (function (_Component) {
           'div',
           {
             key: index,
-            className: 'call',
+            className: 'station-call ' + call.type,
             onClick: _this.props.clearCall.bind(_this, socket, call, index) },
           _react2['default'].createElement(
-            'span',
-            null,
+            'div',
+            { className: 'station-call-content' },
             call.tableNum
           )
         );
@@ -296,7 +306,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, { callReceived: _actionsIndex.callReceived, clearCall: _actionsIndex.clearCall })(Station);
 module.exports = exports['default'];
 
-},{"../actions/index":1,"react":307,"react-redux":244,"socket.io-client":316}],5:[function(require,module,exports){
+},{"../actions/index":1,"../components/table":5,"react":307,"react-redux":244,"socket.io-client":316}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -338,17 +348,20 @@ exports.CHECK = CHECK;
 var TableBuzzer = (function (_Component) {
   _inherits(TableBuzzer, _Component);
 
-  function TableBuzzer() {
+  function TableBuzzer(props) {
     _classCallCheck(this, TableBuzzer);
 
-    _get(Object.getPrototypeOf(TableBuzzer.prototype), 'constructor', this).apply(this, arguments);
+    _get(Object.getPrototypeOf(TableBuzzer.prototype), 'constructor', this).call(this, props);
+    this.state = {
+      tableId: this.props.params.id
+    };
   }
 
   _createClass(TableBuzzer, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      //create connection with server by calling action creator
-      //this.props.ioConnect();
+      //set id of table
+      this.props.setId(this.props.params.id);
     }
   }, {
     key: 'componentDidMount',
@@ -358,23 +371,6 @@ var TableBuzzer = (function (_Component) {
       if (socket) {
         socket.on('clearCall', this.props.clearButton);
       }
-    }
-  }, {
-    key: 'test',
-    value: function test(data) {
-      console.log(data);
-    }
-  }, {
-    key: 'test2',
-    value: function test2() {
-      console.log('table emitting a call');
-      socket.emit('call', { "tableNum": 12, "type": "WATER" });
-    }
-  }, {
-    key: 'clearServiceRecieved',
-    value: function clearServiceRecieved(data) {
-      //check if table matches this table
-      //call clearService to enable button again
     }
   }, {
     key: 'render',
@@ -420,7 +416,7 @@ function mapStateToProps(state) {
     table: state.table
   };
 }
-exports['default'] = (0, _reactRedux.connect)(mapStateToProps, { callService: _actionsIndex.callService, clearButton: _actionsIndex.clearButton })(TableBuzzer);
+exports['default'] = (0, _reactRedux.connect)(mapStateToProps, { callService: _actionsIndex.callService, clearButton: _actionsIndex.clearButton, setId: _actionsIndex.setId })(TableBuzzer);
 
 },{"../actions/index":1,"react":307,"react-redux":244,"socket.io-client":316}],6:[function(require,module,exports){
 'use strict';
@@ -502,6 +498,7 @@ var _actionsIndex = require('../actions/index');
 var _componentsTable = require('../components/table');
 
 var INITIAL_STATE = {
+  "tableId": "",
   "serviceEnabled": true,
   "waterEnabled": true,
   "checkEnabled": true
@@ -511,6 +508,8 @@ exports['default'] = function (state, action) {
   if (state === undefined) state = INITIAL_STATE;
 
   switch (action.type) {
+    case _actionsIndex.SET_ID:
+      return _extends({}, state, { tableId: action.payload });
     case _actionsIndex.CALL_STATION:
       switch (action.payload) {
         case _componentsTable.SERVICE:
@@ -523,16 +522,18 @@ exports['default'] = function (state, action) {
           return state;
       }
     case _actionsIndex.CLEAR_BUTTON:
-      switch (action.payload.type) {
-        case _componentsTable.SERVICE:
-          return _extends({}, state, { serviceEnabled: !state.serviceEnabled });
-        case _componentsTable.WATER:
-          return _extends({}, state, { waterEnabled: !state.waterEnabled });
-        case _componentsTable.CHECK:
-          return _extends({}, state, { checkEnabled: !state.checkEnabled });
-        default:
-          return state;
-      }
+      if (state.tableId == action.payload.tableNum) {
+        switch (action.payload.type) {
+          case _componentsTable.SERVICE:
+            return _extends({}, state, { serviceEnabled: !state.serviceEnabled });
+          case _componentsTable.WATER:
+            return _extends({}, state, { waterEnabled: !state.waterEnabled });
+          case _componentsTable.CHECK:
+            return _extends({}, state, { checkEnabled: !state.checkEnabled });
+          default:
+            return state;
+        }
+      } else return state;
     default:
       return state;
   }

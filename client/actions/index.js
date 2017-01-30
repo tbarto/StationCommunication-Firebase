@@ -2,11 +2,18 @@
 
 import io from 'socket.io-client';
 
+export const SET_ID = 'SET_ID';
 export const CALL_STATION = 'CALL_STATION';
 export const CLEAR_BUTTON = 'CLEAR_BUTTON';
 export const CALL_RECEIVED = 'CALL_RECEIVED';
 export const CLEAR_CALL = 'CLEAR_CALL';
 
+export function setId(tableId){
+  return{
+    type: SET_ID,
+    payload: tableId
+  }
+}
 export function callService(socket, table){
     socket.emit('call',table);
     return{
@@ -23,7 +30,6 @@ export function clearButton(data){
 }
 
 export function callReceived(table){
-  console.log('call received');
   return{
     type: CALL_RECEIVED,
     payload: table
@@ -31,7 +37,6 @@ export function callReceived(table){
 }
 
 export function clearCall(socket, call, index){
-  console.log('clearing call');
   socket.emit('clearCall', call);
   return{
     type: CLEAR_CALL,

@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {callReceived, clearCall} from '../actions/index';
 import io from 'socket.io-client';
 
+import {SERVICE, WATER, CHECK} from '../components/table';
 const socket = io.connect();
 
 class Station extends Component{
@@ -19,9 +20,9 @@ class Station extends Component{
       return(
         <div
           key={index}
-          className="call"
+          className={`station-call ${call.type}`}
           onClick={this.props.clearCall.bind(this,socket,call,index)}>
-          <span>{call.tableNum}</span>
+          <div className="station-call-content">{call.tableNum}</div>
         </div>
       );
     });

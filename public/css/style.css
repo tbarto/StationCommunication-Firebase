@@ -4,8 +4,8 @@ body{
   padding-top: 25px;
 }
 
-.call{
-  background-color: green;
+.station-call{
+  display: table;
   width: 20%;
   height: 200px;
   float:left;
@@ -15,8 +15,10 @@ body{
   text-align: center;;
   color: white;
   font-size: 2em;
+  cursor: pointer;
 }
-.call span{
+.station-call-content{
+    display:table-cell;
     vertical-align: middle;
 }
 
@@ -26,4 +28,17 @@ body{
 
 .station-container{
   text-align: center;
+}
+
+.index-container{
+  text-align: center;
+}
+.SERVICE{
+  background-color: #FA7921;
+}
+.WATER{
+  background-color: #5BC0EB;
+}
+.CHECK{
+  background-color: #E55934;
 }

@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {callService, clearButton} from '../actions/index';
+import {callService, clearButton, setId} from '../actions/index';
 import io from 'socket.io-client';
 
 const socket = io.connect();
@@ -12,10 +12,15 @@ export const WATER = 'WATER';
 export const CHECK = 'CHECK';
 
 class TableBuzzer extends Component{
-
+  constructor(props){
+    super(props);
+    this.state={
+      tableId: this.props.params.id
+    }
+  }
   componentWillMount(){
-    //create connection with server by calling action creator
-    //this.props.ioConnect();
+    //set id of table
+    this.props.setId(this.props.params.id);
   }
 
   componentDidMount(){
@@ -24,18 +29,6 @@ class TableBuzzer extends Component{
     if(socket){
       socket.on('clearCall',this.props.clearButton);
     }
-  }
-  test(data){
-    console.log(data);
-  }
-
-  test2(){
-    console.log('table emitting a call');
-    socket.emit('call',{"tableNum":12,"type": "WATER"})
-  }
-  clearServiceRecieved(data){
-    //check if table matches this table
-    //call clearService to enable button again
   }
 
   render(){
@@ -60,4 +53,4 @@ function mapStateToProps(state){
       table: state.table
     };
 }
-export default connect(mapStateToProps, {callService, clearButton})(TableBuzzer);
+export default connect(mapStateToProps,{callService, clearButton, setId})(TableBuzzer);
