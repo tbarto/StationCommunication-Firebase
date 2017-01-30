@@ -1,11 +1,15 @@
 import React from 'react';
-import {Route, RouteIndex} from 'react-router';
+import {Route, IndexRoute} from 'react-router';
 
 import App from './components/app';
-import TableBuzzer from './components/table-buzzer';
+import AppIndex from './components/appIndex';
+import TableBuzzer from './components/table';
+import Station from './components/station';
 
 export default (
   <Route path="/" component={App}>
-    <Route path="table/enter" component={TableBuzzer} />
+    <IndexRoute component={AppIndex} />
+    <Route path="table/:id" component={TableBuzzer} />
+    <Route path="station" component={Station} />
   </Route>
 );

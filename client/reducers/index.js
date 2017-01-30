@@ -1,7 +1,10 @@
 import {combineReducers} from 'redux';
+import ButtonsReducer from './reducer_buttons';
+import StationReducer from './reducer_station';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  table: ButtonsReducer,
+  station: StationReducer
 });
 
 export default rootReducer;

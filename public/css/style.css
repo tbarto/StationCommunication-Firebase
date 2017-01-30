@@ -1,0 +1,29 @@
+body{
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 25px;
+}
+
+.call{
+  background-color: green;
+  width: 20%;
+  height: 200px;
+  float:left;
+  margin-right:5px;
+  margin-bottom: 5px;
+  border-radius: 5%;
+  text-align: center;;
+  color: white;
+  font-size: 2em;
+}
+.call span{
+    vertical-align: middle;
+}
+
+.table-container{
+  text-align: center;
+}
+
+.station-container{
+  text-align: center;
+}
