@@ -42,3 +42,6 @@ body{
 .CHECK{
   background-color: #E55934;
 }
+img{
+  max-width: 100%;
+}
