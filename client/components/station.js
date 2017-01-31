@@ -22,7 +22,7 @@ class Station extends Component{
           key={index}
           className={`station-call ${call.type}`}
           onClick={this.props.clearCall.bind(this,socket,call,index)}>
-          <div className="station-call-content">{call.tableNum}</div>
+          <div className="station-call-content">table: {call.tableNum}</div>
         </div>
       );
     });
@@ -31,6 +31,7 @@ class Station extends Component{
     return(
       <div className="station-container">
         <h2>Communication Station</h2>
+        <h3>{this.props.station.calls.length<1? 'waiting for service call' : ''}</h3>
         <div>{this.renderCalls()}</div>
       </div>
     );

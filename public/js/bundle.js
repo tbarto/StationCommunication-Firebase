@@ -270,6 +270,7 @@ var Station = (function (_Component) {
           _react2['default'].createElement(
             'div',
             { className: 'station-call-content' },
+            'table: ',
             call.tableNum
           )
         );
@@ -285,6 +286,11 @@ var Station = (function (_Component) {
           'h2',
           null,
           'Communication Station'
+        ),
+        _react2['default'].createElement(
+          'h3',
+          null,
+          this.props.station.calls.length < 1 ? 'waiting for service call' : ''
         ),
         _react2['default'].createElement(
           'div',
