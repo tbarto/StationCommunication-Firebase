@@ -32,7 +32,7 @@ var io = require('socket.io').listen(server);
 io.sockets.on('connection', socket);
 
 /* Start server */
-server.listen(app.get('port'), function (){
+server.listen(port, function (){
   //console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
   console.log('Express server listening on port %d in %s mode', port, app.get('env'));
 });
