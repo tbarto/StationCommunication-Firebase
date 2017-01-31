@@ -30,6 +30,14 @@ if (process.env.NODE_ENV === 'development') {
 /* Socket.io Communication */
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', socket);
+socket.on('call',function(data){
+  console.log('received call');
+  socket.broadcast.emit('call',data);
+});
+socket.on('clearCall', function(data){
+  console.log('clearing call');
+  socket.broadcast.emit('clearCall', data);
+});
 
 /* Start server */
 server.listen(port, function (){
