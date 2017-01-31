@@ -155,7 +155,12 @@ var AppIndex = (function (_Component) {
         _react2['default'].createElement(
           'h1',
           null,
-          'ReactJS Socket-io Restaurant Communication'
+          'Real-Time Restaurant Communication Station'
+        ),
+        _react2['default'].createElement(
+          'h2',
+          null,
+          'ReactJS - NodeJS - socket.io'
         ),
         _react2['default'].createElement(
           'ul',
@@ -196,7 +201,18 @@ var AppIndex = (function (_Component) {
               'to Demo Station'
             )
           )
-        )
+        ),
+        _react2['default'].createElement(
+          'p',
+          null,
+          'This is a demo version of a software-based restaurant table paging system similar to those that are popular in Korea and shown in the image below.'
+        ),
+        _react2['default'].createElement(
+          'p',
+          null,
+          ' The demo station is meant to run on a large screen, and the demo tables are meant to run on a small screen.'
+        ),
+        _react2['default'].createElement('img', { src: 'https://ae01.alicdn.com/kf/HTB1pM2DLpXXXXchXpXXq6xXFXXXC/Wireless-waiter-call-button-system-call-buzzer-system-Restaurant-Waiter-Call-System-hotel-bar-KTV-guest.jpg' })
       );
     }
   }]);
@@ -474,23 +490,59 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'd
 
 var _redux = require('redux');
 
-var _reducer_buttons = require('./reducer_buttons');
+var _reducer_table = require('./reducer_table');
 
-var _reducer_buttons2 = _interopRequireDefault(_reducer_buttons);
+var _reducer_table2 = _interopRequireDefault(_reducer_table);
 
 var _reducer_station = require('./reducer_station');
 
 var _reducer_station2 = _interopRequireDefault(_reducer_station);
 
 var rootReducer = (0, _redux.combineReducers)({
-  table: _reducer_buttons2['default'],
+  table: _reducer_table2['default'],
   station: _reducer_station2['default']
 });
 
 exports['default'] = rootReducer;
 module.exports = exports['default'];
 
-},{"./reducer_buttons":8,"./reducer_station":9,"redux":314}],8:[function(require,module,exports){
+},{"./reducer_station":8,"./reducer_table":9,"redux":314}],8:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
+
+var _actionsIndex = require('../actions/index');
+
+var INITIAL_STATE = {
+  "calls": []
+};
+
+exports['default'] = function (state, action) {
+  if (state === undefined) state = INITIAL_STATE;
+
+  switch (action.type) {
+    case _actionsIndex.CALL_RECEIVED:
+      var newCalls = [].concat(_toConsumableArray(state.calls), [action.payload]);
+      return _extends({}, state, { calls: newCalls });
+    case _actionsIndex.CLEAR_CALL:
+      var allCalls = state.calls.filter(function (call, index) {
+        return index != action.payload.index;
+      });
+      return _extends({}, state, { calls: allCalls });
+    default:
+      return state;
+  }
+};
+
+module.exports = exports['default'];
+
+},{"../actions/index":1}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -547,43 +599,7 @@ exports['default'] = function (state, action) {
 
 module.exports = exports['default'];
 
-},{"../actions/index":1,"../components/table":5}],9:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
-
-var _actionsIndex = require('../actions/index');
-
-var INITIAL_STATE = {
-  "calls": []
-};
-
-exports['default'] = function (state, action) {
-  if (state === undefined) state = INITIAL_STATE;
-
-  switch (action.type) {
-    case _actionsIndex.CALL_RECEIVED:
-      var newCalls = [].concat(_toConsumableArray(state.calls), [action.payload]);
-      return _extends({}, state, { calls: newCalls });
-    case _actionsIndex.CLEAR_CALL:
-      var allCalls = state.calls.filter(function (call, index) {
-        return index != action.payload.index;
-      });
-      return _extends({}, state, { calls: allCalls });
-    default:
-      return state;
-  }
-};
-
-module.exports = exports['default'];
-
-},{"../actions/index":1}],10:[function(require,module,exports){
+},{"../actions/index":1,"../components/table":5}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {

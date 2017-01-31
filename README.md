@@ -15,4 +15,7 @@
 
     npm start
 
-Navigate to `localhost:3000`
+Navigate to `localhost:8080`
+
+View demo at:
+https://react-station-communication.herokuapp.com/
