@@ -39,9 +39,9 @@ class Station extends Component{
       <div className="station-container">
         <h2>Communication Station</h2>
         <h3>{this.props.station.calls.length<1? 'waiting for service call' : ''}</h3>
-
-          <div>{this.renderCalls()}</div>
-
+        <ReactCSSTransitionGroup {...transitionOptions}>
+          {this.renderCalls()}
+        </ReactCSSTransitionGroup>
       </div>
     );
   }

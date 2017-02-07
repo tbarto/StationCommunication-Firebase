@@ -320,8 +320,8 @@ var Station = (function (_Component) {
           this.props.station.calls.length < 1 ? 'waiting for service call' : ''
         ),
         _react2['default'].createElement(
-          'div',
-          null,
+          _reactAddonsCssTransitionGroup2['default'],
+          transitionOptions,
           this.renderCalls()
         )
       );
