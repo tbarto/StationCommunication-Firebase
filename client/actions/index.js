@@ -17,6 +17,7 @@ export function setId(tableId){
 }
 export function callService(socket, table){
     socket.emit('call',table);
+    console.log('emitting call');
     return{
       type: CALL_STATION,
       payload: table.type

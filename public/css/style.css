@@ -45,3 +45,12 @@ body{
 img{
   max-width: 100%;
 }
+
+/*transition animations*/
+.fade-enter{
+  right: 100px;
+}
+.fade-enter-active{
+  right: 0px;
+  transition: .5s ease-in all;
+}
