@@ -52,6 +52,12 @@ img{
   transition: opacity .5s ease-in;
 }
 .fade-enter-active{
-  right: 0px;
   opacity: 1;
+}
+.fade-leave{
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+.fade-leave-active{
+  opacity: .01;
 }
