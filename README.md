@@ -18,4 +18,4 @@
 Navigate to `localhost:8080`
 
 View demo at:
-https://react-station-communication.herokuapp.com/
+  todo: insert app link here!

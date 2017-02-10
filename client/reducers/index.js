@@ -1,10 +1,8 @@
-import {combineReducers} from 'redux';
-import TableReducer from './reducer_table';
-import StationReducer from './reducer_station';
+import { combineReducers } from 'redux';
+import companyReducer from './companies_reducer';
 
 const rootReducer = combineReducers({
-  table: TableReducer,
-  station: StationReducer
+  companies: companyReducer
 });
 
 export default rootReducer;

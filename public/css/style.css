@@ -3,47 +3,15 @@ body{
   padding-right: 5%;
   padding-top: 25px;
 }
-
-.station-call{
-  display: table;
-  width: 20%;
-  height: 200px;
-  float:left;
-  margin-right:5px;
-  margin-bottom: 5px;
-  border-radius: 5%;
-  text-align: center;;
-  color: white;
-  font-size: 2em;
-  cursor: pointer;
-}
-.station-call-content{
-    display:table-cell;
-    vertical-align: middle;
+/* List items*/
+li.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.table-container{
-  text-align: center;
-}
-
-.station-container{
-  text-align: center;
-}
-
-.index-container{
-  text-align: center;
-}
-.SERVICE{
-  background-color: #FA7921;
-}
-.WATER{
-  background-color: #5BC0EB;
-}
-.CHECK{
-  background-color: #E55934;
-}
-img{
-  max-width: 100%;
+form {
+  margin: 10px 0px;
 }
 
 /*transition animations*/

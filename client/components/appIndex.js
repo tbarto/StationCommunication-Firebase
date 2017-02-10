@@ -1,22 +1,60 @@
-import React, {Component} from 'react';
+import _ from 'lodash';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {Link} from 'react-router';
+import * as actions from '../actions';
+import CompanyItem from './company_item';
 
-export default class AppIndex extends Component{
-  render(){
-    return(
-      <div className="index-container">
-        <h1>Real-Time Restaurant Communication Station</h1>
-        <h2>ReactJS - NodeJS - socket.io</h2>
+class AppIndex extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { company: '' };
+  }
+
+  componentWillMount() {
+    this.props.fetchCompanies();
+  }
+
+  handleInputChange(event) {
+    this.setState({ company: event.target.value });
+  }
+
+  handleFormSubmit(event) {
+    event.preventDefault();
+    this.props.createCompany(this.state.company);
+    this.setState({company: ''});
+  }
+
+  renderCompanies() {
+    return _.map(this.props.companies, (company, key) => {
+      return <CompanyItem key={key} company={company} id={key} />
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h4>Create a Company</h4>
+        <form onSubmit={this.handleFormSubmit.bind(this)} className="form-inline">
+          <div className="form-group">
+            <input
+              className="form-control"
+              placeholder="Add a company"
+              value={this.state.company}
+              onChange={this.handleInputChange.bind(this)} />
+            <button action="submit" className="btn btn-primary">Create Company</button>
+          </div>
+        </form>
         <ul className="list-group">
-          <li className="list-group-item"><Link to="/table/100">to Demo Table #100</Link></li>
-          <li className="list-group-item"><Link to="/table/200">to Demo Table #200</Link></li>
-          <li className="list-group-item"><Link to="/table/300">to Demo Table #300</Link></li>
-          <li className="list-group-item"><Link to="/station">to Demo Station</Link></li>
+          {this.renderCompanies()}
         </ul>
-        <p>This is a demo version of a software-based restaurant table paging system similar to those that are popular in Korea and shown in the image below.</p>
-        <p> The demo station is meant to run on a large screen, and the demo tables are meant to run on a small screen.</p>
-        <img src="https://ae01.alicdn.com/kf/HTB1pM2DLpXXXXchXpXXq6xXFXXXC/Wireless-waiter-call-button-system-call-buzzer-system-Restaurant-Waiter-Call-System-hotel-bar-KTV-guest.jpg" />
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { companies: state.companies };
+}
+
+export default connect(mapStateToProps, actions)(AppIndex);

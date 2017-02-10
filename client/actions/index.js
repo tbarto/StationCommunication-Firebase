@@ -1,47 +1,26 @@
-'use strict'
+import fb from '../utils/firebase';
+import _ from 'lodash';
+import {
+  FETCH_COMPANIES,
+  DELETE_COMPANY,
+  CREATE_COMPANY
+} from './types';
 
-import io from 'socket.io-client';
-
-export const SET_ID = 'SET_ID';
-export const CALL_STATION = 'CALL_STATION';
-export const CLEAR_BUTTON = 'CLEAR_BUTTON';
-export const CALL_RECEIVED = 'CALL_RECEIVED';
-export const CLEAR_CALL = 'CLEAR_CALL';
-
-
-export function setId(tableId){
-  return{
-    type: SET_ID,
-    payload: tableId
-  }
-}
-export function callService(socket, table){
-    socket.emit('call',table);
-    console.log('emitting call');
-    return{
-      type: CALL_STATION,
-      payload: table.type
-    };
-}
-
-export function clearButton(data){
-  return{
-    type: CLEAR_BUTTON,
-    payload: data
+export function fetchCompanies() {
+  return dispatch => {
+    fb.ref('/company').on('value', snapshot =>{
+      dispatch({
+        type: FETCH_COMPANIES,
+        payload: snapshot.val()
+      });
+    });
   };
 }
 
-export function callReceived(table){
-  return{
-    type: CALL_RECEIVED,
-    payload: table
-  };
+export function createCompany(company) {
+  return dispatch => fb.ref('company').push({"name": company});
 }
 
-export function clearCall(socket, call, index){
-  socket.emit('clearCall', call);
-  return{
-    type: CLEAR_CALL,
-    payload: {"call": call, "index": index}
-  }
+export function deleteCompany(key) {
+  return dispatch => fb.ref('company').child(key).remove();
 }
