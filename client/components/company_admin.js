@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import * as actions from '../actions';
+import * as actions from '../actions/company';
+import CompanyFunctionForm from './company_function_form';
 
-export default class CompanyAdmin extends Component {
+class CompanyAdmin extends Component {
+
+  componentWillMount(){
+    this.props.fetchCompany(this.props.params.rid);
+  }
 
   render() {
+
     return (
       <div>
-        <h1>Welcome to the Company Admin!</h1>
+        <h1>Welcome to Company Admin!</h1>
+        <CompanyFunctionForm rid={this.props.params.rid}/>
       </div>
     );
   }
 }
 
-export default connect()(CompanyAdmin);
+
+function mapStateToProps(state) {
+  return { company: state.company.company };
+}
+
+export default connect(mapStateToProps, actions)(CompanyAdmin);
