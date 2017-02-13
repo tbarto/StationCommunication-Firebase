@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/company';
 
-class FunctionItem extends Component {
+class TableItem extends Component {
   handleClick() {
-    this.props.deleteFunction(this.props.id, this.props.rid);
+    this.props.deleteTable(this.props.id, this.props.rid);
   }
 
   render() {
     return (
       <li className="list-group-item">
-        {this.props.fn.name}
+        {this.props.t.name}
         <button
           onClick={this.handleClick.bind(this)}
           className="btn btn-danger right">
@@ -21,4 +21,4 @@ class FunctionItem extends Component {
   }
 }
 
-export default connect(null, actions)(FunctionItem);
+export default connect(null, actions)(TableItem);

@@ -16,6 +16,7 @@ var port = process.env.PORT || 8080;
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
+/* Routing */
 app.get('*',function (req, res) {
       res.redirect('/');
   });

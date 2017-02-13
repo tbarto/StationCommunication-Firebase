@@ -4,7 +4,8 @@ import {
   FETCH_COMPANY,
   FETCH_FUNCTIONS,
   CREATE_FUNCTION,
-  DELETE_FUNCTION
+  DELETE_FUNCTION,
+  FETCH_TABLES
 } from './types';
 
 export function fetchCompany(id) {
@@ -32,6 +33,26 @@ export function fetchFunctions(rid) {
 export function createFunction(fn,rid) {
   return dispatch => fb.ref('/functions/' + rid).push({"name": fn});
 }
-export function deleteCompany(key, rid) {
+export function deleteFunction(key, rid) {
   return dispatch => fb.ref('/functions/' + rid).child(key).remove();
+}
+
+/* Table Data*/
+export function fetchTables(rid) {
+  console.log('fetching tables');
+  return dispatch => {
+    fb.ref('/tables/' + rid).on('value', snapshot =>{
+      dispatch({
+        type: FETCH_TABLES,
+        payload: snapshot.val()
+      });
+    });
+  };
+}
+
+export function createTable(table,rid) {
+  return dispatch => fb.ref('/tables/' + rid).push({"name": table});
+}
+export function deleteTable(key, rid) {
+  return dispatch => fb.ref('/tables/' + rid).child(key).remove();
 }

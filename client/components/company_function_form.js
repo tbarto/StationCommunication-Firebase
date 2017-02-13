@@ -31,6 +31,7 @@ class CompanyFunctionForm extends Component {
   }
 
   render() {
+    console.log('rendering functions');
     return (
       <div>
         <h4>Create a Function</h4>
@@ -38,7 +39,7 @@ class CompanyFunctionForm extends Component {
           <div className="form-group">
             <input
               className="form-control"
-              placeholder="Add a company"
+              placeholder="Add a function"
               value={this.state.fn}
               onChange={this.handleInputChange.bind(this)} />
             <button action="submit" className="btn btn-primary">Create Function</button>
