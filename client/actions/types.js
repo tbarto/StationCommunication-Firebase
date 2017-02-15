@@ -10,3 +10,5 @@ export const CREATE_FUNCTION = 'CREATE_FUNCTION';
 export const DELETE_FUNCTION = 'DELETE_FUNCTION';
 
 export const FETCH_TABLES = 'FETCH_TABLES';
+
+export const CREATE_CALL = 'CREATE_CALL';

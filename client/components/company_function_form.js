@@ -31,7 +31,6 @@ class CompanyFunctionForm extends Component {
   }
 
   render() {
-    console.log('rendering functions');
     return (
       <div>
         <h4>Create a Function</h4>

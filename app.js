@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-
+var path = require('path');
 var express = require('express');
 var http = require('http');
 
@@ -17,9 +17,13 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
 /* Routing */
-app.get('*',function (req, res) {
-      res.redirect('/');
-  });
+// app.get('*',function (req, res) {
+//       res.redirect('/');
+//   });
+//This works now!
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+})
 
 if (process.env.NODE_ENV === 'development') {
 	app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));

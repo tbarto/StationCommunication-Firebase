@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {Link} from 'react-router';
 import * as actions from '../actions/company';
 
 class TableItem extends Component {
@@ -10,7 +11,7 @@ class TableItem extends Component {
   render() {
     return (
       <li className="list-group-item">
-        {this.props.t.name}
+        <Link to={`/${this.props.rid}/${this.props.id}`}>{this.props.t.name}</Link>
         <button
           onClick={this.handleClick.bind(this)}
           className="btn btn-danger right">

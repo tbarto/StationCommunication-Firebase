@@ -12,7 +12,7 @@ class CompanyItem extends Component {
   render() {
     return (
       <li className="list-group-item">
-        <Link to={`/${this.props.id}`}>{this.props.company.name}</Link>
+        <Link to={`/restaurant?rid=${this.props.id}`}>{this.props.company.name}</Link>
         <button
           onClick={this.handleClick.bind(this)}
           className="btn btn-danger right">
@@ -26,3 +26,4 @@ class CompanyItem extends Component {
 export default connect(null, actions)(CompanyItem);
 
 //<Link to="/table/100">to Demo Table #100</Link>
+//<Link to={`/${this.props.id}`}>{this.props.company.name}</Link>

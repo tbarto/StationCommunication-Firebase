@@ -11,7 +11,6 @@ class CompanyTableForm extends Component {
   }
 
   componentWillMount() {
-    console.log('table form will mount');
     this.props.fetchTables(this.props.rid);
   }
 
@@ -26,22 +25,12 @@ class CompanyTableForm extends Component {
   }
 
   renderTables() {
-    console.log('calling render tables');
-    //return 'hi';
     return _.map(this.props.tables, (t, key) => {
       return <TableItem key={key} t={t} id={key} rid={this.props.rid}/>
     });
-    // return this.props.tables.map((t)=>{
-    //   return <TableItem t={t} id={t.name} rid={this.props.rid}/>;
-    // });
-    // Object.keys(this.props.tables||{}).map((t)=>{
-    //   console.log('iterating over tables');
-    //   return <TableItem key={t.name} t={t} id={t.name} rid={this.props.rid}/>;
-    // });
   }
 
   render() {
-    console.log('rendering table form');
     return (
       <div>
         <h4>Create a Table</h4>
