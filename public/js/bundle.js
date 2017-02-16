@@ -12,6 +12,7 @@ exports.fetchTables = fetchTables;
 exports.createTable = createTable;
 exports.deleteTable = deleteTable;
 exports.createCall = createCall;
+exports.listenCalls = listenCalls;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -86,18 +87,22 @@ function deleteTable(key, rid) {
 
 /*Button Functions*/
 
-function createCall(name, rid, tid) {
+function createCall(name, rid, tid, tname) {
   //generate new id
   var newKey = _utilsFirebase2['default'].ref().child('calls').push().key;
-  //const newKey = newRef.key();
 
   //create data to update
   var updatedData = {};
   updatedData['/calls/' + newKey] = {
-    name: name
+    name: name,
+    tid: tid,
+    rid: rid,
+    tname: tname
   };
   updatedData['/restaurant_calls/' + rid + '/' + newKey] = {
-    name: name
+    name: name,
+    tid: tid,
+    tname: tname
   };
   updatedData['/table_calls/' + tid + '/' + newKey] = {
     name: name
@@ -106,6 +111,17 @@ function createCall(name, rid, tid) {
   //do the update
   return function (dispatch) {
     return _utilsFirebase2['default'].ref().update(updatedData);
+  };
+}
+
+function listenCalls(tid) {
+  return function (dispatch) {
+    return _utilsFirebase2['default'].ref('/table_calls/' + tid).on('value', function (snapshot) {
+      dispatch({
+        type: _types.LISTEN_CALLS,
+        payload: snapshot.val()
+      });
+    });
   };
 }
 
@@ -155,9 +171,52 @@ function deleteCompany(key) {
 }
 
 },{"../utils/firebase":21,"./types":4,"lodash":80}],3:[function(require,module,exports){
-"use strict";
+'use strict';
 
-},{}],4:[function(require,module,exports){
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.fetchCalls = fetchCalls;
+exports.deleteCall = deleteCall;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _utilsFirebase = require('../utils/firebase');
+
+var _utilsFirebase2 = _interopRequireDefault(_utilsFirebase);
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _types = require('./types');
+
+function fetchCalls(rid) {
+  return function (dispatch) {
+    _utilsFirebase2['default'].ref('/restaurant_calls/' + rid).on('value', function (snapshot) {
+      dispatch({
+        type: _types.FETCH_CALLS,
+        payload: snapshot.val()
+      });
+    });
+  };
+}
+
+function deleteCall(rid, tid, key) {
+  var deletedData = {};
+
+  deletedData['/calls/' + key] = null;
+  deletedData['/restaurant_calls/' + rid + '/' + key] = null;
+  deletedData['/table_calls/' + tid + '/' + key] = null;
+
+  return function (dispatch) {
+    return _utilsFirebase2['default'].ref().update(deletedData);
+  };
+}
+
+//return dispatch => fb.ref('/restaurant_calls/' + rid).child(key).remove();
+
+},{"../utils/firebase":21,"./types":4,"lodash":80}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -186,7 +245,13 @@ var FETCH_TABLES = 'FETCH_TABLES';
 
 exports.FETCH_TABLES = FETCH_TABLES;
 var CREATE_CALL = 'CREATE_CALL';
+
 exports.CREATE_CALL = CREATE_CALL;
+var FETCH_CALLS = 'FETCH_CALLS';
+
+exports.FETCH_CALLS = FETCH_CALLS;
+var LISTEN_CALLS = 'LISTEN_CALLS';
+exports.LISTEN_CALLS = LISTEN_CALLS;
 
 },{}],5:[function(require,module,exports){
 'use strict';
@@ -412,16 +477,29 @@ var ButtonFunction = (function (_Component) {
     key: 'componentWillMount',
     value: function componentWillMount() {
       //this.props.fetchFunctions(this.props.params.rid);
+      this.props.listenCalls(this.props.tid);
+    }
+  }, {
+    key: 'hasValue',
+    value: function hasValue(value) {
+      for (var key in this.props.buttonCalls) {
+        // check also if property is not inherited from prototype
+        if (this.props.buttonCalls.hasOwnProperty(key)) {
+          //var value = myObject.options[key];
+          if (value == this.props.buttonCalls[key].name) return true;
+        }
+      }
+      return false;
     }
   }, {
     key: 'render',
     value: function render() {
       return _react2['default'].createElement(
-        'div',
+        'li',
         null,
         _react2['default'].createElement(
           'button',
-          { onClick: this.props.createCall.bind(this, this.props.fn.name, this.props.rid, this.props.tid), className: 'btn btn-primary btn-lg btn-block' },
+          { onClick: this.props.createCall.bind(this, this.props.fn.name, this.props.rid, this.props.tid, this.props.tname), className: 'btn btn-primary btn-lg btn-block', disabled: this.hasValue(this.props.fn.name) },
           this.props.fn.name
         )
       );
@@ -431,7 +509,9 @@ var ButtonFunction = (function (_Component) {
   return ButtonFunction;
 })(_react.Component);
 
-exports['default'] = (0, _reactRedux.connect)(null, actions)(ButtonFunction);
+function mapStateToProps(state) {
+  return { buttonCalls: state.company.buttonCalls };
+}exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(ButtonFunction);
 module.exports = exports['default'];
 
 },{"../actions/company":1,"lodash":80,"react":283,"react-redux":220}],8:[function(require,module,exports){
@@ -958,12 +1038,16 @@ var TableItem = (function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+
+      var rid = this.props.rid;
+      var tid = this.props.id;
+
       return _react2['default'].createElement(
         'li',
         { className: 'list-group-item' },
         _react2['default'].createElement(
           _reactRouter.Link,
-          { to: '/' + this.props.rid + '/' + this.props.id },
+          { to: '/table/?rid=' + rid + '&tid=' + tid + '&tname=' + this.props.t.name },
           this.props.t.name
         ),
         _react2['default'].createElement(
@@ -1008,6 +1092,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = require('react-redux');
 
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 var _actionsStation = require('../actions/station');
 
 var actions = _interopRequireWildcard(_actionsStation);
@@ -1025,16 +1113,36 @@ var Station = (function (_Component) {
     key: 'componentWillMount',
     value: function componentWillMount() {
       //start listening to restaurant-calls
-      //this.props.fetchCompany(this.props.params.rid);
+      this.props.fetchCalls(this.props.location.query['rid']);
+    }
+  }, {
+    key: 'renderCalls',
+    value: function renderCalls() {
+      var _this = this;
+
+      var rid = this.props.location.query['rid'];
+      return _lodash2['default'].map(this.props.calls, function (call, key) {
+        return _react2['default'].createElement(
+          'li',
+          { onClick: _this.props.deleteCall.bind(_this, rid, call.tid, key), key: key },
+          call.tname,
+          '...',
+          call.name
+        );
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-
       return _react2['default'].createElement(
         'div',
         null,
-        'Welcome to a station view'
+        'Welcome to a station view',
+        _react2['default'].createElement(
+          'ul',
+          null,
+          this.renderCalls()
+        )
       );
     }
   }]);
@@ -1043,13 +1151,13 @@ var Station = (function (_Component) {
 })(_react.Component);
 
 function mapStateToProps(state) {
-  //return { company: state.company.company };
+  return { calls: state.company.calls };
 }
 
-exports['default'] = (0, _reactRedux.connect)(null, actions)(Station);
+exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(Station);
 module.exports = exports['default'];
 
-},{"../actions/station":3,"react":283,"react-redux":220}],15:[function(require,module,exports){
+},{"../actions/station":3,"lodash":80,"react":283,"react-redux":220}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1098,15 +1206,17 @@ var TableView = (function (_Component) {
   _createClass(TableView, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      this.props.fetchFunctions(this.props.params.rid);
+      this.props.fetchFunctions(this.props.location.query['rid']);
     }
   }, {
     key: 'renderFunctions',
     value: function renderFunctions() {
-      var _this = this;
+      var rid = this.props.location.query['rid'];
+      var tid = this.props.location.query['tid'];
+      var tname = this.props.location.query['tname'];
 
       return _lodash2['default'].map(this.props.fns, function (fn, key) {
-        return _react2['default'].createElement(_button_function2['default'], { fn: fn, id: key, key: key, rid: _this.props.params.rid, tid: _this.props.params.tid });
+        return _react2['default'].createElement(_button_function2['default'], { fn: fn, id: key, key: key, rid: rid, tid: tid, tname: tname });
       });
     }
   }, {
@@ -1239,6 +1349,10 @@ exports["default"] = function (state, action) {
       return _extends({}, state, { "fns": action.payload });
     case _actionsTypes.FETCH_TABLES:
       return _extends({}, state, { "tables": action.payload });
+    case _actionsTypes.FETCH_CALLS:
+      return _extends({}, state, { "calls": action.payload });
+    case _actionsTypes.LISTEN_CALLS:
+      return _extends({}, state, { "buttonCalls": action.payload });
   }
   return state;
 };
@@ -1312,7 +1426,7 @@ exports['default'] = _react2['default'].createElement(
   { path: '/', component: _componentsApp2['default'] },
   _react2['default'].createElement(_reactRouter.IndexRoute, { component: _componentsAppIndex2['default'] }),
   _react2['default'].createElement(_reactRouter.Route, { path: '/restaurant', component: _componentsCompany_admin2['default'] }),
-  _react2['default'].createElement(_reactRouter.Route, { path: '/:rid/:tid', component: _componentsTable_view2['default'] }),
+  _react2['default'].createElement(_reactRouter.Route, { path: '/table', component: _componentsTable_view2['default'] }),
   _react2['default'].createElement(_reactRouter.Route, { path: '/station', component: _componentsStation2['default'] })
 );
 

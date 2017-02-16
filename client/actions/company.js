@@ -6,7 +6,8 @@ import {
   CREATE_FUNCTION,
   DELETE_FUNCTION,
   FETCH_TABLES,
-  CREATE_CALL
+  CREATE_CALL,
+  LISTEN_CALLS
 } from './types';
 
 export function fetchCompany(id) {
@@ -58,18 +59,22 @@ export function deleteTable(key, rid) {
 }
 
 /*Button Functions*/
-export function createCall(name,rid, tid,) {
+export function createCall(name,rid, tid, tname) {
   //generate new id
   const newKey = fb.ref().child('calls').push().key;
-  //const newKey = newRef.key();
 
   //create data to update
   let updatedData = {};
   updatedData['/calls/' + newKey] = {
-    name: name
+    name: name,
+    tid: tid,
+    rid: rid,
+    tname: tname
   }
   updatedData['/restaurant_calls/' + rid + '/' + newKey] = {
-    name: name
+    name: name,
+    tid: tid,
+    tname: tname
   };
   updatedData['/table_calls/' + tid + '/' + newKey] = {
     name: name
@@ -77,4 +82,12 @@ export function createCall(name,rid, tid,) {
 
   //do the update
   return dispatch => fb.ref().update(updatedData);
+}
+export function listenCalls(tid) {
+  return dispatch => fb.ref('/table_calls/' + tid).on('value', snapshot=>{
+    dispatch({
+      type: LISTEN_CALLS,
+      payload: snapshot.val()
+    })
+  })
 }

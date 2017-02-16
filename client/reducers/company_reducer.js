@@ -1,7 +1,9 @@
 import {
   FETCH_COMPANY,
   FETCH_FUNCTIONS,
-  FETCH_TABLES
+  FETCH_TABLES,
+  FETCH_CALLS,
+  LISTEN_CALLS
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -18,6 +20,10 @@ export default function(state = INITIAL_STATE, action) {
       return {...state, "fns": action.payload};
     case FETCH_TABLES:
       return {...state, "tables": action.payload};
+    case FETCH_CALLS:
+      return {...state, "calls": action.payload}
+    case LISTEN_CALLS:
+      return {...state, "buttonCalls": action.payload}
   }
   return state;
 }

@@ -11,7 +11,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={AppIndex} />
     <Route path ="/restaurant" component={CompanyAdmin} />
-    <Route path="/:rid/:tid" component={TableView} />
+    <Route path="/table" component={TableView} />
     <Route path="/station" component={Station} />
   </Route>
 );

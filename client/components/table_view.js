@@ -7,12 +7,16 @@ import ButtonFunction from './button_function';
 class TableView extends Component {
 
   componentWillMount(){
-      this.props.fetchFunctions(this.props.params.rid);
+    this.props.fetchFunctions(this.props.location.query['rid']);
   }
 
   renderFunctions(){
+    const rid = this.props.location.query['rid'];
+    const tid = this.props.location.query['tid'];
+    const tname = this.props.location.query['tname'];
+
     return _.map(this.props.fns, (fn, key) => {
-      return <ButtonFunction  fn={fn} id={key} key={key} rid={this.props.params.rid} tid={this.props.params.tid}/>
+      return <ButtonFunction  fn={fn} id={key} key={key} rid={rid} tid={tid} tname={tname}/>
     });
   }
 

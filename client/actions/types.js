@@ -12,3 +12,7 @@ export const DELETE_FUNCTION = 'DELETE_FUNCTION';
 export const FETCH_TABLES = 'FETCH_TABLES';
 
 export const CREATE_CALL = 'CREATE_CALL';
+
+export const FETCH_CALLS = 'FETCH_CALLS';
+
+export const LISTEN_CALLS = 'LISTEN_CALLS';
