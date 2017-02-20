@@ -23,7 +23,7 @@ class TableView extends Component {
   render() {
     return (
       <div>
-        <h2>Got to a table!</h2>
+        <h1 className="center-align">Table</h1>
         <ul>
           {this.renderFunctions()}
         </ul>

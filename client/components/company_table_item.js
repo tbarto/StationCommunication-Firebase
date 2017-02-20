@@ -19,8 +19,9 @@ class TableItem extends Component {
         <Link to={`/table/?rid=${rid}&tid=${tid}&tname=${this.props.t.name}`}>{this.props.t.name}</Link>
         <button
           onClick={this.handleClick.bind(this)}
-          className="btn btn-danger right">
-          Delete
+          className="btn btn-danger right red">
+          <i className="material-icons left red">delete</i>
+          delete
         </button>
       </li>
     );

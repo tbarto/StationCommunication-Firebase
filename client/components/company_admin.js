@@ -18,10 +18,21 @@ class CompanyAdmin extends Component {
 
     return (
       <div>
-        <h1>Welcome to Company Setup!</h1>
-        <Link to={`/station?rid=${rid}`}>Go To Station</Link>
-        <CompanyFunctionForm rid={rid}/>
-        <CompanyTableForm rid={rid}/>
+        <h1 className="center-align">Setup</h1>
+        <ul className="collapsible" data-collapsible="accordion">
+          <li>
+            <div className="collapsible-header">Station View</div>
+            <div className="collapsible-body"><Link to={`/station?rid=${rid}`}>View a Station</Link></div>
+          </li>
+          <li>
+            <div className="collapsible-header">Add/Remove Functions</div>
+            <div className="collapsible-body"><CompanyFunctionForm rid={rid}/></div>
+          </li>
+          <li>
+            <div className="collapsible-header">Add/Remove Tables</div>
+            <div className="collapsible-body"><CompanyTableForm rid={rid}/></div>
+          </li>
+        </ul>
       </div>
     );
   }

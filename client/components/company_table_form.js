@@ -33,12 +33,11 @@ class CompanyTableForm extends Component {
   render() {
     return (
       <div>
-        <h4>Create a Table</h4>
         <form onSubmit={this.handleFormSubmit.bind(this)} className="form-inline">
           <div className="form-group">
             <input
               className="form-control"
-              placeholder="Add a table"
+              placeholder="Table Name or Number"
               value={this.state.t}
               onChange={this.handleInputChange.bind(this)} />
             <button action="submit" className="btn btn-primary">Create Table</button>

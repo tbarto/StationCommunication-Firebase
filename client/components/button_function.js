@@ -25,7 +25,12 @@ class ButtonFunction extends Component {
   render() {
       return (
         <li>
-          <button onClick={this.props.createCall.bind(this,this.props.fn.name,this.props.rid,this.props.tid, this.props.tname)}className="btn btn-primary btn-lg btn-block" disabled={this.hasValue(this.props.fn.name)}>{this.props.fn.name}</button>
+          <button
+            onClick= {this.props.createCall.bind(this,this.props.fn.name,this.props.rid,this.props.tid, this.props.tname)}
+            className= "btn btn-primary btn-lg btn-block"
+            disabled= {this.hasValue(this.props.fn.name)}>
+            {this.props.fn.name}
+          </button>
         </li>
       );
   }

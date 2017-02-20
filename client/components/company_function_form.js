@@ -33,12 +33,11 @@ class CompanyFunctionForm extends Component {
   render() {
     return (
       <div>
-        <h4>Create a Function</h4>
         <form onSubmit={this.handleFormSubmit.bind(this)} className="form-inline">
           <div className="form-group">
             <input
               className="form-control"
-              placeholder="Add a function"
+              placeholder="Function Name"
               value={this.state.fn}
               onChange={this.handleInputChange.bind(this)} />
             <button action="submit" className="btn btn-primary">Create Function</button>

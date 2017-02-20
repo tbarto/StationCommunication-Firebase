@@ -16,7 +16,7 @@ class CompanyItem extends Component {
         <button
           onClick={this.handleClick.bind(this)}
           className="btn btn-danger right">
-          Delete
+          <i className="material-icons">delete</i>
         </button>
       </li>
     );
