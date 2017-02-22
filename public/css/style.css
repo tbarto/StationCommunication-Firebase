@@ -29,3 +29,11 @@ form {
 .fade-leave-active{
   opacity: .01;
 }
+
+.material-ui-button{
+  margin: 5px;
+}
+
+.title{
+  text-align: center;
+}

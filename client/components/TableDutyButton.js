@@ -31,16 +31,17 @@ class TableDutyButton extends Component {
   }
 
   render() {
-      return (
-        <li>
-          <RaisedButton label="Primary" primary={true} />
-          <button
-            onClick= {this.handleClick.bind(this)}
-            disabled= {this.hasValue(this.props.duty.name)}>
-            {this.props.duty.name}
-          </button>
-        </li>
-      );
+    return (
+      <div>
+        <RaisedButton
+          label={this.props.duty.name}
+          primary={true}
+          disabled={this.hasValue(this.props.duty.name)}
+          onClick={this.handleClick.bind(this)}
+          className="material-ui-button"
+          fullWidth={true}/>
+      </div>
+    );
   }
 }
 
@@ -48,5 +49,3 @@ function mapStateToProps(state) {
   return { dutyCalls: state.company.dutyCalls };
 
 }export default connect(mapStateToProps, actions)(TableDutyButton);
-
-//this.props.createCall.bind(this,this.props.duty.name,this.props.rid,this.props.tid, this.props.tname)

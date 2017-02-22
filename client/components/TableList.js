@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/company';
 import TableItem from './TableItem';
 
-
 import _ from 'lodash';
 
 class TableList extends Component {

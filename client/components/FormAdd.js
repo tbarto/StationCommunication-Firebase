@@ -23,20 +23,17 @@ class FormAdd extends Component{
   }
 }
 
-const renderField = (field) => {
-  return (
-    <div>
-      <input {...field.input}/>
-      {field.meta.touched && field.meta.error && <div className="error">{field.meta.error}</div>}
-    </div>
-  );
-};
+const renderField = field => (
+  <div>
+    <input {...field.input}/>
+    {field.meta.touched && field.meta.error && <div className="error">{field.meta.error}</div>}
+  </div>
+);
 
 const validate = values => {
   const errors = {};
-  if(!values.title){
+  if(!values.title)
     errors.title = 'Enter a value!';
-  }
   return errors;
 };
 

@@ -28,12 +28,13 @@ class TableView extends Component {
   }
 
   render() {
+
+    const tableName = this.props.location.query['tname'];
+
     return (
       <div>
-        <h1>Table</h1>
-        <ul>
-          {this.renderDuties()}
-        </ul>
+        <h1 className="title">{tableName}</h1>
+        {this.renderDuties()}
       </div>
     );
   }
