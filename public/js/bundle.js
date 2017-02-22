@@ -719,39 +719,26 @@ var renderField = function renderField(field) {
     'div',
     null,
     _react2['default'].createElement('input', field.input),
-    field.touched && field.error && _react2['default'].createElement(
+    field.meta.touched && field.meta.error && _react2['default'].createElement(
       'div',
       { className: 'error' },
-      field.error
-    ),
-    _react2['default'].createElement(
-      'p',
-      null,
-      'touched?',
-      field.input.touched
-    ),
-    _react2['default'].createElement(
-      'p',
-      null,
-      'error?',
-      field.input.error
+      field.meta.error
     )
   );
 };
 
-function validate(values) {
+var validate = function validate(values) {
   var errors = {};
   if (!values.title) {
-    console.log('errors');
     errors.title = 'Enter a value!';
-  } else console.log('no errors!');
+  }
   return errors;
-}
+};
 
-exports['default'] = (0, _reactRedux.connect)(null, null)((0, _reduxForm.reduxForm)({
+exports['default'] = (0, _reduxForm.reduxForm)({
   fields: ['title'],
   validate: validate
-})(FormAdd));
+})(FormAdd);
 module.exports = exports['default'];
 
 },{"react":611,"react-redux":540,"redux-form":641}],11:[function(require,module,exports){

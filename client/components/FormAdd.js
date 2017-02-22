@@ -27,23 +27,20 @@ const renderField = (field) => {
   return (
     <div>
       <input {...field.input}/>
-      {field.touched && field.error && <div className="error">{field.error}</div>}
-      <p>touched?{field.input.touched}</p>
-      <p>error?{field.input.error}</p>
+      {field.meta.touched && field.meta.error && <div className="error">{field.meta.error}</div>}
     </div>
   );
 };
 
-function validate(values){
+const validate = values => {
   const errors = {};
   if(!values.title){
-    console.log('errors');
     errors.title = 'Enter a value!';
-  } else console.log('no errors!');
+  }
   return errors;
-}
+};
 
-export default connect(null, null)(reduxForm({
+export default reduxForm({
   fields:['title'],
   validate
-})(FormAdd));
+})(FormAdd);
