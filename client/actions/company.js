@@ -2,8 +2,8 @@ import fb from '../utils/firebase';
 import _ from 'lodash';
 import {
   FETCH_COMPANY,
-  FETCH_FUNCTIONS,
-  CREATE_FUNCTION,
+  FETCH_DUTIES,
+  CREATE_DUTY,
   DELETE_FUNCTION,
   FETCH_TABLES,
   CREATE_CALL,
@@ -21,26 +21,27 @@ export function fetchCompany(id) {
   };
 }
 
-export function fetchFunctions(rid) {
+export function fetchDuties(rid) {
   return dispatch => {
     fb.ref('/functions/' + rid).on('value', snapshot =>{
       dispatch({
-        type: FETCH_FUNCTIONS,
+        type: FETCH_DUTIES,
         payload: snapshot.val()
       });
     });
   };
 }
 
-export function createFunction(fn,rid) {
-  return dispatch => fb.ref('/functions/' + rid).push({"name": fn});
+export function createDuty(name,rid) {
+  return dispatch => fb.ref('/functions/' + rid).push({"name": name});
 }
-export function deleteFunction(key, rid) {
+export function deleteDuty(key, rid) {
   return dispatch => fb.ref('/functions/' + rid).child(key).remove();
 }
 
 /* Table Data*/
 export function fetchTables(rid) {
+  console.log('rid: '+ rid);
   return dispatch => {
     fb.ref('/tables/' + rid).on('value', snapshot =>{
       dispatch({
