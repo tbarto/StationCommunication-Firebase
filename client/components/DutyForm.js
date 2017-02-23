@@ -16,7 +16,7 @@ class DutyForm extends Component{
     return(
       <FormAdd
         form = "DutyForm"
-        formTitle = "Duty Form"
+        formPlaceholder = "Add A Duty"
         formSubmit = {this.onSubmit.bind(this)} />
     );
   }

@@ -11,7 +11,6 @@ class Duties extends Component {
   render(){
     return(
       <div>
-        <h1>Duties</h1>
         <DutyForm rid={this.props.rid} />
         <DutyList rid={this.props.rid} />
       </div>

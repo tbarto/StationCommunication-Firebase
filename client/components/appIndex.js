@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router';
 import * as actions from '../actions';
 import CompanyItem from './company_item';
+import AppBar from 'material-ui/AppBar';
 
 class AppIndex extends Component {
   constructor(props) {
@@ -33,9 +34,8 @@ class AppIndex extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Welcome to the app!</h1>
-        <h4>Create a Company</h4>
+      <div className="content">
+        <h1>Create a Company</h1>
         <form onSubmit={this.handleFormSubmit.bind(this)} className="form-inline">
           <div className="form-group">
             <input

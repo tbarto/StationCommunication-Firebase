@@ -14,7 +14,7 @@ class TableForm extends Component{
     return(
       <FormAdd
         form = "TableForm"
-        formTitle = "Table Form"
+        formPlaceholder = "Add A Table"
         formSubmit = {this.onSubmit.bind(this)} />
     );
   }

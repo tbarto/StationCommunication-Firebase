@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/company';
 import TableItem from './TableItem';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 import _ from 'lodash';
 
@@ -20,10 +21,20 @@ class TableList extends Component {
   render(){
     return(
       <div>
-        <h3>TableList</h3>
-        <ul>
-          {this.renderTables()}
-        </ul>
+        <Table
+          displayRowCheckbox={false}>
+          <TableHeader
+            adjustForCheckbox={false}
+            displaySelectAll={false}>
+            <TableRow>
+              <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn>Action</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {this.renderTables()}
+          </TableBody>
+        </Table>
       </div>
     );
   }

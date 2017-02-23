@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
 
 class FormAdd extends Component{
 
@@ -10,25 +12,30 @@ class FormAdd extends Component{
 
     return(
       <form onSubmit={handleSubmit(this.props.formSubmit.bind(this))}>
-        <h3>{this.props.formTitle}</h3>
         <div>
-          <label>Name</label>
-          <Field name="title" type="text" component={renderField} />
-          <div className="text-help">
-          </div>
+          <Field name="title" type="text" label={this.props.formPlaceholder} component={renderField} />
+          <FlatButton label="Submit" primary={true} type="submit"/>
         </div>
-        <button type="submit">Submit</button>
       </form>
     );
   }
 }
 
 const renderField = field => (
-  <div>
-    <input {...field.input}/>
-    {field.meta.touched && field.meta.error && <div className="error">{field.meta.error}</div>}
-  </div>
+    <TextField
+      hintText={field.label}
+      floatingLabelText={field.label}
+      {...field.input}
+      errorText={field.meta.touched && field.meta.error}
+    />
 );
+//     <input {...field.input}/>
+    //{field.meta.touched && field.meta.error && <div className="error">{field.meta.error}</div>}
+// <TextField hintText={props.label}
+//   floatingLabelText={props.label}
+//   errorText={props.touched && props.error}
+//   {...props}
+// />
 
 const validate = values => {
   const errors = {};

@@ -25,7 +25,7 @@ class StationView extends Component {
 
   render(){
     return (
-      <div>
+      <div className="content">
         <h1 className="title">Station View</h1>
         {this.renderCalls()}
       </div>

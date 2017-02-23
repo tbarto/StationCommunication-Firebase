@@ -32,7 +32,7 @@ class TableView extends Component {
     const tableName = this.props.location.query['tname'];
 
     return (
-      <div>
+      <div className="content">
         <h1 className="title">{tableName}</h1>
         {this.renderDuties()}
       </div>

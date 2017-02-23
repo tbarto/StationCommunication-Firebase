@@ -53,7 +53,6 @@ class Tables extends Component {
   render(){
     return(
       <div>
-        <h1>Tables</h1>
         <TableForm rid={this.props.rid} />
         <TableList rid={this.props.rid} />
       </div>

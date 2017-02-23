@@ -1,7 +1,8 @@
 body{
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 25px;
+  margin: 0px;
+}
+.content{
+  padding: 10%;
 }
 /* List items*/
 li.list-group-item {

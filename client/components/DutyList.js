@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/company';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+
 import DutyItem from './DutyItem';
 
 import _ from 'lodash';
@@ -13,7 +15,9 @@ class DutyList extends Component {
 
   renderDuties() {
     return _.map(this.props.duties, (duty, key) => {
-      return <DutyItem key={key} duty={duty} id={key} rid={this.props.rid}/>
+      return (
+            <DutyItem key={key} duty={duty} id={key} rid={this.props.rid}/>
+        );
     });
   }
 
@@ -21,10 +25,20 @@ class DutyList extends Component {
     console.log('duties is empty?: ' + _.isEmpty(this.props.duties));
     return(
       <div>
-        <h3>DutyList</h3>
-        <ul>
-          {this.renderDuties()}
-        </ul>
+        <Table
+          displayRowCheckbox={false}>
+          <TableHeader
+            adjustForCheckbox={false}
+            displaySelectAll={false}>
+            <TableRow>
+              <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn>Action</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {this.renderDuties()}
+          </TableBody>
+        </Table>
       </div>
     );
   }

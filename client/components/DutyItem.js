@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/company';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import IconButton from 'material-ui/IconButton';
 
 class DutyItem extends Component {
 
@@ -15,13 +17,15 @@ class DutyItem extends Component {
 
   render() {
     return (
-      <li>
-        {this.props.duty.name}
-        <button
-          onClick={this.handleClick}>
-          delete
-        </button>
-      </li>
+      <TableRow>
+        <TableRowColumn>{this.props.duty.name}</TableRowColumn>
+        <TableRowColumn>
+          <IconButton
+            onClick={this.handleClick}>
+            <i className="material-icons" >delete</i>
+            </IconButton>
+        </TableRowColumn>
+      </TableRow>
     );
   }
 }
