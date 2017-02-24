@@ -2,7 +2,10 @@ body{
   margin: 0px;
 }
 .content{
-  padding: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 20px;
+  margin-left: 256px;
 }
 /* List items*/
 li.list-group-item {

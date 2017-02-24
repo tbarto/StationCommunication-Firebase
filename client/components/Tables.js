@@ -51,10 +51,14 @@ class Tables extends Component {
   //   );
   // }
   render(){
+
+    const rid = this.props.location.query['rid'];
+
     return(
-      <div>
-        <TableForm rid={this.props.rid} />
-        <TableList rid={this.props.rid} />
+      <div className="content">
+        <h1>Table Setup</h1>
+        <TableForm rid={rid} />
+        <TableList rid={rid} />
       </div>
     );
   }

@@ -19,7 +19,7 @@ class Header extends Component {
       <div>
         <AppBar
           showMenuIconButton={false}
-          title="Station Communication"
+          title="Ding"
         />
       </div>
     );

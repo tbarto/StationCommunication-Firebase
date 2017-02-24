@@ -9,10 +9,13 @@ import DutyList from './DutyList';
 class Duties extends Component {
 
   render(){
+    const rid = this.props.location.query['rid'];
+
     return(
-      <div>
-        <DutyForm rid={this.props.rid} />
-        <DutyList rid={this.props.rid} />
+      <div className="content">
+        <h1>Duty Setup</h1>
+        <DutyForm rid={rid} />
+        <DutyList rid={rid} />
       </div>
     );
   }

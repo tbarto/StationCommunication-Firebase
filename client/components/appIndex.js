@@ -36,6 +36,7 @@ class AppIndex extends Component {
     return (
       <div className="content">
         <h1>Create a Company</h1>
+        <h2>LOGIN AND SIGNUP...coming soon...</h2>
         <form onSubmit={this.handleFormSubmit.bind(this)} className="form-inline">
           <div className="form-group">
             <input

@@ -14,7 +14,7 @@ class FormAdd extends Component{
       <form onSubmit={handleSubmit(this.props.formSubmit.bind(this))}>
         <div>
           <Field name="title" type="text" label={this.props.formPlaceholder} component={renderField} />
-          <FlatButton label="Submit" primary={true} type="submit"/>
+          <FlatButton label="Add" primary={true} type="submit"/>
         </div>
       </form>
     );

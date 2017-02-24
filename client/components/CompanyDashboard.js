@@ -54,6 +54,7 @@ toggleDrawer(){
               labelPosition="before"
               href={`/station?rid=${rid}`}/>
             </div>
+            <Link to={`/station?rid=${rid}`}>Station</Link>
           </Tab>
           <Tab label="Duties" >
             <div className="content">
