@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/company';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import DutyItem from './DutyItem';
 
@@ -21,24 +22,30 @@ class DutyList extends Component {
     });
   }
 
+  renderTable(){
+    return(
+      <Table
+        displayRowCheckbox={false}>
+        <TableHeader
+          adjustForCheckbox={false}
+          displaySelectAll={false}>
+          <TableRow>
+            <TableHeaderColumn>Name</TableHeaderColumn>
+            <TableHeaderColumn>Action</TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {this.renderDuties()}
+        </TableBody>
+      </Table>
+    );
+  }
+
   render(){
     console.log('duties is empty?: ' + _.isEmpty(this.props.duties));
     return(
       <div>
-        <Table
-          displayRowCheckbox={false}>
-          <TableHeader
-            adjustForCheckbox={false}
-            displaySelectAll={false}>
-            <TableRow>
-              <TableHeaderColumn>Name</TableHeaderColumn>
-              <TableHeaderColumn>Action</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {this.renderDuties()}
-          </TableBody>
-        </Table>
+        {_.isEmpty(this.props.duties)? <CircularProgress /> : this.renderTable()}
       </div>
     );
   }

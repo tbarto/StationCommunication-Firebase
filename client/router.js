@@ -9,12 +9,10 @@ import StationView from './components/StationView';
 import Tables from './components/Tables';
 import Duties from './components/Duties';
 
-import CompanyDashboard2 from './components/CompanyDashboard2';
-
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={AppIndex} />
-    <Route path ="/restaurant" component={CompanyDashboard2} >
+    <Route path ="/restaurant" component={CompanyDashboard} >
       <Route path="/tables" component={Tables} />
       <Route path="/duties" component={Duties} />
       <Route path="/table" component={TableView} />

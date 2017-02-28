@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router';
-import AppBar from 'material-ui/AppBar'
-import {Tabs, Tab} from 'material-ui/Tabs';
-import Slider from 'material-ui/Slider';
-import FlatButton from 'material-ui/FlatButton';
 
 import * as actions from '../actions/company';
 import Duties from './Duties';
 import Tables from './Tables';
+
+import AppBar from 'material-ui/AppBar'
+import Drawer from 'material-ui/Drawer';
+import {List, ListItem, makeSelectable} from 'material-ui/List';
 
 
 
@@ -23,51 +23,46 @@ const styles = {
 
 const APP_TITLE = "Station Communication"
 
-class CompanyDashboard extends Component {
+let SelectableList = makeSelectable(List);
 
+class CompanyDashboard extends Component {
   constructor(props) {
-    super(props)
-    this.state = {
-      open: false
-    }
+      super(props);
+      this.state = {selectedIndex: 1};
   }
 
   componentWillMount(){
     this.props.fetchCompany(this.props.location.query['rid']);
   }
 
-toggleDrawer(){
-  this.setState({ open: !this.state.open });
-}
-
+  handleRequestChange (event, index) {
+    this.setState({
+        selectedIndex: this.props.location.pathname
+    });
+  }
 
   render() {
-    const rid = this.props.location.query['rid'];
 
+    return (<div>
+      {this.renderAside()}
+      {this.props.children}
+      </div>);
+  }
+
+  renderAside() {
     return (
-      <div>
-        <Tabs>
-          <Tab label="Station" >
-            <div className="content">
-            <FlatButton
-              label="View Station"
-              labelPosition="before"
-              href={`/station?rid=${rid}`}/>
-            </div>
-            <Link to={`/station?rid=${rid}`}>Station</Link>
-          </Tab>
-          <Tab label="Duties" >
-            <div className="content">
-              <Duties rid={rid}/>
-            </div>
-          </Tab>
-          <Tab label="Tables">
-            <div className="content">
-              <Tables rid={rid}/><
-            /div>
-          </Tab>
-        </Tabs>
-      </div>
+      <Drawer open={true} >
+        <AppBar
+          showMenuIconButton={false}
+          title="Ding"
+        />
+        <SelectableList value={this.props.location.pathname} onChange={this.handleRequestChange.bind(this)}>
+            <ListItem value="/restaurant" primaryText="Home" containerElement= {<Link to={`/restaurant?rid=${this.props.location.query['rid']}`}>Home</Link>}></ListItem>
+            <ListItem value="/station" primaryText="Station" containerElement= {<Link to={`/station?rid=${this.props.location.query['rid']}`}>Station</Link>}></ListItem>
+            <ListItem value="/duties" primaryText="Duties" containerElement= {<Link to={`/duties?rid=${this.props.location.query['rid']}`}>Duties</Link>}></ListItem>
+            <ListItem value="/tables" primaryText="Tables" containerElement= {<Link to={`/tables?rid=${this.props.location.query['rid']}`}>Duties</Link>}></ListItem>
+        </SelectableList>
+      </Drawer>
     );
   }
 }
@@ -78,6 +73,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, actions)(CompanyDashboard);
-
-//        <CompanyFunctionForm rid={this.props.params.rid}/>
-//        <CompanyTableForm rid={this.props.params.rid}/>
