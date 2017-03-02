@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/company';
+import getUserId from '../utils/userInfo';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import CircularProgress from 'material-ui/CircularProgress';
 
@@ -11,7 +12,7 @@ import _ from 'lodash';
 class DutyList extends Component {
 
   componentWillMount() {
-    this.props.fetchDuties(this.props.rid);
+    this.props.fetchDuties(getUserId());
   }
 
   renderDuties() {

@@ -57,10 +57,10 @@ class CompanyDashboard extends Component {
           title="Ding"
         />
         <SelectableList value={this.props.location.pathname} onChange={this.handleRequestChange.bind(this)}>
-            <ListItem value="/restaurant" primaryText="Home" containerElement= {<Link to={`/restaurant?rid=${this.props.location.query['rid']}`}>Home</Link>}></ListItem>
-            <ListItem value="/station" primaryText="Station" containerElement= {<Link to={`/station?rid=${this.props.location.query['rid']}`}>Station</Link>}></ListItem>
-            <ListItem value="/duties" primaryText="Duties" containerElement= {<Link to={`/duties?rid=${this.props.location.query['rid']}`}>Duties</Link>}></ListItem>
-            <ListItem value="/tables" primaryText="Tables" containerElement= {<Link to={`/tables?rid=${this.props.location.query['rid']}`}>Duties</Link>}></ListItem>
+            <ListItem value="/restaurant" primaryText="Home" containerElement= {<Link to={'/restaurant'}>Home</Link>}></ListItem>
+            <ListItem value="/station" primaryText="Station" containerElement= {<Link to={'station'}>Station</Link>}></ListItem>
+            <ListItem value="/duties" primaryText="Duties" containerElement= {<Link to={'/duties'}>Duties</Link>}></ListItem>
+            <ListItem value="/tables" primaryText="Tables" containerElement= {<Link to={'/tables'}>Tables</Link>}></ListItem>
         </SelectableList>
       </Drawer>
     );

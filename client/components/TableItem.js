@@ -22,7 +22,7 @@ class TableItem extends Component {
 
     return (
       <TableRow>
-        <TableRowColumn><Link to={`/table?rid=${rid}&tid=${tid}&tname=${this.props.table.name}`}>{this.props.table.name}</Link></TableRowColumn>
+        <TableRowColumn><Link to={`/table?tid=${tid}&tname=${this.props.table.name}`}>{this.props.table.name}</Link></TableRowColumn>
         <TableRowColumn>
           <IconButton
             onClick={this.handleClick}>
