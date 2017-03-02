@@ -1,8 +1,10 @@
-import fb from '../utils/firebase';
+import {fbApp, fb} from '../utils/firebase';
+
 import _ from 'lodash';
 import {
   FETCH_CALLS
 } from './types';
+
 
 export function fetchCalls(rid) {
   return dispatch => {

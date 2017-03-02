@@ -8,17 +8,20 @@ import TableView from './components/TableView';
 import StationView from './components/StationView';
 import Tables from './components/Tables';
 import Duties from './components/Duties';
+import Signup from './containers/Signup';
+import Login from './containers/Login';
+import RequireAuth from './containers/RequireAuth';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={AppIndex} />
-    <Route path ="/restaurant" component={CompanyDashboard} >
-      <Route path="/tables" component={Tables} />
-      <Route path="/duties" component={Duties} />
-      <Route path="/table" component={TableView} />
-      <Route path="/station" component={StationView} />
+    <Route path="signup" component={Signup} />
+    <Route path="login" component={Login} />
+    <Route path ="/restaurant" component={RequireAuth(CompanyDashboard)} >
+      <Route path="/tables" component={RequireAuth(Tables)} />
+      <Route path="/duties" component={RequireAuth(Duties)} />
+      <Route path="/table" component={RequireAuth(TableView)} />
+      <Route path="/station" component={RequireAuth(StationView)} />
     </Route>
   </Route>
 );
-
-//<Route path="/:rid" component={CompanyAdmin} />
