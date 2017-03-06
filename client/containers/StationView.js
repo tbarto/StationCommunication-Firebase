@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/station';
 import _ from 'lodash';
-import StationCallItem from './StationCallItem';
+import StationCallItem from '../components/StationCallItem';
 
 class StationView extends Component {
 

@@ -9,7 +9,7 @@ const btnStyle={
   color: 'white'
 }
 
-class AppIndex extends Component {
+export default class AppIndex extends Component {
 
   render() {
     return (
@@ -40,5 +40,3 @@ class AppIndex extends Component {
     );
   }
 }
-
-export default AppIndex;

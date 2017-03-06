@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 //CSS modules
 import RaisedButton from 'material-ui/RaisedButton';
 
-class TableDutyButton extends Component {
+export default class TableDutyButton extends Component {
 
   render() {
     return (
@@ -19,5 +19,3 @@ class TableDutyButton extends Component {
     );
   }
 }
-
-export default TableDutyButton;

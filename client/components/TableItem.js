@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/company';
 import {Link} from 'react-router';
 
-//CSS modules 
+//CSS modules
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton'
 
-class TableItem extends Component {
+export default class TableItem extends Component {
 
   render() {
     const tid = this.props.id;
@@ -32,5 +32,3 @@ class TableItem extends Component {
     );
   }
 }
-
-export default TableItem;

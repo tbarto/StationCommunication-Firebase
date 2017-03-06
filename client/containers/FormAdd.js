@@ -1,13 +1,14 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
+
+//CSS modules
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
 class FormAdd extends Component{
 
   render(){
-
     const {handleSubmit} = this.props;
 
     return(

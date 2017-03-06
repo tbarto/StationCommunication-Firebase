@@ -42,6 +42,7 @@ export function createDuty(name) {
 }
 
 export function deleteDuty(key) {
+  const userUid = getUserId();
   return dispatch => fb.ref('/functions/' + userUid).child(key).remove();
 }
 

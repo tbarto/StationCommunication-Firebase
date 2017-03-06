@@ -1,21 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../actions/company';
 
 //CSS modules
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import IconButton from 'material-ui/IconButton';
 
-class DutyItem extends Component {
-
-  constructor(props){
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    this.props.deleteDuty(this.props.id);
-  }
+export default class DutyItem extends Component {
 
   render() {
     return (
@@ -23,7 +12,7 @@ class DutyItem extends Component {
         <TableRowColumn>{this.props.duty.name}</TableRowColumn>
         <TableRowColumn>
           <IconButton
-            onClick={this.handleClick}>
+            onClick={this.props.handleClick.bind(this)}>
             <i className="material-icons" >delete</i>
             </IconButton>
         </TableRowColumn>
@@ -31,5 +20,3 @@ class DutyItem extends Component {
     );
   }
 }
-
-export default connect(null, actions)(DutyItem);

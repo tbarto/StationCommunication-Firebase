@@ -60,6 +60,7 @@ function createDuty(name) {
 }
 
 function deleteDuty(key) {
+  var userUid = (0, _utilsUserInfo2['default'])();
   return function (dispatch) {
     return _utilsFirebase.fb.ref('/functions/' + userUid).child(key).remove();
   };
@@ -519,13 +520,13 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _DutyForm = require('./DutyForm');
+var _containersDutyForm = require('../containers/DutyForm');
 
-var _DutyForm2 = _interopRequireDefault(_DutyForm);
+var _containersDutyForm2 = _interopRequireDefault(_containersDutyForm);
 
-var _DutyList = require('./DutyList');
+var _containersDutyList = require('../containers/DutyList');
 
-var _DutyList2 = _interopRequireDefault(_DutyList);
+var _containersDutyList2 = _interopRequireDefault(_containersDutyList);
 
 var Duties = (function (_Component) {
   _inherits(Duties, _Component);
@@ -548,8 +549,8 @@ var Duties = (function (_Component) {
           null,
           'Duty Setup'
         ),
-        _react2['default'].createElement(_DutyForm2['default'], null),
-        _react2['default'].createElement(_DutyList2['default'], null)
+        _react2['default'].createElement(_containersDutyForm2['default'], null),
+        _react2['default'].createElement(_containersDutyList2['default'], null)
       );
     }
   }]);
@@ -560,7 +561,529 @@ var Duties = (function (_Component) {
 exports['default'] = Duties;
 module.exports = exports['default'];
 
-},{"./DutyForm":8,"./DutyList":10,"react":685}],8:[function(require,module,exports){
+},{"../containers/DutyForm":15,"../containers/DutyList":16,"react":685}],8:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+//CSS modules
+
+var _materialUiTable = require('material-ui/Table');
+
+var _materialUiIconButton = require('material-ui/IconButton');
+
+var _materialUiIconButton2 = _interopRequireDefault(_materialUiIconButton);
+
+var DutyItem = (function (_Component) {
+  _inherits(DutyItem, _Component);
+
+  function DutyItem() {
+    _classCallCheck(this, DutyItem);
+
+    _get(Object.getPrototypeOf(DutyItem.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(DutyItem, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        _materialUiTable.TableRow,
+        null,
+        _react2['default'].createElement(
+          _materialUiTable.TableRowColumn,
+          null,
+          this.props.duty.name
+        ),
+        _react2['default'].createElement(
+          _materialUiTable.TableRowColumn,
+          null,
+          _react2['default'].createElement(
+            _materialUiIconButton2['default'],
+            {
+              onClick: this.props.handleClick.bind(this) },
+            _react2['default'].createElement(
+              'i',
+              { className: 'material-icons' },
+              'delete'
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return DutyItem;
+})(_react.Component);
+
+exports['default'] = DutyItem;
+module.exports = exports['default'];
+
+},{"material-ui/IconButton":393,"material-ui/Table":422,"react":685}],9:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _materialUiRaisedButton = require('material-ui/RaisedButton');
+
+var _materialUiRaisedButton2 = _interopRequireDefault(_materialUiRaisedButton);
+
+var _materialUiPaper = require('material-ui/Paper');
+
+var _materialUiPaper2 = _interopRequireDefault(_materialUiPaper);
+
+var style = {
+  width: '100%',
+  margin: 5,
+  display: 'inline-block',
+  padding: 10
+};
+
+var StationView = (function (_Component) {
+  _inherits(StationView, _Component);
+
+  function StationView() {
+    _classCallCheck(this, StationView);
+
+    _get(Object.getPrototypeOf(StationView.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(StationView, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        _materialUiPaper2['default'],
+        {
+          className: 'call',
+          onClick: this.props.handleClick.bind(this),
+          style: style,
+          zDepth: 4
+        },
+        _react2['default'].createElement(
+          'div',
+          null,
+          this.props.call.tname
+        ),
+        _react2['default'].createElement(
+          'div',
+          null,
+          this.props.call.name
+        )
+      );
+    }
+  }]);
+
+  return StationView;
+})(_react.Component);
+
+exports['default'] = StationView;
+module.exports = exports['default'];
+
+},{"material-ui/Paper":406,"material-ui/RaisedButton":410,"react":685}],10:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+//CSS modules
+
+var _materialUiRaisedButton = require('material-ui/RaisedButton');
+
+var _materialUiRaisedButton2 = _interopRequireDefault(_materialUiRaisedButton);
+
+var TableDutyButton = (function (_Component) {
+  _inherits(TableDutyButton, _Component);
+
+  function TableDutyButton() {
+    _classCallCheck(this, TableDutyButton);
+
+    _get(Object.getPrototypeOf(TableDutyButton.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(TableDutyButton, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        null,
+        _react2['default'].createElement(_materialUiRaisedButton2['default'], {
+          label: this.props.name,
+          primary: true,
+          disabled: this.props.isDisabled,
+          onClick: this.props.handleClick.bind(this),
+          className: 'material-ui-button',
+          fullWidth: true })
+      );
+    }
+  }]);
+
+  return TableDutyButton;
+})(_react.Component);
+
+exports['default'] = TableDutyButton;
+module.exports = exports['default'];
+
+},{"material-ui/RaisedButton":410,"react":685}],11:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = require('react-redux');
+
+var _actionsCompany = require('../actions/company');
+
+var actions = _interopRequireWildcard(_actionsCompany);
+
+var _reactRouter = require('react-router');
+
+//CSS modules
+
+var _materialUiTable = require('material-ui/Table');
+
+var _materialUiIconButton = require('material-ui/IconButton');
+
+var _materialUiIconButton2 = _interopRequireDefault(_materialUiIconButton);
+
+var _materialUiFlatButton = require('material-ui/FlatButton');
+
+var _materialUiFlatButton2 = _interopRequireDefault(_materialUiFlatButton);
+
+var TableItem = (function (_Component) {
+  _inherits(TableItem, _Component);
+
+  function TableItem() {
+    _classCallCheck(this, TableItem);
+
+    _get(Object.getPrototypeOf(TableItem.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(TableItem, [{
+    key: 'render',
+    value: function render() {
+      var tid = this.props.id;
+      var tname = this.props.table.name;
+
+      return _react2['default'].createElement(
+        _materialUiTable.TableRow,
+        null,
+        _react2['default'].createElement(
+          _materialUiTable.TableRowColumn,
+          null,
+          _react2['default'].createElement(_materialUiFlatButton2['default'], {
+            label: this.props.table.name,
+            containerElement: _react2['default'].createElement(
+              _reactRouter.Link,
+              { to: '/table?tid=' + tid + '&tname=' + tname },
+              tname
+            )
+          })
+        ),
+        _react2['default'].createElement(
+          _materialUiTable.TableRowColumn,
+          null,
+          _react2['default'].createElement(
+            _materialUiIconButton2['default'],
+            {
+              onClick: this.props.handleClick.bind(this) },
+            _react2['default'].createElement(
+              'i',
+              { className: 'material-icons' },
+              'delete'
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return TableItem;
+})(_react.Component);
+
+exports['default'] = TableItem;
+module.exports = exports['default'];
+
+},{"../actions/company":1,"material-ui/FlatButton":389,"material-ui/IconButton":393,"material-ui/Table":422,"react":685,"react-redux":613,"react-router":645}],12:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _containersTableForm = require('../containers/TableForm');
+
+var _containersTableForm2 = _interopRequireDefault(_containersTableForm);
+
+var _containersTableList = require('../containers/TableList');
+
+var _containersTableList2 = _interopRequireDefault(_containersTableList);
+
+var Tables = (function (_Component) {
+  _inherits(Tables, _Component);
+
+  function Tables() {
+    _classCallCheck(this, Tables);
+
+    _get(Object.getPrototypeOf(Tables.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(Tables, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        { className: 'content' },
+        _react2['default'].createElement(
+          'h1',
+          null,
+          'Table Setup'
+        ),
+        _react2['default'].createElement(_containersTableForm2['default'], null),
+        _react2['default'].createElement(_containersTableList2['default'], null)
+      );
+    }
+  }]);
+
+  return Tables;
+})(_react.Component);
+
+exports['default'] = Tables;
+module.exports = exports['default'];
+
+},{"../containers/TableForm":23,"../containers/TableList":24,"lodash":371,"react":685}],13:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _containersHeader = require('../containers/Header');
+
+var _containersHeader2 = _interopRequireDefault(_containersHeader);
+
+var App = (function (_Component) {
+  _inherits(App, _Component);
+
+  function App() {
+    _classCallCheck(this, App);
+
+    _get(Object.getPrototypeOf(App.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        null,
+        _react2['default'].createElement(_containersHeader2['default'], null),
+        this.props.children
+      );
+    }
+  }]);
+
+  return App;
+})(_react.Component);
+
+exports['default'] = App;
+module.exports = exports['default'];
+
+},{"../containers/Header":18,"react":685}],14:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+//CSS modules
+
+var _materialUiAppBar = require('material-ui/AppBar');
+
+var _materialUiAppBar2 = _interopRequireDefault(_materialUiAppBar);
+
+var _materialUiFlatButton = require('material-ui/FlatButton');
+
+var _materialUiFlatButton2 = _interopRequireDefault(_materialUiFlatButton);
+
+var btnStyle = {
+  color: 'white'
+};
+
+var AppIndex = (function (_Component) {
+  _inherits(AppIndex, _Component);
+
+  function AppIndex() {
+    _classCallCheck(this, AppIndex);
+
+    _get(Object.getPrototypeOf(AppIndex.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(AppIndex, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        { className: 'bg' },
+        _react2['default'].createElement(
+          'div',
+          { className: 'hero' },
+          _react2['default'].createElement(
+            'div',
+            { className: 'section group' },
+            _react2['default'].createElement('div', { className: 'col span_3_of_12' }),
+            _react2['default'].createElement(
+              'div',
+              { className: 'form col span_6_of_12' },
+              _react2['default'].createElement(
+                'h1',
+                null,
+                'jeogiyo'
+              ),
+              _react2['default'].createElement(
+                'h2',
+                null,
+                'The Table Service Platform'
+              ),
+              _react2['default'].createElement(
+                'div',
+                null,
+                _react2['default'].createElement(_materialUiFlatButton2['default'], {
+                  label: 'Login',
+                  labelStyle: btnStyle,
+                  containerElement: _react2['default'].createElement(_reactRouter.Link, { to: '/login' })
+                }),
+                _react2['default'].createElement(_materialUiFlatButton2['default'], {
+                  label: 'Sign Up',
+                  labelStyle: btnStyle,
+                  containerElement: _react2['default'].createElement(_reactRouter.Link, { to: '/signup' })
+                })
+              )
+            ),
+            _react2['default'].createElement('div', { className: 'col span_3_of_12' })
+          )
+        )
+      );
+    }
+  }]);
+
+  return AppIndex;
+})(_react.Component);
+
+exports['default'] = AppIndex;
+module.exports = exports['default'];
+
+},{"material-ui/AppBar":382,"material-ui/FlatButton":389,"react":685,"react-router":645}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -624,7 +1147,7 @@ var DutyForm = (function (_Component) {
 exports['default'] = (0, _reactRedux.connect)(null, actions)(DutyForm);
 module.exports = exports['default'];
 
-},{"../actions/company":1,"./FormAdd":11,"react":685,"react-redux":613}],9:[function(require,module,exports){
+},{"../actions/company":1,"./FormAdd":17,"react":685,"react-redux":613}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -653,96 +1176,9 @@ var _actionsCompany = require('../actions/company');
 
 var actions = _interopRequireWildcard(_actionsCompany);
 
-//CSS modules
+var _componentsDutyItem = require('../components/DutyItem');
 
-var _materialUiTable = require('material-ui/Table');
-
-var _materialUiIconButton = require('material-ui/IconButton');
-
-var _materialUiIconButton2 = _interopRequireDefault(_materialUiIconButton);
-
-var DutyItem = (function (_Component) {
-  _inherits(DutyItem, _Component);
-
-  function DutyItem(props) {
-    _classCallCheck(this, DutyItem);
-
-    _get(Object.getPrototypeOf(DutyItem.prototype), 'constructor', this).call(this, props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  _createClass(DutyItem, [{
-    key: 'handleClick',
-    value: function handleClick() {
-      this.props.deleteDuty(this.props.id);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        _materialUiTable.TableRow,
-        null,
-        _react2['default'].createElement(
-          _materialUiTable.TableRowColumn,
-          null,
-          this.props.duty.name
-        ),
-        _react2['default'].createElement(
-          _materialUiTable.TableRowColumn,
-          null,
-          _react2['default'].createElement(
-            _materialUiIconButton2['default'],
-            {
-              onClick: this.handleClick },
-            _react2['default'].createElement(
-              'i',
-              { className: 'material-icons' },
-              'delete'
-            )
-          )
-        )
-      );
-    }
-  }]);
-
-  return DutyItem;
-})(_react.Component);
-
-exports['default'] = (0, _reactRedux.connect)(null, actions)(DutyItem);
-module.exports = exports['default'];
-
-},{"../actions/company":1,"material-ui/IconButton":393,"material-ui/Table":422,"react":685,"react-redux":613}],10:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = require('react-redux');
-
-var _actionsCompany = require('../actions/company');
-
-var actions = _interopRequireWildcard(_actionsCompany);
-
-var _DutyItem = require('./DutyItem');
-
-var _DutyItem2 = _interopRequireDefault(_DutyItem);
+var _componentsDutyItem2 = _interopRequireDefault(_componentsDutyItem);
 
 //CSS modules
 
@@ -769,11 +1205,14 @@ var DutyList = (function (_Component) {
   }, {
     key: 'renderDuties',
     value: function renderDuties() {
+      var _this = this;
+
       return _lodash2['default'].map(this.props.duties, function (duty, key) {
-        return _react2['default'].createElement(_DutyItem2['default'], {
+        return _react2['default'].createElement(_componentsDutyItem2['default'], {
           key: key,
           duty: duty,
-          id: key
+          id: key,
+          handleClick: _this.props.deleteDuty.bind(_this, key)
         });
       });
     }
@@ -832,7 +1271,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(DutyList);
 module.exports = exports['default'];
 
-},{"../actions/company":1,"./DutyItem":9,"lodash":371,"material-ui/Table":422,"react":685,"react-redux":613}],11:[function(require,module,exports){
+},{"../actions/company":1,"../components/DutyItem":8,"lodash":371,"material-ui/Table":422,"react":685,"react-redux":613}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -858,6 +1297,8 @@ var _react2 = _interopRequireDefault(_react);
 var _reactRedux = require('react-redux');
 
 var _reduxForm = require('redux-form');
+
+//CSS modules
 
 var _materialUiTextField = require('material-ui/TextField');
 
@@ -918,7 +1359,7 @@ exports['default'] = (0, _reduxForm.reduxForm)({
 })(FormAdd);
 module.exports = exports['default'];
 
-},{"material-ui/FlatButton":389,"material-ui/TextField":428,"react":685,"react-redux":613,"redux-form":724}],12:[function(require,module,exports){
+},{"material-ui/FlatButton":389,"material-ui/TextField":428,"react":685,"react-redux":613,"redux-form":724}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1087,559 +1528,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, Actions)(Header);
 module.exports = exports['default'];
 
-},{"../actions/index":2,"material-ui/AppBar":382,"material-ui/FlatButton":389,"material-ui/IconButton":393,"material-ui/IconMenu":395,"material-ui/MenuItem":404,"material-ui/svg-icons/navigation/close":450,"material-ui/svg-icons/navigation/more-vert":454,"react":685,"react-redux":613,"react-router":645}],13:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _materialUiRaisedButton = require('material-ui/RaisedButton');
-
-var _materialUiRaisedButton2 = _interopRequireDefault(_materialUiRaisedButton);
-
-var _materialUiPaper = require('material-ui/Paper');
-
-var _materialUiPaper2 = _interopRequireDefault(_materialUiPaper);
-
-var style = {
-  width: '100%',
-  margin: 5,
-  display: 'inline-block',
-  padding: 10
-};
-
-var StationView = (function (_Component) {
-  _inherits(StationView, _Component);
-
-  function StationView() {
-    _classCallCheck(this, StationView);
-
-    _get(Object.getPrototypeOf(StationView.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(StationView, [{
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        _materialUiPaper2['default'],
-        {
-          className: 'call',
-          onClick: this.props.handleClick.bind(this),
-          style: style,
-          zDepth: 4
-        },
-        _react2['default'].createElement(
-          'div',
-          null,
-          this.props.call.tname
-        ),
-        _react2['default'].createElement(
-          'div',
-          null,
-          this.props.call.name
-        )
-      );
-    }
-  }]);
-
-  return StationView;
-})(_react.Component);
-
-exports['default'] = StationView;
-module.exports = exports['default'];
-
-},{"material-ui/Paper":406,"material-ui/RaisedButton":410,"react":685}],14:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = require('react-redux');
-
-var _actionsStation = require('../actions/station');
-
-var actions = _interopRequireWildcard(_actionsStation);
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _StationCallItem = require('./StationCallItem');
-
-var _StationCallItem2 = _interopRequireDefault(_StationCallItem);
-
-var StationView = (function (_Component) {
-  _inherits(StationView, _Component);
-
-  function StationView() {
-    _classCallCheck(this, StationView);
-
-    _get(Object.getPrototypeOf(StationView.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(StationView, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      //start listening to restaurant-calls
-      this.props.fetchCalls();
-    }
-  }, {
-    key: 'renderCalls',
-    value: function renderCalls() {
-      var _this = this;
-
-      return _lodash2['default'].map(this.props.calls, function (call, key) {
-        return _react2['default'].createElement(
-          'div',
-          { className: 'col span_2_of_12', key: key },
-          _react2['default'].createElement(_StationCallItem2['default'], {
-            handleClick: _this.props.deleteCall.bind(_this, call.tid, key),
-            call: call })
-        );
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'div',
-        { className: 'bg' },
-        _react2['default'].createElement(
-          'div',
-          { className: 'section group full-page' },
-          _react2['default'].createElement(
-            'div',
-            { className: 'col span_12_of_12' },
-            _react2['default'].createElement(
-              'h1',
-              { className: 'title' },
-              'Station View'
-            )
-          ),
-          this.renderCalls()
-        )
-      );
-    }
-  }]);
-
-  return StationView;
-})(_react.Component);
-
-function mapStateToProps(state) {
-  return { calls: state.company.calls };
-}
-
-exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(StationView);
-module.exports = exports['default'];
-
-},{"../actions/station":3,"./StationCallItem":13,"lodash":371,"react":685,"react-redux":613}],15:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-//CSS modules
-
-var _materialUiRaisedButton = require('material-ui/RaisedButton');
-
-var _materialUiRaisedButton2 = _interopRequireDefault(_materialUiRaisedButton);
-
-var TableDutyButton = (function (_Component) {
-  _inherits(TableDutyButton, _Component);
-
-  function TableDutyButton() {
-    _classCallCheck(this, TableDutyButton);
-
-    _get(Object.getPrototypeOf(TableDutyButton.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(TableDutyButton, [{
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'div',
-        null,
-        _react2['default'].createElement(_materialUiRaisedButton2['default'], {
-          label: this.props.name,
-          primary: true,
-          disabled: this.props.isDisabled,
-          onClick: this.props.handleClick.bind(this),
-          className: 'material-ui-button',
-          fullWidth: true })
-      );
-    }
-  }]);
-
-  return TableDutyButton;
-})(_react.Component);
-
-exports['default'] = TableDutyButton;
-module.exports = exports['default'];
-
-},{"material-ui/RaisedButton":410,"react":685}],16:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = require('react-redux');
-
-var _actionsCompany = require('../actions/company');
-
-var actions = _interopRequireWildcard(_actionsCompany);
-
-var _reactRouter = require('react-router');
-
-//CSS modules
-
-var _materialUiTable = require('material-ui/Table');
-
-var _materialUiIconButton = require('material-ui/IconButton');
-
-var _materialUiIconButton2 = _interopRequireDefault(_materialUiIconButton);
-
-var _materialUiFlatButton = require('material-ui/FlatButton');
-
-var _materialUiFlatButton2 = _interopRequireDefault(_materialUiFlatButton);
-
-var TableItem = (function (_Component) {
-  _inherits(TableItem, _Component);
-
-  function TableItem() {
-    _classCallCheck(this, TableItem);
-
-    _get(Object.getPrototypeOf(TableItem.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(TableItem, [{
-    key: 'render',
-    value: function render() {
-      var tid = this.props.id;
-      var tname = this.props.table.name;
-
-      return _react2['default'].createElement(
-        _materialUiTable.TableRow,
-        null,
-        _react2['default'].createElement(
-          _materialUiTable.TableRowColumn,
-          null,
-          _react2['default'].createElement(_materialUiFlatButton2['default'], {
-            label: this.props.table.name,
-            containerElement: _react2['default'].createElement(
-              _reactRouter.Link,
-              { to: '/table?tid=' + tid + '&tname=' + tname },
-              tname
-            )
-          })
-        ),
-        _react2['default'].createElement(
-          _materialUiTable.TableRowColumn,
-          null,
-          _react2['default'].createElement(
-            _materialUiIconButton2['default'],
-            {
-              onClick: this.props.handleClick.bind(this) },
-            _react2['default'].createElement(
-              'i',
-              { className: 'material-icons' },
-              'delete'
-            )
-          )
-        )
-      );
-    }
-  }]);
-
-  return TableItem;
-})(_react.Component);
-
-exports['default'] = TableItem;
-module.exports = exports['default'];
-
-},{"../actions/company":1,"material-ui/FlatButton":389,"material-ui/IconButton":393,"material-ui/Table":422,"react":685,"react-redux":613,"react-router":645}],17:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _containersTableForm = require('../containers/TableForm');
-
-var _containersTableForm2 = _interopRequireDefault(_containersTableForm);
-
-var _containersTableList = require('../containers/TableList');
-
-var _containersTableList2 = _interopRequireDefault(_containersTableList);
-
-var Tables = (function (_Component) {
-  _inherits(Tables, _Component);
-
-  function Tables() {
-    _classCallCheck(this, Tables);
-
-    _get(Object.getPrototypeOf(Tables.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(Tables, [{
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'div',
-        { className: 'content' },
-        _react2['default'].createElement(
-          'h1',
-          null,
-          'Table Setup'
-        ),
-        _react2['default'].createElement(_containersTableForm2['default'], null),
-        _react2['default'].createElement(_containersTableList2['default'], null)
-      );
-    }
-  }]);
-
-  return Tables;
-})(_react.Component);
-
-exports['default'] = Tables;
-module.exports = exports['default'];
-
-},{"../containers/TableForm":23,"../containers/TableList":24,"lodash":371,"react":685}],18:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = require('react-redux');
-
-var _Header = require('./Header');
-
-var _Header2 = _interopRequireDefault(_Header);
-
-var App = (function (_Component) {
-  _inherits(App, _Component);
-
-  function App() {
-    _classCallCheck(this, App);
-
-    _get(Object.getPrototypeOf(App.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(App, [{
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'div',
-        null,
-        _react2['default'].createElement(_Header2['default'], null),
-        this.props.children
-      );
-    }
-  }]);
-
-  return App;
-})(_react.Component);
-
-exports.App = App;
-exports['default'] = (0, _reactRedux.connect)()(App);
-
-},{"./Header":12,"react":685,"react-redux":613}],19:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require('react-router');
-
-//CSS modules
-
-var _materialUiAppBar = require('material-ui/AppBar');
-
-var _materialUiAppBar2 = _interopRequireDefault(_materialUiAppBar);
-
-var _materialUiFlatButton = require('material-ui/FlatButton');
-
-var _materialUiFlatButton2 = _interopRequireDefault(_materialUiFlatButton);
-
-var btnStyle = {
-  color: 'white'
-};
-
-var AppIndex = (function (_Component) {
-  _inherits(AppIndex, _Component);
-
-  function AppIndex() {
-    _classCallCheck(this, AppIndex);
-
-    _get(Object.getPrototypeOf(AppIndex.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(AppIndex, [{
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'div',
-        { className: 'bg' },
-        _react2['default'].createElement(
-          'div',
-          { className: 'hero' },
-          _react2['default'].createElement(
-            'div',
-            { className: 'section group' },
-            _react2['default'].createElement('div', { className: 'col span_3_of_12' }),
-            _react2['default'].createElement(
-              'div',
-              { className: 'form col span_6_of_12' },
-              _react2['default'].createElement(
-                'h1',
-                null,
-                'jeogiyo'
-              ),
-              _react2['default'].createElement(
-                'h2',
-                null,
-                'The Table Service Platform'
-              ),
-              _react2['default'].createElement(
-                'div',
-                null,
-                _react2['default'].createElement(_materialUiFlatButton2['default'], {
-                  label: 'Login',
-                  labelStyle: btnStyle,
-                  containerElement: _react2['default'].createElement(_reactRouter.Link, { to: '/login' })
-                }),
-                _react2['default'].createElement(_materialUiFlatButton2['default'], {
-                  label: 'Sign Up',
-                  labelStyle: btnStyle,
-                  containerElement: _react2['default'].createElement(_reactRouter.Link, { to: '/signup' })
-                })
-              )
-            ),
-            _react2['default'].createElement('div', { className: 'col span_3_of_12' })
-          )
-        )
-      );
-    }
-  }]);
-
-  return AppIndex;
-})(_react.Component);
-
-exports['default'] = AppIndex;
-module.exports = exports['default'];
-
-},{"material-ui/AppBar":382,"material-ui/FlatButton":389,"react":685,"react-router":645}],20:[function(require,module,exports){
+},{"../actions/index":2,"material-ui/AppBar":382,"material-ui/FlatButton":389,"material-ui/IconButton":393,"material-ui/IconMenu":395,"material-ui/MenuItem":404,"material-ui/svg-icons/navigation/close":450,"material-ui/svg-icons/navigation/more-vert":454,"react":685,"react-redux":613,"react-router":645}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1803,7 +1692,7 @@ exports['default'] = (0, _reactRedux.connect)(mapStateToProps, Actions)((0, _red
 })(Login));
 module.exports = exports['default'];
 
-},{"../actions/index":2,"material-ui/RaisedButton":410,"material-ui/TextField":428,"react":685,"react-redux":613,"redux-form":724}],21:[function(require,module,exports){
+},{"../actions/index":2,"material-ui/RaisedButton":410,"material-ui/TextField":428,"react":685,"react-redux":613,"redux-form":724}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1874,7 +1763,7 @@ exports['default'] = function (WrappedComponent) {
 
 module.exports = exports['default'];
 
-},{"react":685,"react-redux":613,"react-router":645}],22:[function(require,module,exports){
+},{"react":685,"react-redux":613,"react-router":645}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2036,7 +1925,108 @@ exports['default'] = (0, _reactRedux.connect)(mapStateToProps, Actions)((0, _red
 })(Signup));
 module.exports = exports['default'];
 
-},{"../actions/index":2,"react":685,"react-redux":613,"redux-form":724}],23:[function(require,module,exports){
+},{"../actions/index":2,"react":685,"react-redux":613,"redux-form":724}],22:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = require('react-redux');
+
+var _actionsStation = require('../actions/station');
+
+var actions = _interopRequireWildcard(_actionsStation);
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _componentsStationCallItem = require('../components/StationCallItem');
+
+var _componentsStationCallItem2 = _interopRequireDefault(_componentsStationCallItem);
+
+var StationView = (function (_Component) {
+  _inherits(StationView, _Component);
+
+  function StationView() {
+    _classCallCheck(this, StationView);
+
+    _get(Object.getPrototypeOf(StationView.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(StationView, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      //start listening to restaurant-calls
+      this.props.fetchCalls();
+    }
+  }, {
+    key: 'renderCalls',
+    value: function renderCalls() {
+      var _this = this;
+
+      return _lodash2['default'].map(this.props.calls, function (call, key) {
+        return _react2['default'].createElement(
+          'div',
+          { className: 'col span_2_of_12', key: key },
+          _react2['default'].createElement(_componentsStationCallItem2['default'], {
+            handleClick: _this.props.deleteCall.bind(_this, call.tid, key),
+            call: call })
+        );
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        { className: 'bg' },
+        _react2['default'].createElement(
+          'div',
+          { className: 'section group full-page' },
+          _react2['default'].createElement(
+            'div',
+            { className: 'col span_12_of_12' },
+            _react2['default'].createElement(
+              'h1',
+              { className: 'title' },
+              'Station View'
+            )
+          ),
+          this.renderCalls()
+        )
+      );
+    }
+  }]);
+
+  return StationView;
+})(_react.Component);
+
+function mapStateToProps(state) {
+  return { calls: state.company.calls };
+}
+
+exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(StationView);
+module.exports = exports['default'];
+
+},{"../actions/station":3,"../components/StationCallItem":9,"lodash":371,"react":685,"react-redux":613}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2065,9 +2055,9 @@ var _actionsCompany = require('../actions/company');
 
 var actions = _interopRequireWildcard(_actionsCompany);
 
-var _componentsFormAdd = require('../components/FormAdd');
+var _FormAdd = require('./FormAdd');
 
-var _componentsFormAdd2 = _interopRequireDefault(_componentsFormAdd);
+var _FormAdd2 = _interopRequireDefault(_FormAdd);
 
 var TableForm = (function (_Component) {
   _inherits(TableForm, _Component);
@@ -2087,7 +2077,7 @@ var TableForm = (function (_Component) {
     key: 'render',
     value: function render() {
 
-      return _react2['default'].createElement(_componentsFormAdd2['default'], {
+      return _react2['default'].createElement(_FormAdd2['default'], {
         form: 'TableForm',
         formPlaceholder: 'Add A Table',
         formSubmit: this.onSubmit.bind(this) });
@@ -2100,7 +2090,7 @@ var TableForm = (function (_Component) {
 exports['default'] = (0, _reactRedux.connect)(null, actions)(TableForm);
 module.exports = exports['default'];
 
-},{"../actions/company":1,"../components/FormAdd":11,"react":685,"react-redux":613}],24:[function(require,module,exports){
+},{"../actions/company":1,"./FormAdd":17,"react":685,"react-redux":613}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2224,7 +2214,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(TableList);
 module.exports = exports['default'];
 
-},{"../actions/company":1,"../components/TableItem":16,"lodash":371,"material-ui/Table":422,"react":685,"react-redux":613}],25:[function(require,module,exports){
+},{"../actions/company":1,"../components/TableItem":11,"lodash":371,"material-ui/Table":422,"react":685,"react-redux":613}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2354,7 +2344,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(TableView);
 module.exports = exports['default'];
 
-},{"../actions/company":1,"../components/TableDutyButton":15,"lodash":371,"react":685,"react-redux":613}],26:[function(require,module,exports){
+},{"../actions/company":1,"../components/TableDutyButton":10,"lodash":371,"react":685,"react-redux":613}],26:[function(require,module,exports){
 'use strict';
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
@@ -2580,9 +2570,9 @@ var _containersTableView = require('./containers/TableView');
 
 var _containersTableView2 = _interopRequireDefault(_containersTableView);
 
-var _componentsStationView = require('./components/StationView');
+var _containersStationView = require('./containers/StationView');
 
-var _componentsStationView2 = _interopRequireDefault(_componentsStationView);
+var _containersStationView2 = _interopRequireDefault(_containersStationView);
 
 var _componentsTables = require('./components/Tables');
 
@@ -2617,12 +2607,12 @@ exports['default'] = _react2['default'].createElement(
     _react2['default'].createElement(_reactRouter.Route, { path: '/tables', component: (0, _containersRequireAuth2['default'])(_componentsTables2['default']) }),
     _react2['default'].createElement(_reactRouter.Route, { path: '/duties', component: (0, _containersRequireAuth2['default'])(_componentsDuties2['default']) })
   ),
-  _react2['default'].createElement(_reactRouter.Route, { path: '/station', component: (0, _containersRequireAuth2['default'])(_componentsStationView2['default']) }),
+  _react2['default'].createElement(_reactRouter.Route, { path: '/station', component: (0, _containersRequireAuth2['default'])(_containersStationView2['default']) }),
   _react2['default'].createElement(_reactRouter.Route, { path: '/table', component: (0, _containersRequireAuth2['default'])(_containersTableView2['default']) })
 );
 module.exports = exports['default'];
 
-},{"./components/CompanyDashboard":5,"./components/Dashboard":6,"./components/Duties":7,"./components/StationView":14,"./components/Tables":17,"./components/app":18,"./components/appIndex":19,"./containers/Login":20,"./containers/RequireAuth":21,"./containers/Signup":22,"./containers/TableView":25,"react":685,"react-router":645}],31:[function(require,module,exports){
+},{"./components/CompanyDashboard":5,"./components/Dashboard":6,"./components/Duties":7,"./components/Tables":12,"./components/app":13,"./components/appIndex":14,"./containers/Login":19,"./containers/RequireAuth":20,"./containers/Signup":21,"./containers/StationView":22,"./containers/TableView":25,"react":685,"react-router":645}],31:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

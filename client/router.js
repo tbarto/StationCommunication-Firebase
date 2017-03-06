@@ -6,7 +6,7 @@ import AppIndex from './components/appIndex';
 import CompanyDashboard from './components/CompanyDashboard';
 import Dashboard from './components/Dashboard';
 import TableView from './containers/TableView';
-import StationView from './components/StationView';
+import StationView from './containers/StationView';
 import Tables from './components/Tables';
 import Duties from './components/Duties';
 import Signup from './containers/Signup';
@@ -24,6 +24,6 @@ export default (
       <Route path="/duties" component={RequireAuth(Duties)} />
     </Route>
     <Route path="/station" component={RequireAuth(StationView)} />
-    <Route path="/table" component={RequireAuth(TableView)} />
+    <Route path="/table" component={TableView} />
   </Route>
 );

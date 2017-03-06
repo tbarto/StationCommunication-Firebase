@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/company';
-import DutyItem from './DutyItem';
+import DutyItem from '../components/DutyItem';
 
 //CSS modules
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
@@ -21,6 +21,7 @@ class DutyList extends Component {
               key={key}
               duty={duty}
               id={key}
+              handleClick={this.props.deleteDuty.bind(this,key)}
             />
         );
     });

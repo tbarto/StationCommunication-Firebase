@@ -24,7 +24,6 @@ export function signInUser(credentials) {
 
 export function signOutUser()
 {
-  console.log('signing out!');
   fbApp.auth().signOut();
   browserHistory.push('/');
   return function (dispatch){
@@ -52,14 +51,11 @@ export function authOut(){
   }
 }
 export function verifyAuth() {
-  console.log('calling verifyAuth on load');
   return function (dispatch) {
     fbApp.auth().onAuthStateChanged(user => {
       if (user) {
-        console.log('there is a user');
         dispatch(authUser());
       } else {
-        console.log('there is not a user');
         dispatch(authOut());
       }
     });

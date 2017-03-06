@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import TableForm from '../containers/TableForm';
 import TableList from '../containers/TableList';
 
-class Tables extends Component {
+export default class Tables extends Component {
 
   render(){
     return(
@@ -15,5 +15,3 @@ class Tables extends Component {
     );
   }
 }
-
-export default Tables;

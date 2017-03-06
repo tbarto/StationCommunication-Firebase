@@ -19,7 +19,7 @@ const styles = {
 //Material-ui requirement to make a selectable list
 let SelectableList = makeSelectable(List);
 
-class CompanyDashboard extends Component {
+export default class CompanyDashboard extends Component {
 
   handleRequestChange (event, index) {
     this.setState({});
@@ -50,6 +50,3 @@ class CompanyDashboard extends Component {
       </div>);
   }
 }
-
-
-export default CompanyDashboard;

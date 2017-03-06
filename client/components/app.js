@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Header from '../containers/Header';
 
-export class App extends Component {
+export default class App extends Component {
 
   render() {
     return (
@@ -13,5 +12,3 @@ export class App extends Component {
     );
   }
 }
-
-export default connect()(App);

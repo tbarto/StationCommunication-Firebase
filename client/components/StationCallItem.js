@@ -9,7 +9,7 @@ const style = {
   padding:10
 };
 
-class StationView extends Component {
+export default class StationView extends Component {
 
   render(){
     return (
@@ -25,5 +25,3 @@ class StationView extends Component {
     );
   }
 }
-
-export default StationView;
