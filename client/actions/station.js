@@ -23,10 +23,10 @@ export function deleteCall(tid, key) {
   const userUid = getUserId();
   let deletedData = {}
 
+  //create atomic unit to delete
   deletedData['/calls/' + key] = null;
   deletedData['/restaurant_calls/' + userUid + '/' + key] = null;
   deletedData['/table_calls/' + tid + '/' + key] = null;
 
   return dispatch => fb.ref().update(deletedData);
 }
-//return dispatch => fb.ref('/restaurant_calls/' + rid).child(key).remove();

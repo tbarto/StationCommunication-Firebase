@@ -3,6 +3,19 @@ import { Field, reduxForm } from 'redux-form';
 import {connect} from 'react-redux';
 import * as Actions from '../actions/index';
 
+//CSS modules
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const styles = {
+    floatingLabelFocusStyle: {
+        color: "white"
+    },
+    floatingLabelStyle: {
+      color: "white"
+    }
+}
+
 const validate = values => {
   const errors = {};
 
@@ -33,12 +46,20 @@ class Signup extends Component {
     console.log(values);
     this.props.signUpUser(values);
   };
-
-  renderField({ input, label, type, meta: { touched, error } }){
+  
+  renderField(field) {
     return(
       <div>
-        <input {...input} placeholder={label} className="form-control" type={type} />
-        {touched && error && <span>{error}</span>}
+        <TextField
+          type={field.type}
+          hintText={field.label}
+          floatingLabelText={field.label}
+          {...field.input}
+          errorText={field.meta.touched && field.meta.error}
+          floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+          floatingLabelStyle={styles.floatingLabelStyle}
+          inputStyle ={{color: "white"}}
+        />
       </div>
     );
   }
@@ -62,7 +83,7 @@ class Signup extends Component {
               <Field name="email" type="text" component={this.renderField} label="Email" />
               <Field name="password" type="password" component={this.renderField} label="Password" />
               <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
-              <button action="submit" className="btn btn-primary">Sign up</button>
+              <RaisedButton action="submit" primary={true} label="Submit" />
             </form>
           </div>
           <div className="col span_3_of_12"></div>

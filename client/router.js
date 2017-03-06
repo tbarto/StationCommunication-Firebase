@@ -1,8 +1,8 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 
-import App from './components/app';
-import AppIndex from './components/appIndex';
+import App from './components/App';
+import AppIndex from './components/AppIndex';
 import CompanyDashboard from './components/CompanyDashboard';
 import Dashboard from './components/Dashboard';
 import TableView from './containers/TableView';

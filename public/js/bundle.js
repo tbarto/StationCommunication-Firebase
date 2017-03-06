@@ -174,7 +174,6 @@ function signInUser(credentials) {
 }
 
 function signOutUser() {
-  console.log('signing out!');
   _utilsFirebase.fbApp.auth().signOut();
   _reactRouter.browserHistory.push('/');
   return function (dispatch) {
@@ -201,14 +200,11 @@ function authOut() {
 }
 
 function verifyAuth() {
-  console.log('calling verifyAuth on load');
   return function (dispatch) {
     _utilsFirebase.fbApp.auth().onAuthStateChanged(function (user) {
       if (user) {
-        console.log('there is a user');
         dispatch(authUser());
       } else {
-        console.log('there is not a user');
         dispatch(authOut());
       }
     });
@@ -268,6 +264,7 @@ function deleteCall(tid, key) {
   var userUid = (0, _utilsUserInfo2['default'])();
   var deletedData = {};
 
+  //create atomic unit to delete
   deletedData['/calls/' + key] = null;
   deletedData['/restaurant_calls/' + userUid + '/' + key] = null;
   deletedData['/table_calls/' + tid + '/' + key] = null;
@@ -276,8 +273,6 @@ function deleteCall(tid, key) {
     return _utilsFirebase.fb.ref().update(deletedData);
   };
 }
-
-//return dispatch => fb.ref('/restaurant_calls/' + rid).child(key).remove();
 
 },{"../utils/firebase":31,"../utils/userInfo":32,"./types":4,"lodash":371}],4:[function(require,module,exports){
 'use strict';
@@ -292,34 +287,26 @@ exports.UPDATE_COMPANY = UPDATE_COMPANY;
 var DELETE_COMPANY = 'DELETE_COMPANY';
 exports.DELETE_COMPANY = DELETE_COMPANY;
 var CREATE_COMPANY = 'CREATE_COMPANY';
-
 exports.CREATE_COMPANY = CREATE_COMPANY;
 var FETCH_COMPANY = 'FETCH_COMPANY';
-
 exports.FETCH_COMPANY = FETCH_COMPANY;
 var FETCH_DUTIES = 'FETCH_DUTIES';
 exports.FETCH_DUTIES = FETCH_DUTIES;
 var CREATE_DUTY = 'CREATE_DUTY';
 exports.CREATE_DUTY = CREATE_DUTY;
 var DELETE_FUNCTION = 'DELETE_FUNCTION';
-
 exports.DELETE_FUNCTION = DELETE_FUNCTION;
 var FETCH_TABLES = 'FETCH_TABLES';
-
 exports.FETCH_TABLES = FETCH_TABLES;
 var CREATE_CALL = 'CREATE_CALL';
-
 exports.CREATE_CALL = CREATE_CALL;
 var FETCH_CALLS = 'FETCH_CALLS';
-
 exports.FETCH_CALLS = FETCH_CALLS;
 var LISTEN_CALLS = 'LISTEN_CALLS';
-
 exports.LISTEN_CALLS = LISTEN_CALLS;
 var SIGN_IN_USER = 'SIGN_IN_USER';
 exports.SIGN_IN_USER = SIGN_IN_USER;
 var SIGN_OUT_USER = 'SIGN_OUT_USER';
-
 exports.SIGN_OUT_USER = SIGN_OUT_USER;
 var AUTH_ERROR = 'AUTH_ERROR';
 exports.AUTH_ERROR = AUTH_ERROR;
@@ -327,6 +314,158 @@ var AUTH_USER = 'AUTH_USER';
 exports.AUTH_USER = AUTH_USER;
 
 },{}],5:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _containersHeader = require('../containers/Header');
+
+var _containersHeader2 = _interopRequireDefault(_containersHeader);
+
+var App = (function (_Component) {
+  _inherits(App, _Component);
+
+  function App() {
+    _classCallCheck(this, App);
+
+    _get(Object.getPrototypeOf(App.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        null,
+        _react2['default'].createElement(_containersHeader2['default'], null),
+        this.props.children
+      );
+    }
+  }]);
+
+  return App;
+})(_react.Component);
+
+exports['default'] = App;
+module.exports = exports['default'];
+
+},{"../containers/Header":18,"react":685}],6:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+//CSS modules
+
+var _materialUiAppBar = require('material-ui/AppBar');
+
+var _materialUiAppBar2 = _interopRequireDefault(_materialUiAppBar);
+
+var _materialUiFlatButton = require('material-ui/FlatButton');
+
+var _materialUiFlatButton2 = _interopRequireDefault(_materialUiFlatButton);
+
+var btnStyle = {
+  color: 'white'
+};
+
+var AppIndex = (function (_Component) {
+  _inherits(AppIndex, _Component);
+
+  function AppIndex() {
+    _classCallCheck(this, AppIndex);
+
+    _get(Object.getPrototypeOf(AppIndex.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(AppIndex, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        { className: 'bg' },
+        _react2['default'].createElement(
+          'div',
+          { className: 'hero' },
+          _react2['default'].createElement(
+            'div',
+            { className: 'section group' },
+            _react2['default'].createElement('div', { className: 'col span_3_of_12' }),
+            _react2['default'].createElement(
+              'div',
+              { className: 'form col span_6_of_12' },
+              _react2['default'].createElement(
+                'h1',
+                null,
+                'jeogiyo'
+              ),
+              _react2['default'].createElement(
+                'h2',
+                null,
+                'The Table Service Platform'
+              ),
+              _react2['default'].createElement(
+                'div',
+                null,
+                _react2['default'].createElement(_materialUiFlatButton2['default'], {
+                  label: 'Login',
+                  labelStyle: btnStyle,
+                  containerElement: _react2['default'].createElement(_reactRouter.Link, { to: '/login' })
+                }),
+                _react2['default'].createElement(_materialUiFlatButton2['default'], {
+                  label: 'Sign Up',
+                  labelStyle: btnStyle,
+                  containerElement: _react2['default'].createElement(_reactRouter.Link, { to: '/signup' })
+                })
+              )
+            ),
+            _react2['default'].createElement('div', { className: 'col span_3_of_12' })
+          )
+        )
+      );
+    }
+  }]);
+
+  return AppIndex;
+})(_react.Component);
+
+exports['default'] = AppIndex;
+module.exports = exports['default'];
+
+},{"material-ui/AppBar":382,"material-ui/FlatButton":389,"react":685,"react-router":645}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -447,7 +586,7 @@ var CompanyDashboard = (function (_Component) {
 exports['default'] = CompanyDashboard;
 module.exports = exports['default'];
 
-},{"../actions/company":1,"material-ui/AppBar":382,"material-ui/Drawer":386,"material-ui/List":399,"react":685,"react-router":645}],6:[function(require,module,exports){
+},{"../actions/company":1,"material-ui/AppBar":382,"material-ui/Drawer":386,"material-ui/List":399,"react":685,"react-router":645}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -499,7 +638,7 @@ var Dashboard = (function (_Component) {
 exports["default"] = Dashboard;
 module.exports = exports["default"];
 
-},{"react":685}],7:[function(require,module,exports){
+},{"react":685}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -540,7 +679,6 @@ var Duties = (function (_Component) {
   _createClass(Duties, [{
     key: 'render',
     value: function render() {
-
       return _react2['default'].createElement(
         'div',
         { className: 'content' },
@@ -561,7 +699,7 @@ var Duties = (function (_Component) {
 exports['default'] = Duties;
 module.exports = exports['default'];
 
-},{"../containers/DutyForm":15,"../containers/DutyList":16,"react":685}],8:[function(require,module,exports){
+},{"../containers/DutyForm":15,"../containers/DutyList":16,"react":685}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -634,7 +772,7 @@ var DutyItem = (function (_Component) {
 exports['default'] = DutyItem;
 module.exports = exports['default'];
 
-},{"material-ui/IconButton":393,"material-ui/Table":422,"react":685}],9:[function(require,module,exports){
+},{"material-ui/IconButton":393,"material-ui/Table":422,"react":685}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -710,7 +848,7 @@ var StationView = (function (_Component) {
 exports['default'] = StationView;
 module.exports = exports['default'];
 
-},{"material-ui/Paper":406,"material-ui/RaisedButton":410,"react":685}],10:[function(require,module,exports){
+},{"material-ui/Paper":406,"material-ui/RaisedButton":410,"react":685}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -769,7 +907,7 @@ var TableDutyButton = (function (_Component) {
 exports['default'] = TableDutyButton;
 module.exports = exports['default'];
 
-},{"material-ui/RaisedButton":410,"react":685}],11:[function(require,module,exports){
+},{"material-ui/RaisedButton":410,"react":685}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -866,7 +1004,7 @@ var TableItem = (function (_Component) {
 exports['default'] = TableItem;
 module.exports = exports['default'];
 
-},{"../actions/company":1,"material-ui/FlatButton":389,"material-ui/IconButton":393,"material-ui/Table":422,"react":685,"react-redux":613,"react-router":645}],12:[function(require,module,exports){
+},{"../actions/company":1,"material-ui/FlatButton":389,"material-ui/IconButton":393,"material-ui/Table":422,"react":685,"react-redux":613,"react-router":645}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -931,159 +1069,7 @@ var Tables = (function (_Component) {
 exports['default'] = Tables;
 module.exports = exports['default'];
 
-},{"../containers/TableForm":23,"../containers/TableList":24,"lodash":371,"react":685}],13:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _containersHeader = require('../containers/Header');
-
-var _containersHeader2 = _interopRequireDefault(_containersHeader);
-
-var App = (function (_Component) {
-  _inherits(App, _Component);
-
-  function App() {
-    _classCallCheck(this, App);
-
-    _get(Object.getPrototypeOf(App.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(App, [{
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'div',
-        null,
-        _react2['default'].createElement(_containersHeader2['default'], null),
-        this.props.children
-      );
-    }
-  }]);
-
-  return App;
-})(_react.Component);
-
-exports['default'] = App;
-module.exports = exports['default'];
-
-},{"../containers/Header":18,"react":685}],14:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require('react-router');
-
-//CSS modules
-
-var _materialUiAppBar = require('material-ui/AppBar');
-
-var _materialUiAppBar2 = _interopRequireDefault(_materialUiAppBar);
-
-var _materialUiFlatButton = require('material-ui/FlatButton');
-
-var _materialUiFlatButton2 = _interopRequireDefault(_materialUiFlatButton);
-
-var btnStyle = {
-  color: 'white'
-};
-
-var AppIndex = (function (_Component) {
-  _inherits(AppIndex, _Component);
-
-  function AppIndex() {
-    _classCallCheck(this, AppIndex);
-
-    _get(Object.getPrototypeOf(AppIndex.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(AppIndex, [{
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'div',
-        { className: 'bg' },
-        _react2['default'].createElement(
-          'div',
-          { className: 'hero' },
-          _react2['default'].createElement(
-            'div',
-            { className: 'section group' },
-            _react2['default'].createElement('div', { className: 'col span_3_of_12' }),
-            _react2['default'].createElement(
-              'div',
-              { className: 'form col span_6_of_12' },
-              _react2['default'].createElement(
-                'h1',
-                null,
-                'jeogiyo'
-              ),
-              _react2['default'].createElement(
-                'h2',
-                null,
-                'The Table Service Platform'
-              ),
-              _react2['default'].createElement(
-                'div',
-                null,
-                _react2['default'].createElement(_materialUiFlatButton2['default'], {
-                  label: 'Login',
-                  labelStyle: btnStyle,
-                  containerElement: _react2['default'].createElement(_reactRouter.Link, { to: '/login' })
-                }),
-                _react2['default'].createElement(_materialUiFlatButton2['default'], {
-                  label: 'Sign Up',
-                  labelStyle: btnStyle,
-                  containerElement: _react2['default'].createElement(_reactRouter.Link, { to: '/signup' })
-                })
-              )
-            ),
-            _react2['default'].createElement('div', { className: 'col span_3_of_12' })
-          )
-        )
-      );
-    }
-  }]);
-
-  return AppIndex;
-})(_react.Component);
-
-exports['default'] = AppIndex;
-module.exports = exports['default'];
-
-},{"material-ui/AppBar":382,"material-ui/FlatButton":389,"react":685,"react-router":645}],15:[function(require,module,exports){
+},{"../containers/TableForm":23,"../containers/TableList":24,"lodash":371,"react":685}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1271,7 +1257,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(DutyList);
 module.exports = exports['default'];
 
-},{"../actions/company":1,"../components/DutyItem":8,"lodash":371,"material-ui/Table":422,"react":685,"react-redux":613}],17:[function(require,module,exports){
+},{"../actions/company":1,"../components/DutyItem":10,"lodash":371,"material-ui/Table":422,"react":685,"react-redux":613}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1561,6 +1547,8 @@ var Actions = _interopRequireWildcard(_actionsIndex);
 
 var _reduxForm = require('redux-form');
 
+//CSS modules
+
 var _materialUiTextField = require('material-ui/TextField');
 
 var _materialUiTextField2 = _interopRequireDefault(_materialUiTextField);
@@ -1572,10 +1560,13 @@ var _materialUiRaisedButton2 = _interopRequireDefault(_materialUiRaisedButton);
 var styles = {
   floatingLabelFocusStyle: {
     color: "white"
+  },
+  floatingLabelStyle: {
+    color: "white"
   }
 };
 
-function validate(values) {
+var validate = function validate(values) {
   var errors = {};
 
   if (!values.email) {
@@ -1587,7 +1578,6 @@ function validate(values) {
   if (!values.password) {
     errors.password = "Please enter a password.";
   }
-
   return errors;
 };
 
@@ -1603,7 +1593,6 @@ var Login = (function (_Component) {
   _createClass(Login, [{
     key: 'handleFormSubmit',
     value: function handleFormSubmit(values) {
-      console.log(values);
       this.props.signInUser(values);
     }
   }, {
@@ -1619,6 +1608,7 @@ var Login = (function (_Component) {
         }, field.input, {
           errorText: field.meta.touched && field.meta.error,
           floatingLabelFocusStyle: styles.floatingLabelFocusStyle,
+          floatingLabelStyle: styles.floatingLabelStyle,
           inputStyle: { color: "white" }
         }))
       );
@@ -1664,11 +1654,7 @@ var Login = (function (_Component) {
                 { onSubmit: handleSubmit(this.handleFormSubmit.bind(this)) },
                 _react2['default'].createElement(_reduxForm.Field, { name: 'email', component: this.renderField, className: 'form-control', type: 'text', label: 'Email' }),
                 _react2['default'].createElement(_reduxForm.Field, { name: 'password', component: this.renderField, className: 'form-control', type: 'password', label: 'Password' }),
-                _react2['default'].createElement(
-                  'button',
-                  { type: 'submit' },
-                  'Submit'
-                )
+                _react2['default'].createElement(_materialUiRaisedButton2['default'], { primary: true, type: 'submit', label: 'Submit' })
               )
             ),
             _react2['default'].createElement('div', { className: 'col span_3_of_12' })
@@ -1688,7 +1674,8 @@ function mapStateToProps(state) {
 }
 
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, Actions)((0, _reduxForm.reduxForm)({
-  form: 'login'
+  form: 'login',
+  validate: validate
 })(Login));
 module.exports = exports['default'];
 
@@ -1796,6 +1783,25 @@ var _actionsIndex = require('../actions/index');
 
 var Actions = _interopRequireWildcard(_actionsIndex);
 
+//CSS modules
+
+var _materialUiTextField = require('material-ui/TextField');
+
+var _materialUiTextField2 = _interopRequireDefault(_materialUiTextField);
+
+var _materialUiRaisedButton = require('material-ui/RaisedButton');
+
+var _materialUiRaisedButton2 = _interopRequireDefault(_materialUiRaisedButton);
+
+var styles = {
+  floatingLabelFocusStyle: {
+    color: "white"
+  },
+  floatingLabelStyle: {
+    color: "white"
+  }
+};
+
 var validate = function validate(values) {
   var errors = {};
 
@@ -1837,23 +1843,20 @@ var Signup = (function (_Component) {
     }
   }, {
     key: 'renderField',
-    value: function renderField(_ref) {
-      var input = _ref.input;
-      var label = _ref.label;
-      var type = _ref.type;
-      var _ref$meta = _ref.meta;
-      var touched = _ref$meta.touched;
-      var error = _ref$meta.error;
-
+    value: function renderField(field) {
       return _react2['default'].createElement(
         'div',
         null,
-        _react2['default'].createElement('input', _extends({}, input, { placeholder: label, className: 'form-control', type: type })),
-        touched && error && _react2['default'].createElement(
-          'span',
-          null,
-          error
-        )
+        _react2['default'].createElement(_materialUiTextField2['default'], _extends({
+          type: field.type,
+          hintText: field.label,
+          floatingLabelText: field.label
+        }, field.input, {
+          errorText: field.meta.touched && field.meta.error,
+          floatingLabelFocusStyle: styles.floatingLabelFocusStyle,
+          floatingLabelStyle: styles.floatingLabelStyle,
+          inputStyle: { color: "white" }
+        }))
       );
     }
   }, {
@@ -1896,11 +1899,7 @@ var Signup = (function (_Component) {
                 _react2['default'].createElement(_reduxForm.Field, { name: 'email', type: 'text', component: this.renderField, label: 'Email' }),
                 _react2['default'].createElement(_reduxForm.Field, { name: 'password', type: 'password', component: this.renderField, label: 'Password' }),
                 _react2['default'].createElement(_reduxForm.Field, { name: 'passwordConfirmation', type: 'password', component: this.renderField, label: 'Password Confirmation' }),
-                _react2['default'].createElement(
-                  'button',
-                  { action: 'submit', className: 'btn btn-primary' },
-                  'Sign up'
-                )
+                _react2['default'].createElement(_materialUiRaisedButton2['default'], { action: 'submit', primary: true, label: 'Submit' })
               )
             ),
             _react2['default'].createElement('div', { className: 'col span_3_of_12' })
@@ -1925,7 +1924,7 @@ exports['default'] = (0, _reactRedux.connect)(mapStateToProps, Actions)((0, _red
 })(Signup));
 module.exports = exports['default'];
 
-},{"../actions/index":2,"react":685,"react-redux":613,"redux-form":724}],22:[function(require,module,exports){
+},{"../actions/index":2,"material-ui/RaisedButton":410,"material-ui/TextField":428,"react":685,"react-redux":613,"redux-form":724}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2026,7 +2025,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(StationView);
 module.exports = exports['default'];
 
-},{"../actions/station":3,"../components/StationCallItem":9,"lodash":371,"react":685,"react-redux":613}],23:[function(require,module,exports){
+},{"../actions/station":3,"../components/StationCallItem":11,"lodash":371,"react":685,"react-redux":613}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2214,7 +2213,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(TableList);
 module.exports = exports['default'];
 
-},{"../actions/company":1,"../components/TableItem":11,"lodash":371,"material-ui/Table":422,"react":685,"react-redux":613}],25:[function(require,module,exports){
+},{"../actions/company":1,"../components/TableItem":13,"lodash":371,"material-ui/Table":422,"react":685,"react-redux":613}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2344,7 +2343,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(TableView);
 module.exports = exports['default'];
 
-},{"../actions/company":1,"../components/TableDutyButton":10,"lodash":371,"react":685,"react-redux":613}],26:[function(require,module,exports){
+},{"../actions/company":1,"../components/TableDutyButton":12,"lodash":371,"react":685,"react-redux":613}],26:[function(require,module,exports){
 'use strict';
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
@@ -2550,11 +2549,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
-var _componentsApp = require('./components/app');
+var _componentsApp = require('./components/App');
 
 var _componentsApp2 = _interopRequireDefault(_componentsApp);
 
-var _componentsAppIndex = require('./components/appIndex');
+var _componentsAppIndex = require('./components/AppIndex');
 
 var _componentsAppIndex2 = _interopRequireDefault(_componentsAppIndex);
 
@@ -2608,11 +2607,11 @@ exports['default'] = _react2['default'].createElement(
     _react2['default'].createElement(_reactRouter.Route, { path: '/duties', component: (0, _containersRequireAuth2['default'])(_componentsDuties2['default']) })
   ),
   _react2['default'].createElement(_reactRouter.Route, { path: '/station', component: (0, _containersRequireAuth2['default'])(_containersStationView2['default']) }),
-  _react2['default'].createElement(_reactRouter.Route, { path: '/table', component: (0, _containersRequireAuth2['default'])(_containersTableView2['default']) })
+  _react2['default'].createElement(_reactRouter.Route, { path: '/table', component: _containersTableView2['default'] })
 );
 module.exports = exports['default'];
 
-},{"./components/CompanyDashboard":5,"./components/Dashboard":6,"./components/Duties":7,"./components/Tables":12,"./components/app":13,"./components/appIndex":14,"./containers/Login":19,"./containers/RequireAuth":20,"./containers/Signup":21,"./containers/StationView":22,"./containers/TableView":25,"react":685,"react-router":645}],31:[function(require,module,exports){
+},{"./components/App":5,"./components/AppIndex":6,"./components/CompanyDashboard":7,"./components/Dashboard":8,"./components/Duties":9,"./components/Tables":14,"./containers/Login":19,"./containers/RequireAuth":20,"./containers/Signup":21,"./containers/StationView":22,"./containers/TableView":25,"react":685,"react-router":645}],31:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

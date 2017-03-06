@@ -3,16 +3,20 @@ import {connect} from 'react-redux';
 import * as Actions from '../actions/index';
 import { Field, reduxForm } from 'redux-form';
 
+//CSS modules
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const styles = {
     floatingLabelFocusStyle: {
         color: "white"
+    },
+    floatingLabelStyle: {
+      color: "white"
     }
 }
 
-function validate(values){
+const validate = values => {
   const errors = {};
 
   if (!values.email) {
@@ -24,14 +28,12 @@ function validate(values){
   if (!values.password) {
     errors.password = "Please enter a password.";
   }
-
   return errors;
 };
 
 class Login extends Component {
 
   handleFormSubmit(values){
-    console.log(values);
     this.props.signInUser(values);
   };
 
@@ -45,6 +47,7 @@ class Login extends Component {
           {...field.input}
           errorText={field.meta.touched && field.meta.error}
           floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+          floatingLabelStyle={styles.floatingLabelStyle}
           inputStyle ={{color: "white"}}
         />
       </div>
@@ -72,7 +75,7 @@ class Login extends Component {
               <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                   <Field name="email" component={this.renderField} className="form-control" type="text" label="Email"/>
                   <Field name="password" component={this.renderField} className="form-control" type="password" label="Password"/>
-                  <button type="submit">Submit</button>
+                  <RaisedButton primary={true} type="submit" label="Submit" />
               </form>
             </div>
             <div className="col span_3_of_12"></div>
@@ -90,5 +93,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps,Actions)(reduxForm({
-  form: 'login'
+  form: 'login',
+  validate
 })(Login));
