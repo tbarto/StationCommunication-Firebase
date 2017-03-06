@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import * as actions from '../actions';
-import Header from './Header';
+import Header from '../containers/Header';
 
 export class App extends Component {
 

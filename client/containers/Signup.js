@@ -51,16 +51,24 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Sign Up</h2>
-        { this.renderAuthenticationError() }
-        <form onSubmit={this.props.handleSubmit(this.handleFormSubmit.bind(this))}>
-          <Field name="email" type="text" component={this.renderField} label="Email" />
-          <Field name="password" type="password" component={this.renderField} label="Password" />
-          <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
-          <button action="submit" className="btn btn-primary">Sign up</button>
-        </form>
+    <div className="bg">
+      <div className="hero">
+        <div className="section group">
+          <div className="col span_3_of_12"></div>
+          <div className="form col span_6_of_12">
+            <h2>Sign Up</h2>
+            { this.renderAuthenticationError() }
+            <form onSubmit={this.props.handleSubmit(this.handleFormSubmit.bind(this))}>
+              <Field name="email" type="text" component={this.renderField} label="Email" />
+              <Field name="password" type="password" component={this.renderField} label="Password" />
+              <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
+              <button action="submit" className="btn btn-primary">Sign up</button>
+            </form>
+          </div>
+          <div className="col span_3_of_12"></div>
+        </div>
       </div>
+    </div>
     );
   }
 }

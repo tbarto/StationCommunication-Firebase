@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/company';
+
+//CSS modules
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import IconButton from 'material-ui/IconButton';
 
@@ -12,7 +14,7 @@ class DutyItem extends Component {
   }
 
   handleClick() {
-    this.props.deleteDuty(this.props.id, this.props.rid);
+    this.props.deleteDuty(this.props.id);
   }
 
   render() {

@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/company';
-import TableItem from './TableItem';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import CircularProgress from 'material-ui/CircularProgress';
-
 import _ from 'lodash';
+import * as actions from '../actions/company';
+import TableItem from '../components/TableItem';
+
+//CSS modules
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 class TableList extends Component {
 
   componentWillMount() {
-    this.props.fetchTables(this.props.rid);
+    this.props.fetchTables();
   }
 
   renderTables() {
     return _.map(this.props.tables, (table, key) => {
-      return <TableItem key={key} table={table} id={key} rid={this.props.rid}/>
+      return (
+          <TableItem
+            key={key}
+            table={table}
+            id={key}
+            handleClick={this.props.deleteTable.bind(this,key)}
+          />
+      )
     });
   }
 
@@ -41,7 +48,7 @@ class TableList extends Component {
   render(){
     return(
       <div>
-        {_.isEmpty(this.props.tables)? <CircularProgress /> : this.renderTable()}
+        {this.renderTable()}
       </div>
     );
   }

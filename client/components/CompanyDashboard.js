@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import {Link} from 'react-router';
-
 import * as actions from '../actions/company';
-import Duties from './Duties';
-import Tables from './Tables';
 
+//CSS modules
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer';
 import {List, ListItem, makeSelectable} from 'material-ui/List';
-
-
 
 const styles = {
   headline: {
@@ -21,32 +16,13 @@ const styles = {
   },
 };
 
-const APP_TITLE = "Station Communication"
-
+//Material-ui requirement to make a selectable list
 let SelectableList = makeSelectable(List);
 
 class CompanyDashboard extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {selectedIndex: 1};
-  }
-
-  componentWillMount(){
-    this.props.fetchCompany(this.props.location.query['rid']);
-  }
 
   handleRequestChange (event, index) {
-    this.setState({
-        selectedIndex: this.props.location.pathname
-    });
-  }
-
-  render() {
-
-    return (<div>
-      {this.renderAside()}
-      {this.props.children}
-      </div>);
+    this.setState({});
   }
 
   renderAside() {
@@ -54,10 +30,10 @@ class CompanyDashboard extends Component {
       <Drawer open={true} >
         <AppBar
           showMenuIconButton={false}
-          title="Ding"
+          title="jeogiyo"
         />
         <SelectableList value={this.props.location.pathname} onChange={this.handleRequestChange.bind(this)}>
-            <ListItem value="/restaurant" primaryText="Home" containerElement= {<Link to={'/restaurant'}>Home</Link>}></ListItem>
+            <ListItem value="/dashboard" primaryText="Home" containerElement= {<Link to={'/dashboard'}>Dashboard</Link>}></ListItem>
             <ListItem value="/station" primaryText="Station" containerElement= {<Link to={'station'}>Station</Link>}></ListItem>
             <ListItem value="/duties" primaryText="Duties" containerElement= {<Link to={'/duties'}>Duties</Link>}></ListItem>
             <ListItem value="/tables" primaryText="Tables" containerElement= {<Link to={'/tables'}>Tables</Link>}></ListItem>
@@ -65,11 +41,15 @@ class CompanyDashboard extends Component {
       </Drawer>
     );
   }
+
+  render() {
+    return (
+      <div>
+        {this.renderAside()}
+        {this.props.children}
+      </div>);
+  }
 }
 
 
-function mapStateToProps(state) {
-  return { company: state.company.company };
-}
-
-export default connect(mapStateToProps, actions)(CompanyDashboard);
+export default CompanyDashboard;

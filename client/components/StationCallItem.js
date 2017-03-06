@@ -14,21 +14,16 @@ class StationView extends Component {
   render(){
     return (
       <Paper
+        className="call"
         onClick={this.props.handleClick.bind(this)}
         style={style}
         zDepth={4}
         >
-        {`${this.props.call.tname}...${this.props.call.name}`}
+        <div>{this.props.call.tname}</div>
+        <div>{this.props.call.name}</div>
       </Paper>
     );
   }
 }
 
 export default StationView;
-
-// <RaisedButton
-//   label={`${this.props.call.tname}...${this.props.call.name}`}
-//   onClick={this.props.handleClick.bind(this)}
-//   primary={true}
-//   className="material-ui-button"
-//   />

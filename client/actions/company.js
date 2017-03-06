@@ -1,4 +1,5 @@
 import {fbApp, fb} from '../utils/firebase';
+import getUserId from '../utils/userInfo';
 
 import _ from 'lodash';
 import {
@@ -11,9 +12,10 @@ import {
   LISTEN_CALLS
 } from './types';
 
-export function fetchCompany(id) {
+export function fetchCompany() {
+  const userUid = getUserId();
   return dispatch => {
-    fb.ref('/company/'+ id).on('value', snapshot =>{
+    fb.ref('/company/'+ userUid).on('value', snapshot =>{
       dispatch({
         type: FETCH_COMPANY,
         payload: snapshot.val()
@@ -22,9 +24,10 @@ export function fetchCompany(id) {
   };
 }
 
-export function fetchDuties(rid) {
+export function fetchDuties() {
+  const userUid = getUserId();
   return dispatch => {
-    fb.ref('/functions/' + rid).on('value', snapshot =>{
+    fb.ref('/functions/' + userUid).on('value', snapshot =>{
       dispatch({
         type: FETCH_DUTIES,
         payload: snapshot.val()
@@ -33,18 +36,21 @@ export function fetchDuties(rid) {
   };
 }
 
-export function createDuty(name,rid) {
-  return dispatch => fb.ref('/functions/' + rid).push({"name": name});
+export function createDuty(name) {
+  const userUid = getUserId();
+  return dispatch => fb.ref('/functions/' + userUid).push({"name": name});
 }
-export function deleteDuty(key, rid) {
-  return dispatch => fb.ref('/functions/' + rid).child(key).remove();
+
+export function deleteDuty(key) {
+  return dispatch => fb.ref('/functions/' + userUid).child(key).remove();
 }
 
 /* Table Data*/
-export function fetchTables(rid) {
-  console.log('rid: '+ rid);
+export function fetchTables() {
+  const userUid = getUserId();
+  console.log('fetching tables: '+userUid);
   return dispatch => {
-    fb.ref('/tables/' + rid).on('value', snapshot =>{
+    fb.ref('/tables/' + userUid).on('value', snapshot =>{
       dispatch({
         type: FETCH_TABLES,
         payload: snapshot.val()
@@ -53,15 +59,18 @@ export function fetchTables(rid) {
   };
 }
 
-export function createTable(table,rid) {
-  return dispatch => fb.ref('/tables/' + rid).push({"name": table});
+export function createTable(table) {
+  const userUid = getUserId();
+  return dispatch => fb.ref('/tables/' + userUid).push({"name": table});
 }
-export function deleteTable(key, rid) {
-  return dispatch => fb.ref('/tables/' + rid).child(key).remove();
+export function deleteTable(key) {
+  const userUid = getUserId();
+  return dispatch => fb.ref('/tables/' + userUid).child(key).remove();
 }
 
 /*Button Functions*/
-export function createCall(name,rid, tid, tname) {
+export function createCall(name, tid, tname) {
+  const userUid = getUserId();
   //generate new id
   const newKey = fb.ref().child('calls').push().key;
 
@@ -70,10 +79,10 @@ export function createCall(name,rid, tid, tname) {
   updatedData['/calls/' + newKey] = {
     name: name,
     tid: tid,
-    rid: rid,
+    rid: userUid,
     tname: tname
   }
-  updatedData['/restaurant_calls/' + rid + '/' + newKey] = {
+  updatedData['/restaurant_calls/' + userUid + '/' + newKey] = {
     name: name,
     tid: tid,
     tname: tname
@@ -85,6 +94,7 @@ export function createCall(name,rid, tid, tname) {
   //do the update
   return dispatch => fb.ref().update(updatedData);
 }
+
 export function listenCalls(tid) {
   return dispatch => fb.ref('/table_calls/' + tid).on('value', snapshot=>{
     dispatch({

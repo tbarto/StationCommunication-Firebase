@@ -6,6 +6,12 @@ import { Field, reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
+const styles = {
+    floatingLabelFocusStyle: {
+        color: "white"
+    }
+}
+
 function validate(values){
   const errors = {};
 
@@ -29,12 +35,19 @@ class Login extends Component {
     this.props.signInUser(values);
   };
 
-  renderField({ input, label, type, meta: { touched, error } }){
+  renderField(field) {
     return(
-        <div>
-          <input {...input} placeholder={label} className="form-control" type={type} />
-          {touched && error && <div className="help-block">{error}</div>}
-        </div>
+      <div>
+        <TextField
+          type={field.type}
+          hintText={field.label}
+          floatingLabelText={field.label}
+          {...field.input}
+          errorText={field.meta.touched && field.meta.error}
+          floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+          inputStyle ={{color: "white"}}
+        />
+      </div>
       );
     }
 
@@ -49,14 +62,22 @@ class Login extends Component {
     const {handleSubmit} = this.props;
 
     return(
-      <div>
-        <h2>Login</h2>
-        { this.renderAuthenticationError() }
-        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-            <Field name="email" component={this.renderField} className="form-control" type="text" label="Email"/>
-            <Field name="password" component={this.renderField} className="form-control" type="password" label="Password"/>
-            <button type="submit">Submit</button>
-        </form>
+      <div className="bg">
+        <div className="hero">
+          <div className="section group">
+            <div className="col span_3_of_12"></div>
+            <div className="form col span_6_of_12">
+              <h2>Login</h2>
+              { this.renderAuthenticationError() }
+              <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+                  <Field name="email" component={this.renderField} className="form-control" type="text" label="Email"/>
+                  <Field name="password" component={this.renderField} className="form-control" type="password" label="Password"/>
+                  <button type="submit">Submit</button>
+              </form>
+            </div>
+            <div className="col span_3_of_12"></div>
+          </div>
+        </div>
       </div>
     );
   }

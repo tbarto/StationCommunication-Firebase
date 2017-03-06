@@ -3,42 +3,18 @@ import _ from 'lodash';
 import {browserHistory} from 'react-router';
 
 import {
-  FETCH_COMPANIES,
-  DELETE_COMPANY,
-  CREATE_COMPANY,
   SIGN_IN_USER,
   SIGN_OUT_USER,
   AUTH_ERROR,
   AUTH_USER
 } from './types';
 
-
-
-export function fetchCompanies() {
-  return dispatch => {
-    fb.ref('/company').on('value', snapshot =>{
-      dispatch({
-        type: FETCH_COMPANIES,
-        payload: snapshot.val()
-      });
-    });
-  };
-}
-
-export function createCompany(company) {
-  return dispatch => fb.ref('company').push({"name": company});
-}
-
-export function deleteCompany(key) {
-  return dispatch => fb.ref('company').child(key).remove();
-}
-
 export function signInUser(credentials) {
   return function(dispatch) {
     fbApp.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(response => {
         dispatch(authUser());
-        browserHistory.push('/restaurant');
+        browserHistory.push('/dashboard');
       })
       .catch(error => {
         dispatch(authError(error));
@@ -61,7 +37,7 @@ export function signUpUser(credentials) {
     fbApp.auth().createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then(response => {
         dispatch(authUser());
-        browserHistory.push('/restaurant');
+        browserHistory.push('/dashboard');
       })
       .catch(error => {
         console.log(error);
@@ -76,11 +52,14 @@ export function authOut(){
   }
 }
 export function verifyAuth() {
+  console.log('calling verifyAuth on load');
   return function (dispatch) {
     fbApp.auth().onAuthStateChanged(user => {
       if (user) {
+        console.log('there is a user');
         dispatch(authUser());
       } else {
+        console.log('there is not a user');
         dispatch(authOut());
       }
     });

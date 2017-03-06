@@ -17,10 +17,6 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
 /* Routing */
-// app.get('*',function (req, res) {
-//       res.redirect('/');
-//   });
-//This works now!
 app.get('*', function (request, response){
   response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })

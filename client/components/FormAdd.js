@@ -29,13 +29,6 @@ const renderField = field => (
       errorText={field.meta.touched && field.meta.error}
     />
 );
-//     <input {...field.input}/>
-    //{field.meta.touched && field.meta.error && <div className="error">{field.meta.error}</div>}
-// <TextField hintText={props.label}
-//   floatingLabelText={props.label}
-//   errorText={props.touched && props.error}
-//   {...props}
-// />
 
 const validate = values => {
   const errors = {};

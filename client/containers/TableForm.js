@@ -1,12 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/company';
-import FormAdd from './FormAdd';
+import FormAdd from '../components/FormAdd';
 
 class TableForm extends Component{
 
   onSubmit(formProps){
-    this.props.createTable(formProps.title, this.props.rid);
+    this.props.createTable(formProps.title);
   }
 
   render(){

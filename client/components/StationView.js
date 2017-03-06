@@ -8,26 +8,28 @@ class StationView extends Component {
 
   componentWillMount(){
     //start listening to restaurant-calls
-    this.props.fetchCalls(this.props.location.query['rid']);
+    this.props.fetchCalls();
   }
 
   renderCalls(){
-    const rid = this.props.location.query['rid'];
     return _.map(this.props.calls, (call, key) => {
       return(
-        <StationCallItem
-          handleClick={this.props.deleteCall.bind(this, rid, call.tid, key)}
-          key={key}
-          call={call} />
+        <div className="col span_2_of_12" key={key}>
+          <StationCallItem
+            handleClick={this.props.deleteCall.bind(this, call.tid, key)}
+            call={call} />
+        </div>
       );
     });
   }
 
   render(){
     return (
-      <div className="content">
-        <h1 className="title">Station View</h1>
-        {this.renderCalls()}
+      <div className="bg">
+        <div className="section group full-page">
+          <div className="col span_12_of_12"><h1 className="title">Station View</h1></div>
+          {this.renderCalls()}
+        </div>
       </div>
     );
   }
