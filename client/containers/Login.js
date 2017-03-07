@@ -73,7 +73,7 @@ class Login extends Component {
               <h2>Login</h2>
               { this.renderAuthenticationError() }
               <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                  <Field name="email" component={this.renderField} className="form-control" type="text" label="Email"/>
+                  <Field name="email" component={this.renderField} className="form-control" type="text" label="Email" />
                   <Field name="password" component={this.renderField} className="form-control" type="password" label="Password"/>
                   <RaisedButton primary={true} type="submit" label="Submit" />
               </form>

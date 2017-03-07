@@ -26,6 +26,10 @@ body{
   color: white;
 }
 
+.title{
+  text-align: center;
+}
+
 /*Login and Signup Forms*/
 .form{
   color: white;

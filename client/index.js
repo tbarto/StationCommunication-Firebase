@@ -4,21 +4,20 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import {Router, browserHistory} from 'react-router';
 import reduxThunk from 'redux-thunk';
+import * as Actions from './actions/index';
+import routes from './router';
+import reducers from './reducers';
 
+//CSS modules
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {red400} from 'material-ui/styles/colors';
-
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import * as Actions from './actions/index';
-
-import routes from './router';
-import reducers from './reducers';
 
 //material-ui helper for touch screen clicks
 injectTapEventPlugin();
 
-//override css theme
+//override default material-ui CSS theme
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: red400,

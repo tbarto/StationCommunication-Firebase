@@ -1,5 +1,6 @@
 import {fbApp, fb} from '../utils/firebase';
 import getUserId from '../utils/userInfo';
+import {reset} from 'redux-form';
 
 import _ from 'lodash';
 import {
@@ -38,7 +39,13 @@ export function fetchDuties() {
 
 export function createDuty(name) {
   const userUid = getUserId();
-  return dispatch => fb.ref('/functions/' + userUid).push({"name": name});
+  return dispatch => {
+    fb.ref('/functions/' + userUid).push({"name": name})
+      .then(response => {
+        dispatch(reset('DutyForm'));
+      })
+  }
+
 }
 
 export function deleteDuty(key) {
@@ -49,7 +56,6 @@ export function deleteDuty(key) {
 /* Table Data*/
 export function fetchTables() {
   const userUid = getUserId();
-  console.log('fetching tables: '+userUid);
   return dispatch => {
     fb.ref('/tables/' + userUid).on('value', snapshot =>{
       dispatch({
@@ -62,7 +68,13 @@ export function fetchTables() {
 
 export function createTable(table) {
   const userUid = getUserId();
-  return dispatch => fb.ref('/tables/' + userUid).push({"name": table});
+  return dispatch => {
+    fb.ref('/tables/' + userUid).push({"name": table})
+      .then(response => {
+        dispatch(reset('TableForm'));
+      })
+  }
+
 }
 export function deleteTable(key) {
   const userUid = getUserId();

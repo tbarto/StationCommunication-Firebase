@@ -46,7 +46,7 @@ class Signup extends Component {
     console.log(values);
     this.props.signUpUser(values);
   };
-  
+
   renderField(field) {
     return(
       <div>
@@ -80,7 +80,7 @@ class Signup extends Component {
             <h2>Sign Up</h2>
             { this.renderAuthenticationError() }
             <form onSubmit={this.props.handleSubmit(this.handleFormSubmit.bind(this))}>
-              <Field name="email" type="text" component={this.renderField} label="Email" />
+              <Field name="email" type="text" component={this.renderField} label="Email"/>
               <Field name="password" type="password" component={this.renderField} label="Password" />
               <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
               <RaisedButton action="submit" primary={true} label="Submit" />

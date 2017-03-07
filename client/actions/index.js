@@ -1,6 +1,7 @@
 import {fbApp, fb} from '../utils/firebase';
 import _ from 'lodash';
 import {browserHistory} from 'react-router';
+import {reset} from 'redux-form';
 
 import {
   SIGN_IN_USER,

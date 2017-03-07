@@ -22,6 +22,8 @@ var _utilsUserInfo = require('../utils/userInfo');
 
 var _utilsUserInfo2 = _interopRequireDefault(_utilsUserInfo);
 
+var _reduxForm = require('redux-form');
+
 var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
@@ -55,7 +57,9 @@ function fetchDuties() {
 function createDuty(name) {
   var userUid = (0, _utilsUserInfo2['default'])();
   return function (dispatch) {
-    return _utilsFirebase.fb.ref('/functions/' + userUid).push({ "name": name });
+    _utilsFirebase.fb.ref('/functions/' + userUid).push({ "name": name }).then(function (response) {
+      dispatch((0, _reduxForm.reset)('DutyForm'));
+    });
   };
 }
 
@@ -70,7 +74,6 @@ function deleteDuty(key) {
 
 function fetchTables() {
   var userUid = (0, _utilsUserInfo2['default'])();
-  console.log('fetching tables: ' + userUid);
   return function (dispatch) {
     _utilsFirebase.fb.ref('/tables/' + userUid).on('value', function (snapshot) {
       dispatch({
@@ -84,7 +87,9 @@ function fetchTables() {
 function createTable(table) {
   var userUid = (0, _utilsUserInfo2['default'])();
   return function (dispatch) {
-    return _utilsFirebase.fb.ref('/tables/' + userUid).push({ "name": table });
+    _utilsFirebase.fb.ref('/tables/' + userUid).push({ "name": table }).then(function (response) {
+      dispatch((0, _reduxForm.reset)('TableForm'));
+    });
   };
 }
 
@@ -136,7 +141,7 @@ function listenCalls(tid) {
   };
 }
 
-},{"../utils/firebase":31,"../utils/userInfo":32,"./types":4,"lodash":371}],2:[function(require,module,exports){
+},{"../utils/firebase":31,"../utils/userInfo":32,"./types":4,"lodash":371,"redux-form":724}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -159,6 +164,8 @@ var _lodash = require('lodash');
 var _lodash2 = _interopRequireDefault(_lodash);
 
 var _reactRouter = require('react-router');
+
+var _reduxForm = require('redux-form');
 
 var _types = require('./types');
 
@@ -224,7 +231,7 @@ function authError(error) {
   };
 }
 
-},{"../utils/firebase":31,"./types":4,"lodash":371,"react-router":645}],3:[function(require,module,exports){
+},{"../utils/firebase":31,"./types":4,"lodash":371,"react-router":645,"redux-form":724}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1021,10 +1028,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -1069,7 +1072,7 @@ var Tables = (function (_Component) {
 exports['default'] = Tables;
 module.exports = exports['default'];
 
-},{"../containers/TableForm":23,"../containers/TableList":24,"lodash":371,"react":685}],15:[function(require,module,exports){
+},{"../containers/TableForm":23,"../containers/TableList":24,"react":685}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2368,6 +2371,20 @@ var _reduxThunk = require('redux-thunk');
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
+var _actionsIndex = require('./actions/index');
+
+var Actions = _interopRequireWildcard(_actionsIndex);
+
+var _router = require('./router');
+
+var _router2 = _interopRequireDefault(_router);
+
+var _reducers = require('./reducers');
+
+var _reducers2 = _interopRequireDefault(_reducers);
+
+//CSS modules
+
 var _materialUiStylesMuiThemeProvider = require('material-ui/styles/MuiThemeProvider');
 
 var _materialUiStylesMuiThemeProvider2 = _interopRequireDefault(_materialUiStylesMuiThemeProvider);
@@ -2382,22 +2399,10 @@ var _reactTapEventPlugin = require('react-tap-event-plugin');
 
 var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-var _actionsIndex = require('./actions/index');
-
-var Actions = _interopRequireWildcard(_actionsIndex);
-
-var _router = require('./router');
-
-var _router2 = _interopRequireDefault(_router);
-
-var _reducers = require('./reducers');
-
-var _reducers2 = _interopRequireDefault(_reducers);
-
 //material-ui helper for touch screen clicks
 (0, _reactTapEventPlugin2['default'])();
 
-//override css theme
+//override default material-ui CSS theme
 var muiTheme = (0, _materialUiStylesGetMuiTheme2['default'])({
   palette: {
     primary1Color: _materialUiStylesColors.red400
@@ -2607,7 +2612,7 @@ exports['default'] = _react2['default'].createElement(
     _react2['default'].createElement(_reactRouter.Route, { path: '/duties', component: (0, _containersRequireAuth2['default'])(_componentsDuties2['default']) })
   ),
   _react2['default'].createElement(_reactRouter.Route, { path: '/station', component: (0, _containersRequireAuth2['default'])(_containersStationView2['default']) }),
-  _react2['default'].createElement(_reactRouter.Route, { path: '/table', component: _containersTableView2['default'] })
+  _react2['default'].createElement(_reactRouter.Route, { path: '/table', component: (0, _containersRequireAuth2['default'])(_containersTableView2['default']) })
 );
 module.exports = exports['default'];
 
@@ -2636,27 +2641,22 @@ var fbApp = firebase.initializeApp(firebaseConfig);
 exports.fbApp = fbApp;
 var fb = fbApp.database();
 exports.fb = fb;
-// const fbApp = firebase.initializeApp(firebaseConfig)
-//
-// export default fbApp;
 
 },{"firebase":171}],32:[function(require,module,exports){
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var _firebase = require('./firebase');
 
-exports['default'] = function () {
+exports["default"] = function () {
 
   //Check firebase.auth then localStorage
   if (_firebase.fbApp.auth().currentUser) {
-    console.log('fb auth had user');
     return _firebase.fbApp.auth().currentUser.uid;
   }
-  console.log('fb did not have user...checking localStorage');
   for (var key in localStorage) {
     if (key.startsWith("firebase:authUser:")) {
       return JSON.parse(localStorage.getItem(key)).uid;
@@ -2665,7 +2665,7 @@ exports['default'] = function () {
   return null;
 };
 
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 },{"./firebase":31}],33:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/array/from"), __esModule: true };

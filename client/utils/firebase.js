@@ -10,6 +10,3 @@ const firebaseConfig = {
 
 export const fbApp = firebase.initializeApp(firebaseConfig);
 export const fb = fbApp.database();
-// const fbApp = firebase.initializeApp(firebaseConfig)
-//
-// export default fbApp;

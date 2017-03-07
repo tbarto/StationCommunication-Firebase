@@ -24,6 +24,6 @@ export default (
       <Route path="/duties" component={RequireAuth(Duties)} />
     </Route>
     <Route path="/station" component={RequireAuth(StationView)} />
-    <Route path="/table" component={TableView} />
+    <Route path="/table" component={RequireAuth(TableView)} />
   </Route>
 );

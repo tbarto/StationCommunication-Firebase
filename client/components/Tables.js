@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import TableForm from '../containers/TableForm';
 import TableList from '../containers/TableList';
