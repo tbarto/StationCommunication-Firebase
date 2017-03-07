@@ -10,9 +10,16 @@ Why does your waiter keep coming by when you don't need him??
 
 ![rsz_cartoon_waiting](https://cloud.githubusercontent.com/assets/9302397/23676969/5aa2d0f4-034c-11e7-97d0-5ccbf15a9d9a.jpg)
 
-You need a table pager system like this
+You need an out-dated table pager system like this
 
 ![rsz_table_buzzer](https://cloud.githubusercontent.com/assets/9302397/23677277/7ef91a48-034d-11e7-8b7a-371a6f1e008f.jpg)
+
+Or a software version - jeogiyo
+
+![iphone-jeogiyo](https://cloud.githubusercontent.com/assets/9302397/23678361/d0e89352-0351-11e7-8cd4-9a077b718159.png)
+
+![station_full](https://cloud.githubusercontent.com/assets/9302397/23678352/caba8abc-0351-11e7-930c-e8be6ec64bec.png)
+
 
 ## Technical
 - React js
