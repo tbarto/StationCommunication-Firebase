@@ -14,6 +14,14 @@ You need a table pager system like this
 
 ![rsz_table_buzzer](https://cloud.githubusercontent.com/assets/9302397/23677277/7ef91a48-034d-11e7-8b7a-371a6f1e008f.jpg)
 
+## Technical
+- React js
+- Node js
+- Firebase
+- Material-ui CSS
+
+## Authors
+- Tom Barto
 
 
 
