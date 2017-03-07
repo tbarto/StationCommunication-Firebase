@@ -20,6 +20,22 @@ Or a software version - jeogiyo
 
 ![station_full](https://cloud.githubusercontent.com/assets/9302397/23678352/caba8abc-0351-11e7-930c-e8be6ec64bec.png)
 
+## Working Demo
+[https://jeogiyo.herokuapp.com/](https://jeogiyo.herokuapp.com/)
+
+## Installing and running it
+
+1. Grab the dependencies:
+
+    npm install
+
+2. Build the applicaiton:
+
+	npm run build
+
+3. Then run the app:
+
+    npm start
 
 ## Technical
 - React js
