@@ -7,6 +7,6 @@
 How do you get a waiter's attention??
 
 
-![cartoon waiting](https://cloud.githubusercontent.com/assets/9302397/23676264/20eb4d48-034a-11e7-9878-1c97ea1eae56.jpg)
+![picture1](https://cloud.githubusercontent.com/assets/9302397/23676824/f1fcd1b2-034b-11e7-8ed4-6fd1cf071d14.png)
 
 Why does the waiter keep coming by when I don't need him??
