@@ -2,7 +2,7 @@
 ## real-time communication platform for restaurants
 
 ### Use Cases
-How do you get my waiter's attention??
+How do I get my waiter's attention??
 
 ![the_ignorant_waiter_185325](https://cloud.githubusercontent.com/assets/9302397/23676251/1bb6bc68-034a-11e7-8c66-cdb72789ae1c.jpg)
 
