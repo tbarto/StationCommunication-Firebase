@@ -71,6 +71,9 @@ class Login extends Component {
             <div className="col span_3_of_12"></div>
             <div className="form col span_6_of_12">
               <h2>Login</h2>
+              <h3>For demo purpose: </h3>
+              <p>email: demo@demo.com</p>
+              <p>password: 123456</p>
               { this.renderAuthenticationError() }
               <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                   <Field name="email" component={this.renderField} className="form-control" type="text" label="Email" />

@@ -1,5 +1,7 @@
 import {fbApp} from './firebase';
-
+/*
+* return user id 
+*/
 export default function (){
 
   //Check firebase.auth then localStorage

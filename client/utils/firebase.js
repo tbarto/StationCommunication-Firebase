@@ -1,5 +1,9 @@
 import * as firebase from 'firebase';
 
+/*
+* Firebase Configuration and Initialization
+*/
+
 const firebaseConfig = {
   apiKey: "AIzaSyCkPEPEqdN2ec77f-A-VX5KUIZnI-ruiLo",
   authDomain: "stationcommunication.firebaseapp.com",

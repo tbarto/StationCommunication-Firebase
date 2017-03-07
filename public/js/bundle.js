@@ -632,8 +632,72 @@ var Dashboard = (function (_Component) {
         { className: "content" },
         _react2["default"].createElement(
           "h1",
+          { className: "title" },
+          "Welcome to jeogiyo"
+        ),
+        _react2["default"].createElement(
+          "section",
+          { className: "section group" },
+          _react2["default"].createElement(
+            "h2",
+            null,
+            "Station"
+          ),
+          _react2["default"].createElement(
+            "ul",
+            null,
+            _react2["default"].createElement(
+              "li",
+              null,
+              "View and cancel all calls"
+            ),
+            _react2["default"].createElement(
+              "li",
+              null,
+              "Open multiple stations to interact with calls"
+            )
+          )
+        ),
+        _react2["default"].createElement(
+          "section",
           null,
-          "Welcome to the Dashboard"
+          _react2["default"].createElement(
+            "h2",
+            null,
+            "Duties"
+          ),
+          _react2["default"].createElement(
+            "ul",
+            null,
+            _react2["default"].createElement(
+              "li",
+              null,
+              "Add or remove typical restaurant duties"
+            )
+          )
+        ),
+        _react2["default"].createElement(
+          "section",
+          null,
+          _react2["default"].createElement(
+            "h2",
+            null,
+            "Tables"
+          ),
+          _react2["default"].createElement(
+            "ul",
+            null,
+            _react2["default"].createElement(
+              "li",
+              null,
+              "Add or remove tables"
+            ),
+            _react2["default"].createElement(
+              "li",
+              null,
+              "Access each table directly"
+            )
+          )
         )
       );
     }
@@ -1651,6 +1715,21 @@ var Login = (function (_Component) {
                 null,
                 'Login'
               ),
+              _react2['default'].createElement(
+                'h3',
+                null,
+                'For demo purpose: '
+              ),
+              _react2['default'].createElement(
+                'p',
+                null,
+                'email: demo@demo.com'
+              ),
+              _react2['default'].createElement(
+                'p',
+                null,
+                'password: 123456'
+              ),
               this.renderAuthenticationError(),
               _react2['default'].createElement(
                 'form',
@@ -2629,6 +2708,10 @@ var _firebase = require('firebase');
 
 var firebase = _interopRequireWildcard(_firebase);
 
+/*
+* Firebase Configuration and Initialization
+*/
+
 var firebaseConfig = {
   apiKey: "AIzaSyCkPEPEqdN2ec77f-A-VX5KUIZnI-ruiLo",
   authDomain: "stationcommunication.firebaseapp.com",
@@ -2650,6 +2733,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _firebase = require('./firebase');
+
+/*
+* return user id 
+*/
 
 exports["default"] = function () {
 
