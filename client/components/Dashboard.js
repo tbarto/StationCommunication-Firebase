@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
+import TableLinks from '../containers/TableLinks';
 
 export default class Dashboard extends Component {
 
@@ -26,6 +27,10 @@ export default class Dashboard extends Component {
           <List>
             <ListItem primaryText="These are where users are sitting" disabled={true}/>
           </List>
+        </section>
+        <section>
+          <Subheader>Quick Access Table View: for DEMO purpose only</Subheader>
+          <TableLinks />
         </section>
       </div>
     );
