@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {List, ListItem} from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
 
 export default class Dashboard extends Component {
 
@@ -8,24 +10,22 @@ export default class Dashboard extends Component {
       <div className="content">
         <h1 className="title">Welcome to jeogiyo</h1>
         <section className="section group">
-          <h2>Station</h2>
-          <ul>
-            <li>View and cancel all calls</li>
-            <li>Open multiple stations to interact with calls</li>
-          </ul>
+          <Subheader>Station</Subheader>
+          <List>
+            <ListItem primaryText="This is the place where calls will show up" disabled={true}/>
+          </List>
         </section>
         <section>
-          <h2>Duties</h2>
-          <ul>
-            <li>Add or remove typical restaurant duties</li>
-          </ul>
+          <Subheader>Duties</Subheader>
+          <List>
+            <ListItem primaryText="These are the functions that a user can do"disabled={true} />
+          </List>
         </section>
         <section>
-          <h2>Tables</h2>
-          <ul>
-            <li>Add or remove tables</li>
-            <li>Access each table directly</li>
-          </ul>
+          <Subheader>Tables</Subheader>
+          <List>
+            <ListItem primaryText="These are where users are sitting" disabled={true}/>
+          </List>
         </section>
       </div>
     );

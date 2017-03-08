@@ -5,7 +5,7 @@ import * as actions from '../actions/company';
 import TableItem from '../components/TableItem';
 
 //CSS modules
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import {List} from 'material-ui/List';
 
 class TableList extends Component {
 
@@ -26,30 +26,11 @@ class TableList extends Component {
     });
   }
 
-  renderTable(){
-    return(
-      <Table
-        displayRowCheckbox={false}>
-        <TableHeader
-          adjustForCheckbox={false}
-          displaySelectAll={false}>
-          <TableRow>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>Action</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {this.renderTables()}
-        </TableBody>
-      </Table>
-    );
-  }
-
   render(){
     return(
-      <div>
-        {this.renderTable()}
-      </div>
+      <List>
+        {this.renderTables()}
+      </List>
     );
   }
 }

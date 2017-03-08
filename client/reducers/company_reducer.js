@@ -3,13 +3,15 @@ import {
   FETCH_DUTIES,
   FETCH_TABLES,
   FETCH_CALLS,
-  LISTEN_CALLS
+  LISTEN_CALLS,
+  TOGGLE_NAV
 } from '../actions/types';
 
 const INITIAL_STATE = {
   "company": {},
   "duties": {},
-  "tables": {}
+  "tables": {},
+  "navOpen": false
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -24,6 +26,8 @@ export default function(state = INITIAL_STATE, action) {
       return {...state, "calls": action.payload}
     case LISTEN_CALLS:
       return {...state, "dutyCalls": action.payload}
+    case TOGGLE_NAV:
+      return {...state, "navOpen": !state.navOpen}
   }
   return state;
 }

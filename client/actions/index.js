@@ -7,8 +7,15 @@ import {
   SIGN_IN_USER,
   SIGN_OUT_USER,
   AUTH_ERROR,
-  AUTH_USER
+  AUTH_USER,
+  TOGGLE_NAV
 } from './types';
+
+export function toggleNav(){
+  return {
+    type: TOGGLE_NAV
+  }
+}
 
 export function signInUser(credentials) {
   return function(dispatch) {

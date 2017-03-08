@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/company';
 import DutyItem from '../components/DutyItem';
+import _ from 'lodash';
 
 //CSS modules
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-
-import _ from 'lodash';
+import {List} from 'material-ui/List';
 
 class DutyList extends Component {
 
@@ -27,31 +26,12 @@ class DutyList extends Component {
     });
   }
 
-  renderList(){
-    return(
-      <Table
-        displayRowCheckbox={false}>
-        <TableHeader
-          adjustForCheckbox={false}
-          displaySelectAll={false}>
-          <TableRow>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>Action</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {this.renderDuties()}
-        </TableBody>
-      </Table>
-    );
-  }
-
   render(){
     return(
-      <div>
-        {this.renderList()}
-      </div>
-    );
+      <List>
+        {this.renderDuties()}
+      </List>
+    )
   }
 }
 

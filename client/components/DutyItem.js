@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 
 //CSS modules
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import IconButton from 'material-ui/IconButton';
+import {List, ListItem} from 'material-ui/List';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
 
 export default class DutyItem extends Component {
 
   render() {
-    return (
-      <TableRow>
-        <TableRowColumn>{this.props.duty.name}</TableRowColumn>
-        <TableRowColumn>
+    return(
+      <ListItem
+        primaryText={this.props.duty.name}
+        rightIconButton={
           <IconButton
             onClick={this.props.handleClick.bind(this)}>
-            <i className="material-icons" >delete</i>
-            </IconButton>
-        </TableRowColumn>
-      </TableRow>
+            <ActionDelete />
+          </IconButton>}
+      />
     );
   }
 }

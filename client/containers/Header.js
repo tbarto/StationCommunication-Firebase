@@ -12,6 +12,8 @@ import FlatButton from 'material-ui/FlatButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
+import CompanyDashboard from '../components/CompanyDashboard';
+
 
 const styles = {
   title: {
@@ -64,21 +66,19 @@ LoggedOut.muiName = 'IconMenu';
 class Header extends Component {
 
   handleSignout() {
-    console.log('sign out called');
     this.props.signOutUser();
-  }
-
-  handleTouchTap(){
-
   }
 
   render(){
     return (
-        <AppBar
-          showMenuIconButton={false}
-          title="jeogiyo"
-          iconElementRight={this.props.authenticated ? <LoggedIn handleSignout={this.handleSignout.bind(this)}/> : <LoggedOut />}
-        />
+        <div>
+          <AppBar
+            showMenuIconButton={this.props.authenticated}
+            onLeftIconButtonTouchTap={this.props.toggleNav.bind(this)}
+            title="jeogiyo"
+            iconElementRight={this.props.authenticated ? <LoggedIn handleSignout={this.handleSignout.bind(this)}/> : <LoggedOut />}
+          />
+        </div>
     );
   }
 }
@@ -86,7 +86,7 @@ class Header extends Component {
 function mapStateToProps(state) {
   return {
     authenticated: state.auth.authenticated
-  }
+  };
 }
 
 export default connect(mapStateToProps, Actions)(Header);

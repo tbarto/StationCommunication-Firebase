@@ -4,8 +4,9 @@ import * as actions from '../actions/company';
 import {Link} from 'react-router';
 
 //CSS modules
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import IconButton from 'material-ui/IconButton';
+import {List, ListItem} from 'material-ui/List';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
 import FlatButton from 'material-ui/FlatButton'
 
 export default class TableItem extends Component {
@@ -13,22 +14,16 @@ export default class TableItem extends Component {
   render() {
     const tid = this.props.id;
     const tname = this.props.table.name;
-
-    return (
-      <TableRow>
-        <TableRowColumn>
-          <FlatButton
-            label={this.props.table.name}
-            containerElement={<Link to={`/table?tid=${tid}&tname=${tname}`}>{tname}</Link>}
-          />
-        </TableRowColumn>
-        <TableRowColumn>
+    
+    return(
+      <ListItem
+        primaryText={<Link to={`/table?tid=${tid}&tname=${tname}`}>{tname}</Link>}
+        rightIconButton={
           <IconButton
             onClick={this.props.handleClick.bind(this)}>
-            <i className="material-icons" >delete</i>
-            </IconButton>
-        </TableRowColumn>
-      </TableRow>
+            <ActionDelete />
+          </IconButton>}
+      />
     );
   }
 }
