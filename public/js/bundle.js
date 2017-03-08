@@ -492,6 +492,510 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _materialUiList = require('material-ui/List');
+
+var _materialUiSubheader = require('material-ui/Subheader');
+
+var _materialUiSubheader2 = _interopRequireDefault(_materialUiSubheader);
+
+var Dashboard = (function (_Component) {
+  _inherits(Dashboard, _Component);
+
+  function Dashboard() {
+    _classCallCheck(this, Dashboard);
+
+    _get(Object.getPrototypeOf(Dashboard.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(Dashboard, [{
+    key: 'render',
+    value: function render() {
+
+      return _react2['default'].createElement(
+        'div',
+        { className: 'content' },
+        _react2['default'].createElement(
+          'h1',
+          { className: 'title' },
+          'Welcome to jeogiyo'
+        ),
+        _react2['default'].createElement(
+          'section',
+          { className: 'section group' },
+          _react2['default'].createElement(
+            _materialUiSubheader2['default'],
+            null,
+            'Station'
+          ),
+          _react2['default'].createElement(
+            _materialUiList.List,
+            null,
+            _react2['default'].createElement(_materialUiList.ListItem, { primaryText: 'This is the place where calls will show up', disabled: true })
+          )
+        ),
+        _react2['default'].createElement(
+          'section',
+          null,
+          _react2['default'].createElement(
+            _materialUiSubheader2['default'],
+            null,
+            'Duties'
+          ),
+          _react2['default'].createElement(
+            _materialUiList.List,
+            null,
+            _react2['default'].createElement(_materialUiList.ListItem, { primaryText: 'These are the functions that a user can do', disabled: true })
+          )
+        ),
+        _react2['default'].createElement(
+          'section',
+          null,
+          _react2['default'].createElement(
+            _materialUiSubheader2['default'],
+            null,
+            'Tables'
+          ),
+          _react2['default'].createElement(
+            _materialUiList.List,
+            null,
+            _react2['default'].createElement(_materialUiList.ListItem, { primaryText: 'These are where users are sitting', disabled: true })
+          )
+        )
+      );
+    }
+  }]);
+
+  return Dashboard;
+})(_react.Component);
+
+exports['default'] = Dashboard;
+module.exports = exports['default'];
+
+},{"material-ui/List":394,"material-ui/Subheader":407,"react":670}],8:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _containersDutyForm = require('../containers/DutyForm');
+
+var _containersDutyForm2 = _interopRequireDefault(_containersDutyForm);
+
+var _containersDutyList = require('../containers/DutyList');
+
+var _containersDutyList2 = _interopRequireDefault(_containersDutyList);
+
+var Duties = (function (_Component) {
+  _inherits(Duties, _Component);
+
+  function Duties() {
+    _classCallCheck(this, Duties);
+
+    _get(Object.getPrototypeOf(Duties.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(Duties, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        { className: 'content' },
+        _react2['default'].createElement(
+          'h1',
+          null,
+          'Duty Setup'
+        ),
+        _react2['default'].createElement(_containersDutyForm2['default'], null),
+        _react2['default'].createElement(_containersDutyList2['default'], null)
+      );
+    }
+  }]);
+
+  return Duties;
+})(_react.Component);
+
+exports['default'] = Duties;
+module.exports = exports['default'];
+
+},{"../containers/DutyForm":15,"../containers/DutyList":16,"react":670}],9:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+//CSS modules
+
+var _materialUiIconButton = require('material-ui/IconButton');
+
+var _materialUiIconButton2 = _interopRequireDefault(_materialUiIconButton);
+
+var _materialUiList = require('material-ui/List');
+
+var _materialUiSvgIconsActionDelete = require('material-ui/svg-icons/action/delete');
+
+var _materialUiSvgIconsActionDelete2 = _interopRequireDefault(_materialUiSvgIconsActionDelete);
+
+var DutyItem = (function (_Component) {
+  _inherits(DutyItem, _Component);
+
+  function DutyItem() {
+    _classCallCheck(this, DutyItem);
+
+    _get(Object.getPrototypeOf(DutyItem.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(DutyItem, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(_materialUiList.ListItem, {
+        primaryText: this.props.duty.name,
+        rightIconButton: _react2['default'].createElement(
+          _materialUiIconButton2['default'],
+          {
+            onClick: this.props.handleClick.bind(this) },
+          _react2['default'].createElement(_materialUiSvgIconsActionDelete2['default'], null)
+        )
+      });
+    }
+  }]);
+
+  return DutyItem;
+})(_react.Component);
+
+exports['default'] = DutyItem;
+module.exports = exports['default'];
+
+},{"material-ui/IconButton":388,"material-ui/List":394,"material-ui/svg-icons/action/delete":435,"react":670}],10:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _materialUiRaisedButton = require('material-ui/RaisedButton');
+
+var _materialUiRaisedButton2 = _interopRequireDefault(_materialUiRaisedButton);
+
+var _materialUiPaper = require('material-ui/Paper');
+
+var _materialUiPaper2 = _interopRequireDefault(_materialUiPaper);
+
+var style = {
+  width: '100%',
+  margin: 5,
+  display: 'inline-block',
+  padding: 10
+};
+
+var StationView = (function (_Component) {
+  _inherits(StationView, _Component);
+
+  function StationView() {
+    _classCallCheck(this, StationView);
+
+    _get(Object.getPrototypeOf(StationView.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(StationView, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        _materialUiPaper2['default'],
+        {
+          className: 'call',
+          onClick: this.props.handleClick.bind(this),
+          style: style,
+          zDepth: 4
+        },
+        _react2['default'].createElement(
+          'div',
+          null,
+          this.props.call.tname
+        ),
+        _react2['default'].createElement(
+          'div',
+          null,
+          this.props.call.name
+        )
+      );
+    }
+  }]);
+
+  return StationView;
+})(_react.Component);
+
+exports['default'] = StationView;
+module.exports = exports['default'];
+
+},{"material-ui/Paper":401,"material-ui/RaisedButton":405,"react":670}],11:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+//CSS modules
+
+var _materialUiRaisedButton = require('material-ui/RaisedButton');
+
+var _materialUiRaisedButton2 = _interopRequireDefault(_materialUiRaisedButton);
+
+var TableDutyButton = (function (_Component) {
+  _inherits(TableDutyButton, _Component);
+
+  function TableDutyButton() {
+    _classCallCheck(this, TableDutyButton);
+
+    _get(Object.getPrototypeOf(TableDutyButton.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(TableDutyButton, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        null,
+        _react2['default'].createElement(_materialUiRaisedButton2['default'], {
+          label: this.props.name,
+          primary: true,
+          disabled: this.props.isDisabled,
+          onClick: this.props.handleClick.bind(this),
+          className: 'material-ui-button',
+          fullWidth: true })
+      );
+    }
+  }]);
+
+  return TableDutyButton;
+})(_react.Component);
+
+exports['default'] = TableDutyButton;
+module.exports = exports['default'];
+
+},{"material-ui/RaisedButton":405,"react":670}],12:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = require('react-redux');
+
+var _actionsCompany = require('../actions/company');
+
+var actions = _interopRequireWildcard(_actionsCompany);
+
+var _reactRouter = require('react-router');
+
+//CSS modules
+
+var _materialUiIconButton = require('material-ui/IconButton');
+
+var _materialUiIconButton2 = _interopRequireDefault(_materialUiIconButton);
+
+var _materialUiList = require('material-ui/List');
+
+var _materialUiSvgIconsActionDelete = require('material-ui/svg-icons/action/delete');
+
+var _materialUiSvgIconsActionDelete2 = _interopRequireDefault(_materialUiSvgIconsActionDelete);
+
+var _materialUiFlatButton = require('material-ui/FlatButton');
+
+var _materialUiFlatButton2 = _interopRequireDefault(_materialUiFlatButton);
+
+var TableItem = (function (_Component) {
+  _inherits(TableItem, _Component);
+
+  function TableItem() {
+    _classCallCheck(this, TableItem);
+
+    _get(Object.getPrototypeOf(TableItem.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(TableItem, [{
+    key: 'render',
+    value: function render() {
+      var tid = this.props.id;
+      var tname = this.props.table.name;
+
+      return _react2['default'].createElement(_materialUiList.ListItem, {
+        primaryText: _react2['default'].createElement(
+          _reactRouter.Link,
+          { to: '/table?tid=' + tid + '&tname=' + tname },
+          tname
+        ),
+        rightIconButton: _react2['default'].createElement(
+          _materialUiIconButton2['default'],
+          {
+            onClick: this.props.handleClick.bind(this) },
+          _react2['default'].createElement(_materialUiSvgIconsActionDelete2['default'], null)
+        )
+      });
+    }
+  }]);
+
+  return TableItem;
+})(_react.Component);
+
+exports['default'] = TableItem;
+module.exports = exports['default'];
+
+},{"../actions/company":1,"material-ui/FlatButton":384,"material-ui/IconButton":388,"material-ui/List":394,"material-ui/svg-icons/action/delete":435,"react":670,"react-redux":598,"react-router":630}],13:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _containersTableForm = require('../containers/TableForm');
+
+var _containersTableForm2 = _interopRequireDefault(_containersTableForm);
+
+var _containersTableList = require('../containers/TableList');
+
+var _containersTableList2 = _interopRequireDefault(_containersTableList);
+
+var Tables = (function (_Component) {
+  _inherits(Tables, _Component);
+
+  function Tables() {
+    _classCallCheck(this, Tables);
+
+    _get(Object.getPrototypeOf(Tables.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(Tables, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        { className: 'content' },
+        _react2['default'].createElement(
+          'h1',
+          null,
+          'Table Setup'
+        ),
+        _react2['default'].createElement(_containersTableForm2['default'], null),
+        _react2['default'].createElement(_containersTableList2['default'], null)
+      );
+    }
+  }]);
+
+  return Tables;
+})(_react.Component);
+
+exports['default'] = Tables;
+module.exports = exports['default'];
+
+},{"../containers/TableForm":23,"../containers/TableList":24,"react":670}],14:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -629,511 +1133,7 @@ function mapDispatchToProps(dispatch) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CompanyDashboard);
 module.exports = exports['default'];
 
-},{"../actions/company":1,"../actions/index":2,"material-ui/AppBar":379,"material-ui/Drawer":381,"material-ui/List":394,"react":670,"react-redux":598,"react-router":630,"redux":744}],8:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _materialUiList = require('material-ui/List');
-
-var _materialUiSubheader = require('material-ui/Subheader');
-
-var _materialUiSubheader2 = _interopRequireDefault(_materialUiSubheader);
-
-var Dashboard = (function (_Component) {
-  _inherits(Dashboard, _Component);
-
-  function Dashboard() {
-    _classCallCheck(this, Dashboard);
-
-    _get(Object.getPrototypeOf(Dashboard.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(Dashboard, [{
-    key: 'render',
-    value: function render() {
-
-      return _react2['default'].createElement(
-        'div',
-        { className: 'content' },
-        _react2['default'].createElement(
-          'h1',
-          { className: 'title' },
-          'Welcome to jeogiyo'
-        ),
-        _react2['default'].createElement(
-          'section',
-          { className: 'section group' },
-          _react2['default'].createElement(
-            _materialUiSubheader2['default'],
-            null,
-            'Station'
-          ),
-          _react2['default'].createElement(
-            _materialUiList.List,
-            null,
-            _react2['default'].createElement(_materialUiList.ListItem, { primaryText: 'This is the place where calls will show up', disabled: true })
-          )
-        ),
-        _react2['default'].createElement(
-          'section',
-          null,
-          _react2['default'].createElement(
-            _materialUiSubheader2['default'],
-            null,
-            'Duties'
-          ),
-          _react2['default'].createElement(
-            _materialUiList.List,
-            null,
-            _react2['default'].createElement(_materialUiList.ListItem, { primaryText: 'These are the functions that a user can do', disabled: true })
-          )
-        ),
-        _react2['default'].createElement(
-          'section',
-          null,
-          _react2['default'].createElement(
-            _materialUiSubheader2['default'],
-            null,
-            'Tables'
-          ),
-          _react2['default'].createElement(
-            _materialUiList.List,
-            null,
-            _react2['default'].createElement(_materialUiList.ListItem, { primaryText: 'These are where users are sitting', disabled: true })
-          )
-        )
-      );
-    }
-  }]);
-
-  return Dashboard;
-})(_react.Component);
-
-exports['default'] = Dashboard;
-module.exports = exports['default'];
-
-},{"material-ui/List":394,"material-ui/Subheader":407,"react":670}],9:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _containersDutyForm = require('../containers/DutyForm');
-
-var _containersDutyForm2 = _interopRequireDefault(_containersDutyForm);
-
-var _containersDutyList = require('../containers/DutyList');
-
-var _containersDutyList2 = _interopRequireDefault(_containersDutyList);
-
-var Duties = (function (_Component) {
-  _inherits(Duties, _Component);
-
-  function Duties() {
-    _classCallCheck(this, Duties);
-
-    _get(Object.getPrototypeOf(Duties.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(Duties, [{
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'div',
-        { className: 'content' },
-        _react2['default'].createElement(
-          'h1',
-          null,
-          'Duty Setup'
-        ),
-        _react2['default'].createElement(_containersDutyForm2['default'], null),
-        _react2['default'].createElement(_containersDutyList2['default'], null)
-      );
-    }
-  }]);
-
-  return Duties;
-})(_react.Component);
-
-exports['default'] = Duties;
-module.exports = exports['default'];
-
-},{"../containers/DutyForm":15,"../containers/DutyList":16,"react":670}],10:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-//CSS modules
-
-var _materialUiIconButton = require('material-ui/IconButton');
-
-var _materialUiIconButton2 = _interopRequireDefault(_materialUiIconButton);
-
-var _materialUiList = require('material-ui/List');
-
-var _materialUiSvgIconsActionDelete = require('material-ui/svg-icons/action/delete');
-
-var _materialUiSvgIconsActionDelete2 = _interopRequireDefault(_materialUiSvgIconsActionDelete);
-
-var DutyItem = (function (_Component) {
-  _inherits(DutyItem, _Component);
-
-  function DutyItem() {
-    _classCallCheck(this, DutyItem);
-
-    _get(Object.getPrototypeOf(DutyItem.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(DutyItem, [{
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(_materialUiList.ListItem, {
-        primaryText: this.props.duty.name,
-        rightIconButton: _react2['default'].createElement(
-          _materialUiIconButton2['default'],
-          {
-            onClick: this.props.handleClick.bind(this) },
-          _react2['default'].createElement(_materialUiSvgIconsActionDelete2['default'], null)
-        )
-      });
-    }
-  }]);
-
-  return DutyItem;
-})(_react.Component);
-
-exports['default'] = DutyItem;
-module.exports = exports['default'];
-
-},{"material-ui/IconButton":388,"material-ui/List":394,"material-ui/svg-icons/action/delete":435,"react":670}],11:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _materialUiRaisedButton = require('material-ui/RaisedButton');
-
-var _materialUiRaisedButton2 = _interopRequireDefault(_materialUiRaisedButton);
-
-var _materialUiPaper = require('material-ui/Paper');
-
-var _materialUiPaper2 = _interopRequireDefault(_materialUiPaper);
-
-var style = {
-  width: '100%',
-  margin: 5,
-  display: 'inline-block',
-  padding: 10
-};
-
-var StationView = (function (_Component) {
-  _inherits(StationView, _Component);
-
-  function StationView() {
-    _classCallCheck(this, StationView);
-
-    _get(Object.getPrototypeOf(StationView.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(StationView, [{
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        _materialUiPaper2['default'],
-        {
-          className: 'call',
-          onClick: this.props.handleClick.bind(this),
-          style: style,
-          zDepth: 4
-        },
-        _react2['default'].createElement(
-          'div',
-          null,
-          this.props.call.tname
-        ),
-        _react2['default'].createElement(
-          'div',
-          null,
-          this.props.call.name
-        )
-      );
-    }
-  }]);
-
-  return StationView;
-})(_react.Component);
-
-exports['default'] = StationView;
-module.exports = exports['default'];
-
-},{"material-ui/Paper":401,"material-ui/RaisedButton":405,"react":670}],12:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-//CSS modules
-
-var _materialUiRaisedButton = require('material-ui/RaisedButton');
-
-var _materialUiRaisedButton2 = _interopRequireDefault(_materialUiRaisedButton);
-
-var TableDutyButton = (function (_Component) {
-  _inherits(TableDutyButton, _Component);
-
-  function TableDutyButton() {
-    _classCallCheck(this, TableDutyButton);
-
-    _get(Object.getPrototypeOf(TableDutyButton.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(TableDutyButton, [{
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'div',
-        null,
-        _react2['default'].createElement(_materialUiRaisedButton2['default'], {
-          label: this.props.name,
-          primary: true,
-          disabled: this.props.isDisabled,
-          onClick: this.props.handleClick.bind(this),
-          className: 'material-ui-button',
-          fullWidth: true })
-      );
-    }
-  }]);
-
-  return TableDutyButton;
-})(_react.Component);
-
-exports['default'] = TableDutyButton;
-module.exports = exports['default'];
-
-},{"material-ui/RaisedButton":405,"react":670}],13:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = require('react-redux');
-
-var _actionsCompany = require('../actions/company');
-
-var actions = _interopRequireWildcard(_actionsCompany);
-
-var _reactRouter = require('react-router');
-
-//CSS modules
-
-var _materialUiIconButton = require('material-ui/IconButton');
-
-var _materialUiIconButton2 = _interopRequireDefault(_materialUiIconButton);
-
-var _materialUiList = require('material-ui/List');
-
-var _materialUiSvgIconsActionDelete = require('material-ui/svg-icons/action/delete');
-
-var _materialUiSvgIconsActionDelete2 = _interopRequireDefault(_materialUiSvgIconsActionDelete);
-
-var _materialUiFlatButton = require('material-ui/FlatButton');
-
-var _materialUiFlatButton2 = _interopRequireDefault(_materialUiFlatButton);
-
-var TableItem = (function (_Component) {
-  _inherits(TableItem, _Component);
-
-  function TableItem() {
-    _classCallCheck(this, TableItem);
-
-    _get(Object.getPrototypeOf(TableItem.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(TableItem, [{
-    key: 'render',
-    value: function render() {
-      var tid = this.props.id;
-      var tname = this.props.table.name;
-
-      return _react2['default'].createElement(_materialUiList.ListItem, {
-        primaryText: _react2['default'].createElement(
-          _reactRouter.Link,
-          { to: '/table?tid=' + tid + '&tname=' + tname },
-          tname
-        ),
-        rightIconButton: _react2['default'].createElement(
-          _materialUiIconButton2['default'],
-          {
-            onClick: this.props.handleClick.bind(this) },
-          _react2['default'].createElement(_materialUiSvgIconsActionDelete2['default'], null)
-        )
-      });
-    }
-  }]);
-
-  return TableItem;
-})(_react.Component);
-
-exports['default'] = TableItem;
-module.exports = exports['default'];
-
-},{"../actions/company":1,"material-ui/FlatButton":384,"material-ui/IconButton":388,"material-ui/List":394,"material-ui/svg-icons/action/delete":435,"react":670,"react-redux":598,"react-router":630}],14:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _containersTableForm = require('../containers/TableForm');
-
-var _containersTableForm2 = _interopRequireDefault(_containersTableForm);
-
-var _containersTableList = require('../containers/TableList');
-
-var _containersTableList2 = _interopRequireDefault(_containersTableList);
-
-var Tables = (function (_Component) {
-  _inherits(Tables, _Component);
-
-  function Tables() {
-    _classCallCheck(this, Tables);
-
-    _get(Object.getPrototypeOf(Tables.prototype), 'constructor', this).apply(this, arguments);
-  }
-
-  _createClass(Tables, [{
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'div',
-        { className: 'content' },
-        _react2['default'].createElement(
-          'h1',
-          null,
-          'Table Setup'
-        ),
-        _react2['default'].createElement(_containersTableForm2['default'], null),
-        _react2['default'].createElement(_containersTableList2['default'], null)
-      );
-    }
-  }]);
-
-  return Tables;
-})(_react.Component);
-
-exports['default'] = Tables;
-module.exports = exports['default'];
-
-},{"../containers/TableForm":23,"../containers/TableList":24,"react":670}],15:[function(require,module,exports){
+},{"../actions/company":1,"../actions/index":2,"material-ui/AppBar":379,"material-ui/Drawer":381,"material-ui/List":394,"react":670,"react-redux":598,"react-router":630,"redux":744}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1287,7 +1287,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(DutyList);
 module.exports = exports['default'];
 
-},{"../actions/company":1,"../components/DutyItem":10,"lodash":368,"material-ui/List":394,"react":670,"react-redux":598}],17:[function(require,module,exports){
+},{"../actions/company":1,"../components/DutyItem":9,"lodash":368,"material-ui/List":394,"react":670,"react-redux":598}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1438,10 +1438,6 @@ var _materialUiSvgIconsNavigationClose = require('material-ui/svg-icons/navigati
 
 var _materialUiSvgIconsNavigationClose2 = _interopRequireDefault(_materialUiSvgIconsNavigationClose);
 
-var _componentsCompanyDashboard = require('../components/CompanyDashboard');
-
-var _componentsCompanyDashboard2 = _interopRequireDefault(_componentsCompanyDashboard);
-
 var styles = {
   title: {
     cursor: 'pointer'
@@ -1549,7 +1545,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, Actions)(Header);
 module.exports = exports['default'];
 
-},{"../actions/index":2,"../components/CompanyDashboard":7,"material-ui/AppBar":379,"material-ui/FlatButton":384,"material-ui/IconButton":388,"material-ui/IconMenu":390,"material-ui/MenuItem":399,"material-ui/svg-icons/navigation/close":437,"material-ui/svg-icons/navigation/more-vert":441,"react":670,"react-redux":598,"react-router":630}],19:[function(require,module,exports){
+},{"../actions/index":2,"material-ui/AppBar":379,"material-ui/FlatButton":384,"material-ui/IconButton":388,"material-ui/IconMenu":390,"material-ui/MenuItem":399,"material-ui/svg-icons/navigation/close":437,"material-ui/svg-icons/navigation/more-vert":441,"react":670,"react-redux":598,"react-router":630}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2075,7 +2071,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(StationView);
 module.exports = exports['default'];
 
-},{"../actions/station":3,"../components/StationCallItem":11,"lodash":368,"react":670,"react-redux":598}],23:[function(require,module,exports){
+},{"../actions/station":3,"../components/StationCallItem":10,"lodash":368,"react":670,"react-redux":598}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2229,7 +2225,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(TableList);
 module.exports = exports['default'];
 
-},{"../actions/company":1,"../components/TableItem":13,"lodash":368,"material-ui/List":394,"react":670,"react-redux":598}],25:[function(require,module,exports){
+},{"../actions/company":1,"../components/TableItem":12,"lodash":368,"material-ui/List":394,"react":670,"react-redux":598}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2359,7 +2355,7 @@ function mapStateToProps(state) {
 exports['default'] = (0, _reactRedux.connect)(mapStateToProps, actions)(TableView);
 module.exports = exports['default'];
 
-},{"../actions/company":1,"../components/TableDutyButton":12,"lodash":368,"react":670,"react-redux":598}],26:[function(require,module,exports){
+},{"../actions/company":1,"../components/TableDutyButton":11,"lodash":368,"react":670,"react-redux":598}],26:[function(require,module,exports){
 'use strict';
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
@@ -2578,9 +2574,9 @@ var _componentsAppIndex = require('./components/AppIndex');
 
 var _componentsAppIndex2 = _interopRequireDefault(_componentsAppIndex);
 
-var _componentsCompanyDashboard = require('./components/CompanyDashboard');
+var _containersCompanyDashboard = require('./containers/CompanyDashboard');
 
-var _componentsCompanyDashboard2 = _interopRequireDefault(_componentsCompanyDashboard);
+var _containersCompanyDashboard2 = _interopRequireDefault(_containersCompanyDashboard);
 
 var _componentsDashboard = require('./components/Dashboard');
 
@@ -2622,7 +2618,7 @@ exports['default'] = _react2['default'].createElement(
   _react2['default'].createElement(_reactRouter.Route, { path: 'login', component: _containersLogin2['default'] }),
   _react2['default'].createElement(
     _reactRouter.Route,
-    { path: '/restaurant', component: (0, _containersRequireAuth2['default'])(_componentsCompanyDashboard2['default']) },
+    { path: '/restaurant', component: (0, _containersRequireAuth2['default'])(_containersCompanyDashboard2['default']) },
     _react2['default'].createElement(_reactRouter.Route, { path: '/dashboard', component: (0, _containersRequireAuth2['default'])(_componentsDashboard2['default']) }),
     _react2['default'].createElement(_reactRouter.Route, { path: '/tables', component: (0, _containersRequireAuth2['default'])(_componentsTables2['default']) }),
     _react2['default'].createElement(_reactRouter.Route, { path: '/duties', component: (0, _containersRequireAuth2['default'])(_componentsDuties2['default']) }),
@@ -2632,7 +2628,7 @@ exports['default'] = _react2['default'].createElement(
 );
 module.exports = exports['default'];
 
-},{"./components/App":5,"./components/AppIndex":6,"./components/CompanyDashboard":7,"./components/Dashboard":8,"./components/Duties":9,"./components/Tables":14,"./containers/Login":19,"./containers/RequireAuth":20,"./containers/Signup":21,"./containers/StationView":22,"./containers/TableView":25,"react":670,"react-router":630}],31:[function(require,module,exports){
+},{"./components/App":5,"./components/AppIndex":6,"./components/Dashboard":7,"./components/Duties":8,"./components/Tables":13,"./containers/CompanyDashboard":14,"./containers/Login":19,"./containers/RequireAuth":20,"./containers/Signup":21,"./containers/StationView":22,"./containers/TableView":25,"react":670,"react-router":630}],31:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

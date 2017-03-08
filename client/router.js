@@ -3,7 +3,7 @@ import {Route, IndexRoute} from 'react-router';
 
 import App from './components/App';
 import AppIndex from './components/AppIndex';
-import CompanyDashboard from './components/CompanyDashboard';
+import CompanyDashboard from './containers/CompanyDashboard';
 import Dashboard from './components/Dashboard';
 import TableView from './containers/TableView';
 import StationView from './containers/StationView';

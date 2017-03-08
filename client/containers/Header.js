@@ -12,9 +12,6 @@ import FlatButton from 'material-ui/FlatButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
-import CompanyDashboard from '../components/CompanyDashboard';
-
-
 const styles = {
   title: {
     cursor: 'pointer',
