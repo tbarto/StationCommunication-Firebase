@@ -2335,6 +2335,11 @@ var TableView = (function (_Component) {
             { className: 'title' },
             tableName
           ),
+          _react2['default'].createElement(
+            'p',
+            null,
+            'Demo: if a button is disabled, it means it was pushed and there is currently a call at the station. It will be enabled when the station clears that call.'
+          ),
           this.renderDuties()
         ),
         _react2['default'].createElement('div', { className: 'col span_3_of_12' })

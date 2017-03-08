@@ -55,6 +55,7 @@ class TableView extends Component {
         <div className="col span_3_of_12"></div>
         <div className="col span_6_of_12">
           <h1 className="title">{tableName}</h1>
+          <p>DEMO: if a button is disabled, it means it was pushed and there is currently a call at the station. It will be enabled when the station clears that call.</p>
           {this.renderDuties()}
         </div>
         <div className="col span_3_of_12"></div>
