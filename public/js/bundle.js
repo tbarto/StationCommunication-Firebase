@@ -1898,8 +1898,8 @@ var Signup = (function (_Component) {
   _createClass(Signup, [{
     key: 'handleFormSubmit',
     value: function handleFormSubmit(values) {
-      console.log(values);
       this.props.signUpUser(values);
+      console.log(values);
     }
   }, {
     key: 'renderField',
@@ -1959,7 +1959,7 @@ var Signup = (function (_Component) {
                 _react2['default'].createElement(_reduxForm.Field, { name: 'email', type: 'text', component: this.renderField, label: 'Email' }),
                 _react2['default'].createElement(_reduxForm.Field, { name: 'password', type: 'password', component: this.renderField, label: 'Password' }),
                 _react2['default'].createElement(_reduxForm.Field, { name: 'passwordConfirmation', type: 'password', component: this.renderField, label: 'Password Confirmation' }),
-                _react2['default'].createElement(_materialUiRaisedButton2['default'], { action: 'submit', primary: true, label: 'Submit' })
+                _react2['default'].createElement(_materialUiRaisedButton2['default'], { action: 'submit', primary: true, label: 'Submit', type: 'submit' })
               )
             ),
             _react2['default'].createElement('div', { className: 'col span_3_of_12' })

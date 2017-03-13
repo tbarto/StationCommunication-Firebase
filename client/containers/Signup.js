@@ -43,8 +43,8 @@ const validate = values => {
 class Signup extends Component {
 
   handleFormSubmit(values){
-    console.log(values);
     this.props.signUpUser(values);
+    console.log(values);
   };
 
   renderField(field) {
@@ -83,7 +83,7 @@ class Signup extends Component {
               <Field name="email" type="text" component={this.renderField} label="Email"/>
               <Field name="password" type="password" component={this.renderField} label="Password" />
               <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
-              <RaisedButton action="submit" primary={true} label="Submit" />
+              <RaisedButton action="submit" primary={true} label="Submit" type="submit"/>
             </form>
           </div>
           <div className="col span_3_of_12"></div>
