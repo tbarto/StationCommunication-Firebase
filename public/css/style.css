@@ -49,6 +49,12 @@ form {
   text-align:center;
 }
 
+.call span {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 /* List items*/
 li.list-group-item {
   display: flex;

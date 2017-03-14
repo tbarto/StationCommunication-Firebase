@@ -740,6 +740,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+//CSS modules
+
 var _materialUiRaisedButton = require('material-ui/RaisedButton');
 
 var _materialUiRaisedButton2 = _interopRequireDefault(_materialUiRaisedButton);
@@ -748,11 +750,15 @@ var _materialUiPaper = require('material-ui/Paper');
 
 var _materialUiPaper2 = _interopRequireDefault(_materialUiPaper);
 
+var _materialUiStylesColors = require('material-ui/styles/colors');
+
 var style = {
   width: '100%',
   margin: 5,
   display: 'inline-block',
-  padding: 10
+  padding: 10,
+  backgroundColor: '#A9F0D1',
+  borderRadius: '50%'
 };
 
 var StationView = (function (_Component) {
@@ -776,12 +782,13 @@ var StationView = (function (_Component) {
           zDepth: 4
         },
         _react2['default'].createElement(
-          'div',
+          'span',
           null,
-          this.props.call.tname
+          this.props.call.tname,
+          '...'
         ),
         _react2['default'].createElement(
-          'div',
+          'span',
           null,
           this.props.call.name
         )
@@ -795,7 +802,7 @@ var StationView = (function (_Component) {
 exports['default'] = StationView;
 module.exports = exports['default'];
 
-},{"material-ui/Paper":402,"material-ui/RaisedButton":406,"react":671}],11:[function(require,module,exports){
+},{"material-ui/Paper":402,"material-ui/RaisedButton":406,"material-ui/styles/colors":430,"react":671}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
