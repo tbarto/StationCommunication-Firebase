@@ -5,7 +5,7 @@ Real-time communication example for restaurants. It uses firebase database to en
 [https://jeogiyo.herokuapp.com/](https://jeogiyo.herokuapp.com/)
 
 ## How It's Made
-**Tech used:** react js, redux, node js, firebase, material-ui css
+**Tech used:** react js, redux, node js, firebase, webpack, babel, es6, material-ui css
 
 This example uses redux in a react app. Thunk middleware is used to handle asynchronous calls to the firebase database. Material-ui css, which has built-in react components, was used for most of the major css styling.
 
