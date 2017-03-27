@@ -1,4 +1,4 @@
-# jeogiyo 
+# React-Redux example with Firebase including authentication 
 Real-time communication example for restaurants. It uses firebase database to enable real-time communication between users and central 'stations'.
 
 ## Working Demo
